@@ -1,0 +1,30 @@
+﻿/* FunctionBar */
+.function-bar {
+    display: flex;
+    gap: 0.5rem; /* 按钮间距 */
+    padding: 0.75rem;
+}
+
+    .function-bar button,
+    .primitive-tree button{
+        background: none;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .function-bar button {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+        .function-bar button:hover,
+        .primitive-tree button:hover{
+            background-color: #ffd43b;
+        }
