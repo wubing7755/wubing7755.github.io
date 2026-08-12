@@ -1,0 +1,194 @@
+[
+  {
+    "names": {
+      "zh": "\u7F16\u7A0B\u8BED\u8A00",
+      "en": "Programming Languages"
+    },
+    "skills": [
+      {
+        "name": "C#",
+        "names": {
+          "zh": "C#",
+          "en": "C#"
+        },
+        "level": ""
+      },
+      {
+        "name": "C",
+        "names": {
+          "zh": "C",
+          "en": "C"
+        },
+        "level": ""
+      },
+      {
+        "name": "TypeScript",
+        "names": {
+          "zh": "TypeScript",
+          "en": "TypeScript"
+        },
+        "level": ""
+      },
+      {
+        "name": "Python",
+        "names": {
+          "zh": "Python",
+          "en": "Python"
+        },
+        "level": ""
+      }
+    ]
+  },
+  {
+    "names": {
+      "zh": ".NET \u6280\u672F\u6808",
+      "en": ".NET Stack"
+    },
+    "skills": [
+      {
+        "name": "Blazor WASM",
+        "names": {
+          "zh": "Blazor WASM",
+          "en": "Blazor WASM"
+        },
+        "level": ""
+      },
+      {
+        "name": "ASP.NET Core",
+        "names": {
+          "zh": "ASP.NET Core",
+          "en": "ASP.NET Core"
+        },
+        "level": ""
+      },
+      {
+        "name": "WinForms",
+        "names": {
+          "zh": "WinForms",
+          "en": "WinForms"
+        },
+        "level": ""
+      },
+      {
+        "name": "WPF",
+        "names": {
+          "zh": "WPF",
+          "en": "WPF"
+        },
+        "level": ""
+      },
+      {
+        "name": "SkiaSharp",
+        "names": {
+          "zh": "SkiaSharp",
+          "en": "SkiaSharp"
+        },
+        "level": ""
+      },
+      {
+        "name": "OpenXML",
+        "names": {
+          "zh": "OpenXML",
+          "en": "OpenXML"
+        },
+        "level": ""
+      },
+      {
+        "name": "SQLite",
+        "names": {
+          "zh": "SQLite",
+          "en": "SQLite"
+        },
+        "level": ""
+      }
+    ]
+  },
+  {
+    "names": {
+      "zh": "\u524D\u7AEF\u4E0E\u56FE\u5F62",
+      "en": "Frontend \u0026 Graphics"
+    },
+    "skills": [
+      {
+        "name": "Blazor",
+        "names": {
+          "zh": "Blazor",
+          "en": "Blazor"
+        },
+        "level": ""
+      },
+      {
+        "name": "OpenGL",
+        "names": {
+          "zh": "OpenGL",
+          "en": "OpenGL"
+        },
+        "level": ""
+      },
+      {
+        "name": "\u56FE\u5143\u6E32\u67D3",
+        "names": {
+          "zh": "\u56FE\u5143\u6E32\u67D3",
+          "en": "Primitive Rendering"
+        },
+        "level": ""
+      },
+      {
+        "name": "\u5C5E\u6027\u7F16\u8F91\u5668",
+        "names": {
+          "zh": "\u5C5E\u6027\u7F16\u8F91\u5668",
+          "en": "Property Editor"
+        },
+        "level": ""
+      }
+    ]
+  },
+  {
+    "names": {
+      "zh": "\u6784\u5EFA\u4E0E\u5DE5\u5177\u94FE",
+      "en": "Build \u0026 Toolchains"
+    },
+    "skills": [
+      {
+        "name": "C11",
+        "names": {
+          "zh": "C11",
+          "en": "C11"
+        },
+        "level": ""
+      },
+      {
+        "name": "CMake",
+        "names": {
+          "zh": "CMake",
+          "en": "CMake"
+        },
+        "level": ""
+      },
+      {
+        "name": "\u547D\u4EE4\u884C\u5DE5\u5177",
+        "names": {
+          "zh": "\u547D\u4EE4\u884C\u5DE5\u5177",
+          "en": "Command-line Tools"
+        },
+        "level": ""
+      },
+      {
+        "name": "\u6587\u4EF6\u89E3\u6790",
+        "names": {
+          "zh": "\u6587\u4EF6\u89E3\u6790",
+          "en": "File Parsing"
+        },
+        "level": ""
+      },
+      {
+        "name": "\u4E8C\u8FDB\u5236\u751F\u6210",
+        "names": {
+          "zh": "\u4E8C\u8FDB\u5236\u751F\u6210",
+          "en": "Binary Generation"
+        },
+        "level": ""
+      }
+    ]
+  }
+]

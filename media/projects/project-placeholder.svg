@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title description">
+  <title id="title">Project image placeholder</title>
+  <desc id="description">Industrial pixel-style placeholder for a future project screenshot.</desc>
+  <defs>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#d7dde8" stroke-width="2"/>
+    </pattern>
+    <pattern id="hazard" width="48" height="48" patternUnits="userSpaceOnUse" patternTransform="skewX(-20)">
+      <rect width="24" height="48" fill="#1a5fb4"/>
+      <rect x="24" width="24" height="48" fill="#e6a817"/>
+    </pattern>
+  </defs>
+  <rect width="960" height="540" fill="#f4f6fa"/>
+  <rect width="960" height="540" fill="url(#grid)"/>
+  <rect width="960" height="18" fill="url(#hazard)"/>
+  <rect y="522" width="960" height="18" fill="url(#hazard)"/>
+  <rect x="84" y="82" width="792" height="376" fill="#ffffff" stroke="#263445" stroke-width="8"/>
+  <path d="M84 154h792M186 82v72M774 82v72" fill="none" stroke="#263445" stroke-width="4"/>
+  <circle cx="480" cy="292" r="76" fill="none" stroke="#1a5fb4" stroke-width="12"/>
+  <path d="M480 182v220M370 292h220" stroke="#1a5fb4" stroke-width="8"/>
+  <path d="M420 232h120v120H420z" fill="#e6a817" fill-opacity="0.22" stroke="#263445" stroke-width="6"/>
+  <text x="480" y="126" text-anchor="middle" font-family="Consolas,monospace" font-size="30" font-weight="700" fill="#263445">PROJECT PREVIEW</text>
+  <text x="480" y="438" text-anchor="middle" font-family="Consolas,monospace" font-size="22" fill="#586473">IMAGE TO BE PROVIDED</text>
+</svg>

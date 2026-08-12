@@ -1,0 +1,752 @@
+/* 项目目录控件与单面摘要卡：所有核心信息和入口始终可见。 */
+.project-catalog-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    margin-bottom: var(--space-3);
+}
+
+.project-sort-group,
+.project-tag-filter {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+}
+
+.project-control-label {
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+}
+
+.project-tag-filter select {
+    min-height: 44px;
+    padding: var(--space-2);
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 2px solid var(--color-border);
+    font: inherit;
+}
+
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.project-summary-card {
+    display: grid;
+    grid-template-columns: minmax(280px, 42%) minmax(0, 1fr);
+    min-height: 300px;
+    overflow: hidden;
+    min-width: 0;
+    scroll-margin-top: 6rem;
+}
+
+.project-image-link {
+    display: block;
+    min-width: 0;
+    background: var(--color-surface-subtle);
+    align-self: start;
+}
+
+.project-summary-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-right: var(--pixel-size) solid var(--color-border);
+    image-rendering: pixelated;
+}
+
+.project-summary-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    min-width: 0;
+}
+
+.project-heading-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2);
+}
+
+.project-date {
+    flex: none;
+    color: var(--color-text-muted);
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+}
+
+.project-summary-card .project-desc {
+    min-height: 0;
+    -webkit-line-clamp: 4;
+}
+
+.project-summary-card .project-highlight {
+    margin: 0;
+    padding-left: var(--space-2);
+    font-weight: normal;
+    color: var(--color-text-muted);
+    border-left: 3px solid var(--color-accent);
+}
+
+.project-summary-card .project-actions {
+    margin-top: auto;
+}
+
+.project-summary-card-featured {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.project-summary-card-featured .project-summary-image {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    border-right: 0;
+    border-bottom: var(--pixel-size) solid var(--color-border);
+}
+/* 精选项目翻转卡：单击翻转（鼠标或键盘 Enter/Space），两面内容均在 DOM 中（SD-29） */
+.flip-card {
+    position: relative;
+    perspective: 1400px;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* 悬浮/聚焦提示：右上角翻转角标浮现 + 卡片边框高亮（触屏无 hover，点击本身即可翻转） */
+.flip-card::after {
+    content: "\21C4";
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-2);
+    z-index: 3;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    line-height: 1;
+    color: var(--color-surface);
+    background: var(--color-primary);
+    border: 2px solid var(--color-border);
+    padding: 4px 7px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.project-summary-card-featured:hover {
+    border-color: var(--color-primary);
+}
+
+.project-summary-card-featured:hover .flip-card::after,
+.flip-card:focus-visible::after {
+    opacity: 1;
+}
+
+.flip-card-inner {
+    display: grid;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.45s ease;
+}
+
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-face {
+    grid-area: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.flip-face-front {
+    overflow: hidden;
+}
+
+.flip-face-front .project-desc {
+    -webkit-line-clamp: 2;
+}
+
+.flip-face-back {
+    transform: rotateY(180deg);
+    padding: var(--space-3);
+    gap: var(--space-2);
+}
+
+.flip-front-caption {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-3);
+    flex: 1;
+}
+
+.project-front-highlight {
+    display: -webkit-box;
+    margin: var(--space-1) 0 0;
+    overflow: hidden;
+    color: var(--color-text-muted);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.project-front-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    margin-top: auto;
+    padding-top: var(--space-2);
+}
+
+.project-front-actions > span {
+    color: var(--color-text-muted);
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+}
+
+.project-front-details {
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    white-space: nowrap;
+}
+
+
+.project-detail-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(320px, 1fr);
+    overflow: hidden;
+    margin-bottom: var(--space-3);
+}
+
+.detail-top-nav {
+    margin-bottom: var(--space-2);
+}
+
+.detail-top-nav a {
+    color: var(--color-text-muted);
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    text-decoration: none;
+}
+
+.detail-top-nav a:hover,
+.detail-top-nav a:focus-visible {
+    color: var(--color-primary);
+}
+
+.project-detail-media {
+    position: relative;
+    min-width: 0;
+    background: color-mix(in srgb, var(--color-surface) 88%, var(--color-primary));
+}
+
+.project-detail-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    align-self: start;
+    object-fit: cover;
+    border-right: var(--pixel-size) solid var(--color-border);
+}
+
+.project-detail-index {
+    position: absolute;
+    top: var(--space-2);
+    left: var(--space-2);
+    max-width: calc(100% - var(--space-3));
+    padding: 0.35rem 0.55rem;
+    overflow: hidden;
+    color: #fff;
+    background: rgba(17, 25, 36, 0.82);
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.project-detail-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-3);
+}
+
+.project-detail-body .project-name {
+    margin: 0;
+    font-size: clamp(1.6rem, 4vw, 2.75rem);
+    line-height: 1.05;
+}
+
+.project-zread-button {
+    border-color: #006f69;
+    color: #fff;
+    background: #008e86;
+}
+
+.project-zread-button:hover,
+.project-zread-button:focus-visible,
+html[data-theme="dark"] .project-zread-button {
+    border-color: #55ddd2;
+    color: #fff;
+    background: #007c75;
+}
+
+.project-case-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: var(--space-4);
+    align-items: start;
+    margin-top: var(--space-4);
+}
+
+.project-case-main,
+.project-case-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.project-case-main {
+    min-width: 0;
+    gap: var(--space-4);
+}
+
+.project-case-section.pixel-panel {
+    padding: clamp(1rem, 3vw, 2rem);
+}
+
+.project-case-heading {
+    display: flex;
+    gap: var(--space-2);
+    align-items: baseline;
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-border) 30%, transparent);
+}
+
+.project-case-heading > span,
+.project-eyebrow {
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+}
+
+.project-case-heading h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+}
+
+.project-case-lead,
+.project-case-copy {
+    max-width: 72ch;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 1.02rem;
+    line-height: 1.85;
+}
+
+.project-capability-grid,
+.project-module-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-3);
+}
+
+.project-capability-card,
+.project-module-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: var(--space-3);
+}
+
+.project-capability-card {
+    min-height: 180px;
+    background: linear-gradient(145deg, var(--color-surface) 0 82%, color-mix(in srgb, var(--color-primary) 12%, var(--color-surface)) 82%);
+}
+
+.project-capability-card > span {
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+}
+
+.project-capability-card h3,
+.project-module-card h3,
+.project-decision-list h3,
+.project-zread-card h2 {
+    margin: var(--space-2) 0;
+    font-family: var(--font-display);
+    font-size: 0.96rem;
+}
+
+.project-capability-card p,
+.project-module-card p,
+.project-decision-list p,
+.project-zread-card p {
+    margin: 0;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+}
+
+.project-module-card {
+    min-height: 190px;
+}
+
+.project-module-card a {
+    margin-top: auto;
+    padding-top: var(--space-3);
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.project-architecture-flow {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.4rem;
+    margin: var(--space-2) 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: architecture;
+}
+
+.project-architecture-flow li {
+    position: relative;
+    min-width: 0;
+    padding: var(--space-3) var(--space-2);
+    border: 2px solid var(--color-border);
+    background: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface));
+    text-align: center;
+    counter-increment: architecture;
+}
+
+.project-architecture-flow li::before {
+    content: counter(architecture, decimal-leading-zero);
+    display: block;
+    margin-bottom: var(--space-1);
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: 0.66rem;
+}
+
+.project-architecture-flow li:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    top: 50%;
+    right: -1.15rem;
+    color: var(--color-primary);
+    font-weight: bold;
+    transform: translateY(-50%);
+}
+
+.project-architecture-flow strong,
+.project-architecture-flow span {
+    display: block;
+}
+
+.project-architecture-flow strong {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+}
+
+.project-architecture-flow span {
+    margin-top: var(--space-1);
+    color: var(--color-text-muted);
+    font-size: 0.76rem;
+    line-height: 1.45;
+}
+
+.project-decision-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: decision;
+}
+
+.project-decision-list li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: var(--space-3);
+    align-items: start;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-border) 25%, transparent);
+    counter-increment: decision;
+}
+
+.project-decision-list li::before {
+    content: counter(decision, decimal-leading-zero);
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: 0.76rem;
+}
+
+.project-decision-list h3 {
+    margin-top: 0;
+}
+
+.project-decision-list a {
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.project-case-sidebar {
+    position: sticky;
+    top: calc(var(--space-4) + 64px);
+}
+
+.project-case-toc {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-3);
+}
+
+.project-case-toc p {
+    margin: 0 0 var(--space-2);
+    color: var(--color-text-muted);
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+}
+
+.project-case-toc a {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-border) 20%, transparent);
+    color: var(--color-text);
+    font-size: 0.78rem;
+    text-decoration: none;
+}
+
+.project-case-toc a:hover,
+.project-case-toc a:focus-visible {
+    color: var(--color-primary);
+}
+
+.project-zread-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: var(--space-3);
+    align-items: center;
+    padding: var(--space-3);
+    border-color: #00a49a;
+    background: linear-gradient(120deg, color-mix(in srgb, #00a49a 10%, var(--color-surface)), var(--color-surface));
+}
+
+.project-zread-mark {
+    display: grid;
+    width: 52px;
+    height: 52px;
+    place-items: center;
+    color: #fff;
+    background: #008e86;
+    font-family: var(--font-display);
+    font-weight: bold;
+}
+
+.project-zread-card h2 {
+    margin-top: 0;
+}
+
+.project-zread-card small {
+    display: block;
+    margin-top: var(--space-2);
+    color: var(--color-text-muted);
+}
+
+/* 关于我概览卡：整卡是单一链接，信息无需悬浮即可阅读。 */
+.about-overview-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-height: 220px;
+    padding: var(--space-4);
+    color: inherit;
+    text-decoration: none;
+    margin-bottom: var(--space-3);
+    background: linear-gradient(135deg, var(--color-surface) 0 80%, rgba(26, 95, 180, 0.12) 80% 100%);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.about-overview-card:hover,
+.about-overview-card:focus-visible {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+.about-card-heading {
+    margin-bottom: var(--space-1);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.about-overview-copy {
+    margin: 0;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+}
+
+.about-overview-link {
+    margin-top: auto;
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+}
+
+.profile-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+}
+
+.profile-detail-section {
+    padding: var(--space-3);
+}
+
+.profile-detail-section h2 {
+    margin-top: 0;
+    font-family: var(--font-display);
+    font-size: 1rem;
+}
+
+html[data-theme="dark"] .nav-link:hover {
+    background: rgba(115, 173, 255, 0.14);
+}
+
+@media (max-width: 768px) {
+    .project-catalog-controls {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .project-summary-card,
+    .project-detail-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .project-summary-image {
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 16 / 9;
+        border-right: 0;
+        border-bottom: var(--pixel-size) solid var(--color-border);
+    }
+
+    .project-detail-image {
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 16 / 9;
+        border-right: 0;
+        border-bottom: var(--pixel-size) solid var(--color-border);
+    }
+
+    .project-case-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-3);
+    }
+
+    .project-case-sidebar {
+        position: static;
+        grid-row: 1;
+        min-width: 0;
+    }
+
+    .project-case-toc {
+        flex-direction: row;
+        gap: var(--space-2);
+        overflow-x: auto;
+    }
+
+    .project-case-toc p {
+        display: none;
+    }
+
+    .project-case-toc a {
+        flex: 0 0 auto;
+        border: 0;
+        white-space: nowrap;
+    }
+
+    .project-capability-grid,
+    .project-module-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .project-architecture-flow {
+        grid-template-columns: 1fr;
+    }
+
+    .project-architecture-flow li {
+        text-align: left;
+    }
+
+    .project-architecture-flow li:not(:last-child)::after {
+        content: "↓";
+        top: auto;
+        right: 50%;
+        bottom: -1.2rem;
+        transform: translateX(50%);
+    }
+
+    .project-zread-card {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .project-zread-card .pixel-button {
+        grid-column: 1 / -1;
+        justify-self: start;
+    }
+
+    .profile-detail-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    .project-capability-grid,
+    .project-module-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-capability-card,
+    .project-module-card {
+        min-height: 0;
+    }
+
+    .project-decision-list li {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .project-decision-list a {
+        grid-column: 2;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .about-overview-card {
+        transition: none;
+    }
+}

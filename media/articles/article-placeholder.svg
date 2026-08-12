@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title description">
+  <title id="title">Article cover placeholder</title>
+  <desc id="description">Industrial pixel-style placeholder for a future article cover.</desc>
+  <defs>
+    <pattern id="dots" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="2" fill="#c5ccd8"/>
+    </pattern>
+  </defs>
+  <rect width="960" height="540" fill="#eef2f8"/>
+  <rect width="960" height="540" fill="url(#dots)"/>
+  <path d="M0 0h960v42H0z" fill="#263445"/>
+  <path d="M0 498h960v42H0z" fill="#1a5fb4"/>
+  <rect x="132" y="88" width="696" height="364" fill="#fff" stroke="#263445" stroke-width="8"/>
+  <path d="M188 166h420M188 216h584M188 266h520M188 316h584M188 366h360" stroke="#9aa6b5" stroke-width="16"/>
+  <rect x="676" y="132" width="96" height="96" fill="#e6a817" stroke="#263445" stroke-width="6"/>
+  <text x="480" y="28" text-anchor="middle" font-family="Consolas,monospace" font-size="20" fill="#fff">ARTICLE COVER / TO BE PROVIDED</text>
+  <text x="480" y="527" text-anchor="middle" font-family="Consolas,monospace" font-size="20" fill="#fff">WRITING • PROJECTS • NOTES</text>
+</svg>

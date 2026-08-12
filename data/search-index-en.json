@@ -1,0 +1,437 @@
+{
+  "language": "en",
+  "items": [
+    {
+      "id": "example-project-retrospective",
+      "type": "articles",
+      "title": "Example: How to Write a Personal Project Retrospective",
+      "intro": "Placeholder content demonstrating the local article structure through problem, decisions, results, and next steps.",
+      "link": "",
+      "route": "/articles/example-project-retrospective"
+    },
+    {
+      "id": "post-001",
+      "type": "blog",
+      "title": "TypeScript Essentials",
+      "intro": "Progressive notes for C# developers: each topic starts with minimal runnable code, then a C# analogy, then a pitfall checklist. Target: TypeScript 5.x.",
+      "link": "https://www.cnblogs.com/wubing7755/p/22081752",
+      "route": ""
+    },
+    {
+      "id": "post-002",
+      "type": "blog",
+      "title": "Design Patterns Summary (GoF 23)",
+      "intro": "A categorized summary of the 23 GoF patterns: one-line overview, structure diagram, code sample, usage timing and anti-patterns for each.",
+      "link": "https://www.cnblogs.com/wubing7755/p/22011780",
+      "route": ""
+    },
+    {
+      "id": "post-003",
+      "type": "blog",
+      "title": "AI and the Right to Be Answered",
+      "intro": "An essay on the cost of understanding: asking never needs permission, but being answered does \u2014 not a link or a page, but being truly understood.",
+      "link": "https://www.cnblogs.com/wubing7755/p/21162894",
+      "route": ""
+    },
+    {
+      "id": "post-004",
+      "type": "blog",
+      "title": "Parsing Expressions with Recursive Descent",
+      "intro": "How to build an expression parser in C: the principle of recursive descent, a minimal implementation, and key engineering details.",
+      "link": "https://www.cnblogs.com/wubing7755/p/19808766",
+      "route": ""
+    },
+    {
+      "id": "post-005",
+      "type": "blog",
+      "title": "Installing STEP 7 MicroWIN SMART (S7-200 SMART)",
+      "intro": "Installation guide for Siemens STEP 7 MicroWIN SMART, the programming software for S7-200 SMART PLCs, supporting LAD, FBD and SCL.",
+      "link": "https://www.cnblogs.com/wubing7755/p/19778204",
+      "route": ""
+    },
+    {
+      "id": "post-006",
+      "type": "blog",
+      "title": "A Unified Model for Tree-Based UI Frameworks",
+      "intro": "From State -\u003E Tree -\u003E Diff -\u003E Render: comparing Vue 3, Blazor and WPF to uncover the common architecture behind modern UI frameworks.",
+      "link": "https://www.cnblogs.com/wubing7755/p/19713445",
+      "route": ""
+    },
+    {
+      "id": "post-007",
+      "type": "blog",
+      "title": "Setting Up an OpenGL Development Environment",
+      "intro": "Building an OpenGL environment on Windows 11 \u002B Visual Studio 2022, using GLFW and GLAD.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18926072",
+      "route": "/blog/post-007"
+    },
+    {
+      "id": "post-008",
+      "type": "blog",
+      "title": "Viewing Blazor WASM Asset Loading Order via Middleware Logging",
+      "intro": "Use a logging middleware to observe how Blazor WebAssembly loads static resources (.html, .js, .wasm) when hosted on a server.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18879791",
+      "route": "/blog/post-008"
+    },
+    {
+      "id": "post-009",
+      "type": "blog",
+      "title": "Installing Emscripten 4.x",
+      "intro": "Emscripten is an open-source compiler toolchain that compiles C/C\u002B\u002B to WebAssembly. Installation guide for 4.x.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18844915",
+      "route": "/blog/post-009"
+    },
+    {
+      "id": "post-010",
+      "type": "blog",
+      "title": "SignalR Basics",
+      "intro": "SignalR is ASP.NET Core\u0027s real-time communication framework. Transport priority: WebSocket, SSE, then long polling.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18776721",
+      "route": "/blog/post-010"
+    },
+    {
+      "id": "post-011",
+      "type": "blog",
+      "title": "Combining Electron with TypeScript",
+      "intro": "Build a simple desktop app with Electron and TypeScript: project structure and basics.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18753113",
+      "route": "/blog/post-011"
+    },
+    {
+      "id": "post-012",
+      "type": "blog",
+      "title": "Electron Framework Basics",
+      "intro": "Getting started with Electron based on official docs plus local practice: package.json entry, devDependencies, and more.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18752187",
+      "route": "/blog/post-012"
+    },
+    {
+      "id": "post-013",
+      "type": "blog",
+      "title": "TypeScript Syntax Basics",
+      "intro": "TypeScript is a typed superset of JavaScript: progressive typing, compile-time checks, and types as documentation.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18748789",
+      "route": "/blog/post-013"
+    },
+    {
+      "id": "post-014",
+      "type": "blog",
+      "title": "Limitations of Generic Class Inheritance in C#",
+      "intro": "Generic class declarations cannot directly or indirectly derive from System.Attribute.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18721760",
+      "route": "/blog/post-014"
+    },
+    {
+      "id": "post-015",
+      "type": "blog",
+      "title": "Using Serilog in Console Apps: Basics",
+      "intro": "A quick demo of using the Serilog logging library in a C# console application.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18720113",
+      "route": "/blog/post-015"
+    },
+    {
+      "id": "post-016",
+      "type": "blog",
+      "title": "Connecting to a Local DeepSeek R1 1.5b Model from C#",
+      "intro": "Use Microsoft.Extensions.AI.Ollama in a C# console app to connect to a locally deployed DeepSeek R1 1.5b model via Ollama.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18702681",
+      "route": "/blog/post-016"
+    },
+    {
+      "id": "post-017",
+      "type": "blog",
+      "title": "C# Preprocessor Directives",
+      "intro": "Preprocessor directives are special syntax processed before compilation. C# supports conditional compilation but not macros.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18701763",
+      "route": "/blog/post-017"
+    },
+    {
+      "id": "post-018",
+      "type": "blog",
+      "title": "C# Exceptions and Exception Handling",
+      "intro": "Exceptions interrupt normal flow at runtime; handling uses try/catch/finally and related keywords.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18701443",
+      "route": "/blog/post-018"
+    },
+    {
+      "id": "post-019",
+      "type": "blog",
+      "title": "Blazor HttpClient vs the Fetch API",
+      "intro": "In Blazor WebAssembly, HttpClient is implemented on top of the browser\u0027s Fetch API \u2014 demonstrated with code and debugging steps.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18700852",
+      "route": "/blog/post-019"
+    },
+    {
+      "id": "post-020",
+      "type": "blog",
+      "title": "Regular Expressions Basics",
+      "intro": "Regex is a text pattern-matching tool; in C# use System.Text.RegularExpressions.Regex to search, replace and control text.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18699526",
+      "route": "/blog/post-020"
+    },
+    {
+      "id": "project-001",
+      "type": "project",
+      "title": "Penelopa",
+      "intro": "Blazor WASM primitive alignment editor consuming Atlas.Blazor (dockable workspace)",
+      "link": "",
+      "route": "/projects/project-001"
+    },
+    {
+      "id": "project-002",
+      "type": "project",
+      "title": "Atlas",
+      "intro": "Blazor dockable workspace component library: tool panels, editor tabs, split views, drag-and-drop, and layout persistence.",
+      "link": "",
+      "route": "/projects/project-002"
+    },
+    {
+      "id": "project-003",
+      "type": "project",
+      "title": "Astrea",
+      "intro": "a collection of reusable components for Blazor applications",
+      "link": "",
+      "route": "/projects/project-003"
+    },
+    {
+      "id": "project-004",
+      "type": "project",
+      "title": "AWDiagram",
+      "intro": "A Diagram using AWComponent",
+      "link": "",
+      "route": "/projects/project-004"
+    },
+    {
+      "id": "project-005",
+      "type": "project",
+      "title": "c-project-standard",
+      "intro": "Reusable C11 project template and engineering standard",
+      "link": "",
+      "route": "/projects/project-005"
+    },
+    {
+      "id": "project-006",
+      "type": "project",
+      "title": "cloc",
+      "intro": "C11 CLI tool for counting source-code line across project directories",
+      "link": "",
+      "route": "/projects/project-006"
+    },
+    {
+      "id": "project-007",
+      "type": "project",
+      "title": "GLDiagram",
+      "intro": "an OpenGL drawing canvas with Nuklear immediate-mode GUI",
+      "link": "",
+      "route": "/projects/project-007"
+    },
+    {
+      "id": "project-008",
+      "type": "project",
+      "title": "PromptLib",
+      "intro": "",
+      "link": "",
+      "route": "/projects/project-008"
+    },
+    {
+      "id": "project-009",
+      "type": "project",
+      "title": "GLDraw",
+      "intro": "an OpenGL 3.3 project built with GLFW and Nuklear GUI",
+      "link": "",
+      "route": "/projects/project-009"
+    },
+    {
+      "id": "project-010",
+      "type": "project",
+      "title": "TextEditor",
+      "intro": "a command-line text editor built in C11.",
+      "link": "",
+      "route": "/projects/project-010"
+    },
+    {
+      "id": "project-011",
+      "type": "project",
+      "title": "CalcExpr",
+      "intro": "an expression calculator written in C language",
+      "link": "",
+      "route": "/projects/project-011"
+    },
+    {
+      "id": "career-001",
+      "type": "career",
+      "title": "\u8F6F\u4EF6\u5F00\u53D1\u5DE5\u7A0B\u5E08 \u00B7 \u4E0A\u6D77\u67D0\u5BB6\u79D1\u6280\u516C\u53F8",
+      "intro": "Working at a tech company in Shanghai.",
+      "link": "",
+      "route": "/about#career"
+    },
+    {
+      "id": "\u7F16\u7A0B\u8BED\u8A00-C#",
+      "type": "skill",
+      "title": "C#",
+      "intro": "Programming Languages",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": "\u7F16\u7A0B\u8BED\u8A00-C",
+      "type": "skill",
+      "title": "C",
+      "intro": "Programming Languages",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": "\u7F16\u7A0B\u8BED\u8A00-TypeScript",
+      "type": "skill",
+      "title": "TypeScript",
+      "intro": "Programming Languages",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": "\u7F16\u7A0B\u8BED\u8A00-Python",
+      "type": "skill",
+      "title": "Python",
+      "intro": "Programming Languages",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": ".NET \u6280\u672F\u6808-Blazor WASM",
+      "type": "skill",
+      "title": "Blazor WASM",
+      "intro": ".NET Stack",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": ".NET \u6280\u672F\u6808-ASP.NET Core",
+      "type": "skill",
+      "title": "ASP.NET Core",
+      "intro": ".NET Stack",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": ".NET \u6280\u672F\u6808-WinForms",
+      "type": "skill",
+      "title": "WinForms",
+      "intro": ".NET Stack",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": ".NET \u6280\u672F\u6808-WPF",
+      "type": "skill",
+      "title": "WPF",
+      "intro": ".NET Stack",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": ".NET \u6280\u672F\u6808-SkiaSharp",
+      "type": "skill",
+      "title": "SkiaSharp",
+      "intro": ".NET Stack",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": ".NET \u6280\u672F\u6808-OpenXML",
+      "type": "skill",
+      "title": "OpenXML",
+      "intro": ".NET Stack",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": ".NET \u6280\u672F\u6808-SQLite",
+      "type": "skill",
+      "title": "SQLite",
+      "intro": ".NET Stack",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": "\u524D\u7AEF\u4E0E\u56FE\u5F62-Blazor",
+      "type": "skill",
+      "title": "Blazor",
+      "intro": "Frontend \u0026 Graphics",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": "\u524D\u7AEF\u4E0E\u56FE\u5F62-OpenGL",
+      "type": "skill",
+      "title": "OpenGL",
+      "intro": "Frontend \u0026 Graphics",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": "\u524D\u7AEF\u4E0E\u56FE\u5F62-\u56FE\u5143\u6E32\u67D3",
+      "type": "skill",
+      "title": "Primitive Rendering",
+      "intro": "Frontend \u0026 Graphics",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": "\u524D\u7AEF\u4E0E\u56FE\u5F62-\u5C5E\u6027\u7F16\u8F91\u5668",
+      "type": "skill",
+      "title": "Property Editor",
+      "intro": "Frontend \u0026 Graphics",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": "\u6784\u5EFA\u4E0E\u5DE5\u5177\u94FE-C11",
+      "type": "skill",
+      "title": "C11",
+      "intro": "Build \u0026 Toolchains",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": "\u6784\u5EFA\u4E0E\u5DE5\u5177\u94FE-CMake",
+      "type": "skill",
+      "title": "CMake",
+      "intro": "Build \u0026 Toolchains",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": "\u6784\u5EFA\u4E0E\u5DE5\u5177\u94FE-\u547D\u4EE4\u884C\u5DE5\u5177",
+      "type": "skill",
+      "title": "Command-line Tools",
+      "intro": "Build \u0026 Toolchains",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": "\u6784\u5EFA\u4E0E\u5DE5\u5177\u94FE-\u6587\u4EF6\u89E3\u6790",
+      "type": "skill",
+      "title": "File Parsing",
+      "intro": "Build \u0026 Toolchains",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": "\u6784\u5EFA\u4E0E\u5DE5\u5177\u94FE-\u4E8C\u8FDB\u5236\u751F\u6210",
+      "type": "skill",
+      "title": "Binary Generation",
+      "intro": "Build \u0026 Toolchains",
+      "link": "",
+      "route": "/#skills"
+    },
+    {
+      "id": "profile",
+      "type": "profile",
+      "title": "wubing7755",
+      "intro": "Avionics/industrial software toolchain developer focused on full-stack development and C toolchains Model-based development.",
+      "link": "",
+      "route": "/about/profile"
+    }
+  ]
+}

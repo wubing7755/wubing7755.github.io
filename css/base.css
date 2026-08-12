@@ -1,0 +1,188 @@
+/* WuBing's Home 视觉体系基础（SD-25）
+   机甲/工业像素风：硬边框、块状阴影、阶梯角、等宽字体系模拟像素字体 */
+
+:root {
+    color-scheme: light;
+    --color-primary: #1a5fb4;
+    --color-primary-dark: #144a8c;
+    --color-accent: #e6a817;
+    --color-accent-dark: #856800;
+    --color-warning: #c0392b;
+    --color-bg: #f2f4f8;
+    --color-surface: #ffffff;
+    --color-border: #2d3a4a;
+    --color-text: #1c2733;
+    --color-text-muted: #5c6b7a;
+
+    --pixel-size: 3px;
+    --shadow-pixel: 4px 4px 0 rgba(45, 58, 74, 0.35);
+    --shadow-pixel-sm: 2px 2px 0 rgba(45, 58, 74, 0.3);
+
+    --font-display: "Courier New", "Lucida Console", monospace;
+    --font-body: "Microsoft YaHei", "Segoe UI", sans-serif;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 1rem;
+    --space-4: 2rem;
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --color-primary: #73adff;
+    --color-primary-dark: #4d91ed;
+    --color-accent: #f2bd3f;
+    --color-accent-dark: #ffd76f;
+    --color-warning: #ff766a;
+    --color-bg: #101722;
+    --color-surface: #182230;
+    --color-border: #91a3b8;
+    --color-text: #edf4fb;
+    --color-text-muted: #b4c2d1;
+    --shadow-pixel: 4px 4px 0 rgba(0, 0, 0, 0.55);
+    --shadow-pixel-sm: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    /* 双语稳健性：任意长度的单词/URL 换行而非溢出（可继承） */
+    overflow-wrap: break-word;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+html {
+    /* 预留滚动条槽位：滚动条出现/消失不改变视口内容宽度（中英内容高度差不再引起 15px 宽度偏移） */
+    scrollbar-gutter: stable;
+    /* Firefox 滚动条（配色与 WebKit 一致） */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) var(--color-bg);
+}
+
+/* 滚动条（机甲/工业像素配色，与站点视觉体系一致）：
+   轨道=底色+像素边框，滑块=主色像素块（内嵌高光/阴影成 3D 棱角），激活=金色 */
+::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg);
+    border-left: 2px solid var(--color-border);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border: 2px solid var(--color-bg);
+    box-shadow: inset 2px 2px 0 rgba(255, 255, 255, 0.25), inset -2px -2px 0 rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-dark);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: var(--color-accent);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--color-bg);
+}
+
+#app {
+    min-height: 100vh;
+}
+
+/* 焦点可见性（SD-29） */
+:focus-visible {
+    /* 深金保证非文本对比度 ≥3:1（金色 #e6a817 白底仅 2.10:1，不达标） */
+    outline: 3px solid var(--color-accent-dark);
+    outline-offset: 2px;
+}
+
+.skip-link {
+    position: fixed;
+    top: var(--space-2);
+    left: var(--space-2);
+    z-index: 2000;
+    padding: var(--space-2) var(--space-3);
+    color: #fff;
+    background: var(--color-primary-dark);
+    border: 2px solid var(--color-border);
+    transform: translateY(-150%);
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+a {
+    color: var(--color-primary);
+}
+
+/* 像素面板 */
+.pixel-panel {
+    background: var(--color-surface);
+    border: var(--pixel-size) solid var(--color-border);
+    box-shadow: var(--shadow-pixel);
+}
+
+/* 普通列表项面板弱化：1px 边框、无阴影；Hero/精选/主按钮/焦点保留较强边框（SD-25） */
+.post-item,
+.latest-item,
+.compact-project-card,
+.search-result,
+.about-section {
+    border-width: 1px;
+    box-shadow: none;
+}
+
+/* 像素按钮 */
+.pixel-button {
+    font-family: var(--font-display);
+    background: var(--color-primary);
+    color: #fff;
+    border: var(--pixel-size) solid var(--color-border);
+    box-shadow: var(--shadow-pixel-sm);
+    padding: var(--space-2) var(--space-3);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.pixel-button:hover {
+    background: var(--color-primary-dark);
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 rgba(45, 58, 74, 0.3);
+}
+
+/* 危险操作按钮（删除评论等，Phase 4）：警示色像素块，小号防误触面积过大 */
+.pixel-button-danger {
+    background: var(--color-warning);
+    border-color: var(--color-border);
+    font-size: 0.8rem;
+    padding: var(--space-1) var(--space-2);
+}
+
+.pixel-button-danger:hover {
+    background: var(--color-warning);
+    filter: brightness(0.92);
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 rgba(45, 58, 74, 0.3);
+}
+
+.content-placeholder {
+    color: var(--color-text-muted);
+    font-style: italic;
+}

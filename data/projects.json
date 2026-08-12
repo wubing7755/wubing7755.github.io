@@ -1,0 +1,274 @@
+[
+  {
+    "id": "project-001",
+    "name": "Penelopa",
+    "date": "2026-08-06",
+    "descriptions": {
+      "zh": "\u57FA\u4E8E Atlas.Blazor \u505C\u9760\u5F0F\u5DE5\u4F5C\u533A\u7684 Blazor WASM \u56FE\u5143\u5BF9\u9F50\u7F16\u8F91\u5668",
+      "en": "Blazor WASM primitive alignment editor consuming Atlas.Blazor (dockable workspace)"
+    },
+    "repo": "https://github.com/wubing7755/Penelopa",
+    "language": "",
+    "stars": 0,
+    "featured": true,
+    "status": "active",
+    "tags": [
+      "Blazor",
+      "C#",
+      "WASM",
+      "SkiaSharp",
+      "Atlas.Blazor"
+    ],
+    "highlights": {
+      "zh": "\u57FA\u4E8E Atlas.Blazor \u505C\u9760\u5F0F\u5DE5\u4F5C\u533A\u7684\u56FE\u5143\u5BF9\u9F50\u7F16\u8F91\u5668\uFF1A\u516D\u65B9\u5411\u5BF9\u9F50\u3001\u989C\u8272\u952E\u547D\u4E2D\u6D4B\u8BD5\u3001\u5C5E\u6027\u7F16\u8F91\u5668",
+      "en": "Primitive alignment editor on the Atlas.Blazor dockable workspace: six-direction alignment, color-key hit testing, property editor"
+    },
+    "demoImage": "media/projects/penelopa.webp",
+    "demoVideo": "",
+    "demoUrl": "https://wubing7755.github.io/Penelopa/"
+  },
+  {
+    "id": "project-002",
+    "name": "Atlas",
+    "date": "2026-08-06",
+    "descriptions": {
+      "zh": "Blazor \u505C\u9760\u5F0F\u5DE5\u4F5C\u533A\u7EC4\u4EF6\u5E93\uFF1A\u5DE5\u5177\u9762\u677F\u3001\u7F16\u8F91\u5668\u6807\u7B7E\u9875\u3001\u5206\u5272\u89C6\u56FE\u3001\u62D6\u653E\u4E0E\u5E03\u5C40\u6301\u4E45\u5316",
+      "en": "Blazor dockable workspace component library: tool panels, editor tabs, split views, drag-and-drop, and layout persistence."
+    },
+    "repo": "https://github.com/wubing7755/Atlas",
+    "language": "",
+    "stars": 0,
+    "featured": true,
+    "status": "maintained",
+    "tags": [
+      "Blazor",
+      "C#",
+      "Component Library",
+      "NuGet",
+      "Drag and Drop"
+    ],
+    "highlights": {
+      "zh": "\u505C\u9760\u5F0F\u5DE5\u4F5C\u533A\u7EC4\u4EF6\u5E93\uFF1A\u5DE5\u5177\u9762\u677F\u3001\u7F16\u8F91\u5668\u6807\u7B7E\u9875\u3001\u5206\u5272\u89C6\u56FE\u3001\u62D6\u653E\u4E0E\u5E03\u5C40\u6301\u4E45\u5316\uFF1B\u5E03\u5C40\u72B6\u6001\u5355\u4E00\u6570\u636E\u6E90",
+      "en": "Dockable workspace library: tool panels, editor tabs, split views, drag-and-drop, layout persistence; layout state kept in a single source"
+    },
+    "demoImage": "media/projects/atlas.webp",
+    "demoVideo": "",
+    "demoUrl": "https://wubing7755.github.io/Atlas/"
+  },
+  {
+    "id": "project-003",
+    "name": "Astrea",
+    "date": "2026-08-01",
+    "descriptions": {
+      "zh": "Blazor \u5E94\u7528\u7684\u53EF\u590D\u7528\u7EC4\u4EF6\u96C6\u5408",
+      "en": "a collection of reusable components for Blazor applications"
+    },
+    "repo": "https://github.com/wubing7755/Astrea",
+    "language": "",
+    "stars": 0,
+    "featured": false,
+    "status": "",
+    "tags": [
+      "Blazor",
+      "C#",
+      "Component Library"
+    ],
+    "highlights": {},
+    "demoImage": "",
+    "demoVideo": "",
+    "demoUrl": ""
+  },
+  {
+    "id": "project-004",
+    "name": "AWDiagram",
+    "date": "2026-07-29",
+    "descriptions": {
+      "zh": "\u57FA\u4E8E AWComponent \u7684\u56FE\u8868\u7EC4\u4EF6",
+      "en": "A Diagram using AWComponent"
+    },
+    "repo": "https://github.com/wubing7755/AWDiagram",
+    "language": "",
+    "stars": 0,
+    "featured": false,
+    "status": "",
+    "tags": [],
+    "highlights": {},
+    "demoImage": "",
+    "demoVideo": "",
+    "demoUrl": ""
+  },
+  {
+    "id": "project-005",
+    "name": "c-project-standard",
+    "date": "2026-07-13",
+    "descriptions": {
+      "zh": "\u53EF\u590D\u7528\u7684 C11 \u5DE5\u7A0B\u6A21\u677F\u4E0E\u5DE5\u7A0B\u89C4\u8303",
+      "en": "Reusable C11 project template and engineering standard"
+    },
+    "repo": "https://github.com/wubing7755/c-project-standard",
+    "language": "",
+    "stars": 0,
+    "featured": false,
+    "status": "",
+    "tags": [],
+    "highlights": {},
+    "demoImage": "",
+    "demoVideo": "",
+    "demoUrl": ""
+  },
+  {
+    "id": "project-006",
+    "name": "cloc",
+    "date": "2026-07-09",
+    "descriptions": {
+      "zh": "\u7EDF\u8BA1\u9879\u76EE\u76EE\u5F55\u4EE3\u7801\u884C\u6570\u7684 C11 \u547D\u4EE4\u884C\u5DE5\u5177",
+      "en": "C11 CLI tool for counting source-code line across project directories"
+    },
+    "repo": "https://github.com/wubing7755/cloc",
+    "language": "",
+    "stars": 0,
+    "featured": false,
+    "status": "",
+    "tags": [],
+    "highlights": {},
+    "demoImage": "",
+    "demoVideo": "",
+    "demoUrl": ""
+  },
+  {
+    "id": "project-007",
+    "name": "GLDiagram",
+    "date": "2026-07-09",
+    "descriptions": {
+      "zh": "\u57FA\u4E8E Nuklear \u5373\u65F6\u6A21\u5F0F GUI \u7684 OpenGL \u7ED8\u56FE\u753B\u5E03",
+      "en": "an OpenGL drawing canvas with Nuklear immediate-mode GUI"
+    },
+    "repo": "https://github.com/wubing7755/GLDiagram",
+    "language": "",
+    "stars": 0,
+    "featured": false,
+    "status": "",
+    "tags": [],
+    "highlights": {},
+    "demoImage": "",
+    "demoVideo": "",
+    "demoUrl": ""
+  },
+  {
+    "id": "project-008",
+    "name": "PromptLib",
+    "date": "2026-07-09",
+    "descriptions": {},
+    "repo": "https://github.com/wubing7755/PromptLib",
+    "language": "",
+    "stars": 0,
+    "featured": false,
+    "status": "",
+    "tags": [],
+    "highlights": {},
+    "demoImage": "",
+    "demoVideo": "",
+    "demoUrl": ""
+  },
+  {
+    "id": "project-009",
+    "name": "GLDraw",
+    "date": "2026-07-09",
+    "descriptions": {
+      "zh": "使用 C11 编写、以画布为中心的 OpenGL 绘图编辑器",
+      "en": "A canvas-centered OpenGL drawing editor written in C11"
+    },
+    "repo": "https://github.com/wubing7755/GLDraw",
+    "language": "C",
+    "stars": 0,
+    "featured": false,
+    "status": "active",
+    "tags": ["C11", "OpenGL 3.3", "CMake", "Nuklear"],
+    "highlights": {
+      "zh": "文档模型、编辑命令、交互工具、UI 与渲染系统分层组织，并通过命令系统提供可持久化的撤销与重做。",
+      "en": "Separates the document model, editing commands, tools, UI, and rendering, with durable undo and redo through a command system."
+    },
+    "demoImage": "https://raw.githubusercontent.com/wubing7755/GLDraw/main/assets/preview.png",
+    "demoVideo": "",
+    "demoUrl": "",
+    "caseStudy": {
+      "overview": {
+        "zh": "GLDraw 是一个使用 C11 编写、以画布为中心的 OpenGL 绘图编辑器。项目把文档数据、编辑规则、用户交互与 GPU 渲染拆分为清晰的模块，使新增图形、工具和界面能力不必侵入其他层。",
+        "en": "GLDraw is a canvas-centered OpenGL drawing editor written in C11. It separates document data, editing rules, user interaction, and GPU rendering so new shapes, tools, and UI features can evolve without crossing layer boundaries."
+      },
+      "architecture": {
+        "zh": "输入事件先由快捷键与工具系统解释，再通过 Workspace 和 Command 修改 Document；渲染系统读取场景快照并提交给 OpenGL 3.3。UI 只发出编辑意图，不直接持有业务规则。",
+        "en": "Input is interpreted by key bindings and tools, then routed through Workspace and Commands to mutate the Document. The render system consumes a scene snapshot and submits it to OpenGL 3.3, while the UI expresses intent without owning editing rules."
+      },
+      "architectureSteps": [
+        { "titles": { "zh": "输入事件", "en": "Input" }, "descriptions": { "zh": "鼠标与键盘", "en": "Pointer and keyboard" }, "sourcePath": "src/input" },
+        { "titles": { "zh": "工具系统", "en": "Tools" }, "descriptions": { "zh": "选择、平移、绘制", "en": "Select, pan, draw" }, "sourcePath": "src/tools" },
+        { "titles": { "zh": "工作区与命令", "en": "Workspace & Commands" }, "descriptions": { "zh": "调度可撤销操作", "en": "Dispatch undoable actions" }, "sourcePath": "src/app" },
+        { "titles": { "zh": "文档模型", "en": "Document" }, "descriptions": { "zh": "对象、图层与选择", "en": "Objects, layers, selection" }, "sourcePath": "src/document" },
+        { "titles": { "zh": "渲染系统", "en": "Rendering" }, "descriptions": { "zh": "场景快照到 OpenGL", "en": "Scene snapshot to OpenGL" }, "sourcePath": "src/render" }
+      ],
+      "capabilities": [
+        { "titles": { "zh": "图形绘制", "en": "Shape Drawing" }, "descriptions": { "zh": "在世界坐标画布中创建线段、矩形和椭圆。", "en": "Create lines, rectangles, and ellipses on a world-space canvas." }, "sourcePath": "src/tools" },
+        { "titles": { "zh": "选择与视图", "en": "Selection & View" }, "descriptions": { "zh": "支持选择、移动、平移、缩放与画布适配。", "en": "Select and move objects, pan, zoom, and fit the canvas." }, "sourcePath": "src/canvas" },
+        { "titles": { "zh": "图层管理", "en": "Layer Management" }, "descriptions": { "zh": "提供显隐、锁定、重命名和顺序调整。", "en": "Control visibility, locking, naming, and layer order." }, "sourcePath": "src/document/document_layers.c" },
+        { "titles": { "zh": "属性编辑", "en": "Property Editing" }, "descriptions": { "zh": "通过 Inspector 检查并修改图形属性。", "en": "Inspect and edit object properties through the Inspector." }, "sourcePath": "src/ui/ui_inspector_panel.c" },
+        { "titles": { "zh": "文档与导出", "en": "Documents & Export" }, "descriptions": { "zh": "以 JSON 保存和加载文档，并将渲染结果导出为 PNG。", "en": "Save and load JSON documents and export rendered output to PNG." }, "sourcePath": "src/document/persistence.c" },
+        { "titles": { "zh": "撤销与重做", "en": "Undo & Redo" }, "descriptions": { "zh": "用命令和事务记录可逆的编辑操作。", "en": "Record reversible editing operations with commands and transactions." }, "sourcePath": "src/commands" }
+      ],
+      "modules": [
+        { "titles": { "zh": "Application", "en": "Application" }, "descriptions": { "zh": "应用生命周期、工作区服务与命令调度。", "en": "Application lifecycle, workspace services, and command dispatch." }, "sourcePath": "src/app" },
+        { "titles": { "zh": "Commands", "en": "Commands" }, "descriptions": { "zh": "编辑命令、事务以及撤销重做执行器。", "en": "Editing commands, transactions, and the undo/redo executor." }, "sourcePath": "src/commands" },
+        { "titles": { "zh": "Document", "en": "Document" }, "descriptions": { "zh": "图形对象、图层、空间索引与 JSON 持久化。", "en": "Objects, layers, spatial indexing, and JSON persistence." }, "sourcePath": "src/document" },
+        { "titles": { "zh": "Tools", "en": "Tools" }, "descriptions": { "zh": "选择、平移、形状创建与输入分派。", "en": "Selection, panning, shape creation, and input dispatch." }, "sourcePath": "src/tools" },
+        { "titles": { "zh": "Render", "en": "Render" }, "descriptions": { "zh": "场景快照、缓冲池、绘制列表和 OpenGL 设备。", "en": "Scene snapshots, buffer pools, draw lists, and the OpenGL device." }, "sourcePath": "src/render" },
+        { "titles": { "zh": "UI", "en": "UI" }, "descriptions": { "zh": "菜单、Inspector、图层面板、上下文菜单和主题。", "en": "Menus, Inspector, layer panel, context menus, and themes." }, "sourcePath": "src/ui" }
+      ],
+      "decisions": [
+        { "titles": { "zh": "Workspace 作为编辑器中枢", "en": "Workspace as the editor hub" }, "descriptions": { "zh": "集中协调文档、选择、工具和命令可用性，减少跨模块耦合。", "en": "Coordinates documents, selection, tools, and command availability to reduce cross-module coupling." }, "sourcePath": "docs/adr/0001-workspace-as-editor-hub.md" },
+        { "titles": { "zh": "命令执行器承载持久变更", "en": "Command executor for durable mutations" }, "descriptions": { "zh": "所有需要撤销的文档变更经过统一执行器和事务边界。", "en": "All undoable document mutations pass through one executor and transaction boundary." }, "sourcePath": "docs/adr/0002-command-executor-for-durable-mutations.md" },
+        { "titles": { "zh": "描述符驱动对象与工具", "en": "Descriptor-driven objects and tools" }, "descriptions": { "zh": "使用注册信息扩展对象和工具，避免把内建类型判断散落到系统各处。", "en": "Registers objects and tools through descriptors instead of spreading built-in type checks across the system." }, "sourcePath": "docs/adr/0003-descriptor-driven-objects-and-tools.md" },
+        { "titles": { "zh": "UI 不持有编辑规则", "en": "UI does not own editing rules" }, "descriptions": { "zh": "界面只展示状态并发出意图，编辑约束留在应用与文档层。", "en": "The UI presents state and raises intent while editing constraints remain in application and document layers." }, "sourcePath": "docs/adr/0004-ui-does-not-own-editing-rules.md" }
+      ],
+      "zreadUrl": "https://zread.ai/wubing7755/GLDraw",
+      "updatedAt": "2026-08-12"
+    }
+  },
+  {
+    "id": "project-010",
+    "name": "TextEditor",
+    "date": "2026-06-26",
+    "descriptions": {
+      "zh": "\u7528 C11 \u7F16\u5199\u7684\u547D\u4EE4\u884C\u6587\u672C\u7F16\u8F91\u5668",
+      "en": "a command-line text editor built in C11."
+    },
+    "repo": "https://github.com/wubing7755/TextEditor",
+    "language": "",
+    "stars": 0,
+    "featured": false,
+    "status": "",
+    "tags": [],
+    "highlights": {},
+    "demoImage": "",
+    "demoVideo": "",
+    "demoUrl": ""
+  },
+  {
+    "id": "project-011",
+    "name": "CalcExpr",
+    "date": "2026-04-01",
+    "descriptions": {
+      "zh": "\u7528 C \u8BED\u8A00\u7F16\u5199\u7684\u8868\u8FBE\u5F0F\u8BA1\u7B97\u5668",
+      "en": "an expression calculator written in C language"
+    },
+    "repo": "https://github.com/wubing7755/CalcExpr",
+    "language": "",
+    "stars": 0,
+    "featured": false,
+    "status": "",
+    "tags": [],
+    "highlights": {},
+    "demoImage": "",
+    "demoVideo": "",
+    "demoUrl": ""
+  }
+]

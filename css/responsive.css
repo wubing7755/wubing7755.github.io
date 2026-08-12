@@ -1,0 +1,113 @@
+/* 响应式（SD-07）：≤1200px 导航折叠为汉堡菜单。
+   断点取 1200：英文导航单行需 ~1150px 顶栏宽，提高断点消除中英换行临界带宽（实测 1170px 时英文顶栏换行、中文不换 → header 差 45px） */
+@media (max-width: 1200px) {
+    .layout-topbar {
+        justify-content: space-between;
+        gap: var(--space-2);
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: calc(100% + var(--space-2));
+        right: 0;
+        left: auto;
+        flex-direction: column;
+        background: var(--color-surface);
+        border: var(--pixel-size) solid var(--color-border);
+        box-shadow: var(--shadow-pixel);
+        z-index: 10;
+        min-width: 200px;
+        max-width: calc(100vw - 2rem);
+    }
+
+    .nav-links-open {
+        display: flex;
+    }
+
+    .layout-main {
+        padding: var(--space-3);
+    }
+
+    .compact-project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* 移动端触控目标 ≥44px（SD-29） */
+@media (max-width: 768px) {
+    .nav-link {
+        padding: 12px var(--space-3);
+    }
+
+    .pixel-button {
+        padding: 12px var(--space-3);
+    }
+
+    .lang-switch {
+        padding: 12px var(--space-1);
+    }
+
+    .project-list,
+    .compact-project-grid,
+    .article-grid,
+    .about-skill-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .project-image {
+        width: 100%;
+        flex: none;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        border-bottom: var(--pixel-size) solid var(--color-border);
+    }
+
+    .project-detail-page .project-card {
+        display: flex;
+    }
+
+    .project-detail-page .project-image {
+        min-height: 0;
+        border-right: 0;
+        border-bottom: var(--pixel-size) solid var(--color-border);
+    }
+}
+
+/* 320px 顶栏保持单行：收窄横向内边距，品牌名称禁止自身换行。 */
+@media (max-width: 420px) {
+    .layout-topbar {
+        padding-inline: var(--space-2);
+    }
+
+    .site-brand {
+        white-space: nowrap;
+    }
+
+    .site-brand-full {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+    }
+
+    .site-brand-short {
+        display: inline;
+    }
+}
+
+/* 减少动效偏好（可访问性） */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}
