@@ -103,6 +103,16 @@
     justify-content: center;
 }
 
+.settings-switch {
+    width: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: var(--space-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* 像素主题图标（高达/机甲硬边风）：方块组合，按钮内居中 */
 .theme-icon {
     display: block;

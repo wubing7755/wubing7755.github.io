@@ -50,8 +50,52 @@ api.theme = {
         if (themeColor) {
             themeColor.setAttribute('content', normalized === 'dark' ? '#101722' : '#1a5fb4');
         }
+    },
+    getOverrides() {
+        return api.storage.get('portfolio-theme-overrides');
+    },
+    setOverrides(text) {
+        applyOverrides(text);
+        api.storage.set('portfolio-theme-overrides', text);
+    },
+    clearOverrides() {
+        api.storage.remove('portfolio-theme-overrides');
+        const style = document.documentElement.style;
+        for (let i = style.length - 1; i >= 0; i--) {
+            const prop = style.item(i);
+            if (prop && prop.startsWith('--')) {
+                style.removeProperty(prop);
+            }
+        }
     }
 };
+// 站点级主题覆盖：逐行 --name: value 解析 + 值消毒后注入 <html> 内联 style（覆盖内置亮/暗主题）。
+// 变量名白名单已由 C# ThemeOverrideService 在保存路径校验，此处仅做值消毒兜底。
+function applyOverrides(text) {
+    if (!text)
+        return;
+    const lines = text.split('\n');
+    for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith('#'))
+            continue;
+        const colon = trimmed.indexOf(':');
+        if (colon < 0)
+            continue;
+        const name = trimmed.slice(0, colon).trim();
+        let value = trimmed.slice(colon + 1).trim();
+        if (value.endsWith(';'))
+            value = value.slice(0, -1).trim();
+        if (!name.startsWith('--') || isForbiddenValue(value))
+            continue;
+        document.documentElement.style.setProperty(name, value);
+    }
+}
+function isForbiddenValue(value) {
+    const lower = value.toLowerCase();
+    return ['url(', 'expression(', '@', ';', '{', '}', '!important', '\\', '/*', '*/', 'javascript:', 'data:']
+        .some(pattern => lower.includes(pattern));
+}
 // description、canonical、robots、Open Graph 与 Twitter 元数据保持单例并随路由/语言同步；title 由 Blazor PageTitle 独占管理。
 api.metadata = {
     set(title, description, canonical, locale, noIndex, image, type) {

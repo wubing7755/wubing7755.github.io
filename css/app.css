@@ -296,6 +296,16 @@ a {
     justify-content: center;
 }
 
+.settings-switch {
+    width: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: var(--space-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* 像素主题图标（高达/机甲硬边风）：方块组合，按钮内居中 */
 .theme-icon {
     display: block;
@@ -4379,6 +4389,115 @@ html[data-theme="dark"] #blazor-error-ui {
     .admin-action-end {
         margin-left: 0;
     }
+}
+
+/* 设置页（/settings）：分组卡片 + 字段行 + 提示 */
+.settings-page {
+    max-width: 760px;
+}
+
+.settings-account {
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-3);
+}
+
+.settings-card {
+    margin-bottom: var(--space-4);
+    padding: var(--space-3);
+}
+
+.settings-card h2 {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+}
+
+.settings-field-row {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+}
+
+.settings-field-row .admin-field {
+    flex: 1;
+}
+
+.settings-current-value {
+    display: inline-block;
+    padding: var(--space-2) 0;
+    font-weight: bold;
+}
+
+.settings-hint {
+    margin: 0 0 var(--space-2);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.settings-hint-ok {
+    color: var(--color-primary);
+}
+
+.settings-row-danger {
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border);
+}
+
+.settings-theme-override h3 {
+    margin: var(--space-3) 0 var(--space-1);
+    font-family: var(--font-display);
+    font-size: 1rem;
+}
+
+.settings-token-reference {
+    margin: var(--space-2) 0;
+    border: 1px solid var(--color-border);
+    padding: var(--space-2);
+}
+
+.settings-token-reference summary {
+    cursor: pointer;
+    font-family: var(--font-display);
+}
+
+.settings-token-table {
+    width: 100%;
+    margin-top: var(--space-2);
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.settings-token-table th,
+.settings-token-table td {
+    text-align: left;
+    padding: var(--space-1);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.settings-token-table code {
+    font-family: "Consolas", monospace;
+    color: var(--color-primary);
+}
+
+.settings-override-editor {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: var(--space-2);
+    padding: var(--space-2);
+    font-family: "Consolas", "Microsoft YaHei", monospace;
+    font-size: 0.85rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.settings-override-errors {
+    margin: var(--space-2) 0 0;
+    padding-left: var(--space-3);
+    color: var(--color-warning);
+    font-size: 0.85rem;
 }
 
 /* source: interactions.css */
