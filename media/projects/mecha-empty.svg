@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title description">
+  <title id="title">No deep content — mecha placeholder</title>
+  <desc id="description">Industrial pixel-style mecha indicating that no deep case study is available yet for this project.</desc>
+  <defs>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#d7dde8" stroke-width="2"/>
+    </pattern>
+    <pattern id="hazard" width="48" height="48" patternUnits="userSpaceOnUse" patternTransform="skewX(-20)">
+      <rect width="24" height="48" fill="#1a5fb4"/>
+      <rect x="24" width="24" height="48" fill="#e6a817"/>
+    </pattern>
+  </defs>
+  <rect width="960" height="540" fill="#f4f6fa"/>
+  <rect width="960" height="540" fill="url(#grid)"/>
+  <rect width="960" height="18" fill="url(#hazard)"/>
+  <rect y="522" width="960" height="18" fill="url(#hazard)"/>
+  <rect x="84" y="82" width="792" height="376" fill="#ffffff" stroke="#263445" stroke-width="8"/>
+  <path d="M84 154h792M186 82v72M774 82v72" fill="none" stroke="#263445" stroke-width="4"/>
+
+  <!-- mecha head -->
+  <g transform="translate(480 300)">
+    <rect x="-120" y="-118" width="240" height="176" fill="#1a5fb4" stroke="#263445" stroke-width="6"/>
+    <rect x="-100" y="-98" width="200" height="136" fill="#101722"/>
+    <!-- visor -->
+    <rect x="-92" y="-80" width="184" height="52" fill="#e6a817" stroke="#263445" stroke-width="4"/>
+    <path d="M-92 -80h184M-92 -28h184" stroke="#101722" stroke-width="4"/>
+    <path d="M0 -80v52" stroke="#101722" stroke-width="4"/>
+    <!-- chin vents -->
+    <rect x="-44" y="-12" width="88" height="12" fill="#1a5fb4" stroke="#263445" stroke-width="3"/>
+    <path d="M-30 -12v12M-10 -12v12M10 -12v12M30 -12v12" stroke="#101722" stroke-width="3"/>
+    <!-- side antennas -->
+    <rect x="-132" y="-138" width="12" height="40" fill="#e6a817" stroke="#263445" stroke-width="4"/>
+    <rect x="120" y="-138" width="12" height="40" fill="#e6a817" stroke="#263445" stroke-width="4"/>
+    <rect x="-148" y="-158" width="44" height="20" fill="#1a5fb4" stroke="#263445" stroke-width="4"/>
+    <rect x="104" y="-158" width="44" height="20" fill="#1a5fb4" stroke="#263445" stroke-width="4"/>
+    <!-- neck -->
+    <rect x="-30" y="58" width="60" height="24" fill="#1a5fb4" stroke="#263445" stroke-width="4"/>
+    <!-- shoulders -->
+    <rect x="-170" y="70" width="120" height="34" fill="#e6a817" stroke="#263445" stroke-width="5"/>
+    <rect x="50" y="70" width="120" height="34" fill="#e6a817" stroke="#263445" stroke-width="5"/>
+    <rect x="-120" y="96" width="240" height="26" fill="#1a5fb4" stroke="#263445" stroke-width="5"/>
+  </g>
+
+  <text x="480" y="126" text-anchor="middle" font-family="Consolas,monospace" font-size="30" font-weight="700" fill="#263445">NO DEEP CONTENT</text>
+  <text x="480" y="462" text-anchor="middle" font-family="Consolas,monospace" font-size="22" fill="#586473">CASE STUDY PENDING</text>
+</svg>

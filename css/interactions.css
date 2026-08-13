@@ -295,20 +295,6 @@
     line-height: 1.05;
 }
 
-.project-zread-button {
-    border-color: #006f69;
-    color: #fff;
-    background: #008e86;
-}
-
-.project-zread-button:hover,
-.project-zread-button:focus-visible,
-html[data-theme="dark"] .project-zread-button {
-    border-color: #55ddd2;
-    color: #fff;
-    background: #007c75;
-}
-
 .project-case-layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 220px;
@@ -341,8 +327,7 @@ html[data-theme="dark"] .project-zread-button {
     border-bottom: 1px solid color-mix(in srgb, var(--color-border) 30%, transparent);
 }
 
-.project-case-heading > span,
-.project-eyebrow {
+.project-case-heading > span {
     color: var(--color-primary);
     font-family: var(--font-display);
     font-size: 0.72rem;
@@ -392,8 +377,7 @@ html[data-theme="dark"] .project-zread-button {
 
 .project-capability-card h3,
 .project-module-card h3,
-.project-decision-list h3,
-.project-zread-card h2 {
+.project-decision-list h3 {
     margin: var(--space-2) 0;
     font-family: var(--font-display);
     font-size: 0.96rem;
@@ -401,8 +385,7 @@ html[data-theme="dark"] .project-zread-button {
 
 .project-capability-card p,
 .project-module-card p,
-.project-decision-list p,
-.project-zread-card p {
+.project-decision-list p {
     margin: 0;
     color: var(--color-text-muted);
     line-height: 1.65;
@@ -545,35 +528,16 @@ html[data-theme="dark"] .project-zread-button {
     color: var(--color-primary);
 }
 
-.project-zread-card {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    gap: var(--space-3);
-    align-items: center;
-    padding: var(--space-3);
-    border-color: #00a49a;
-    background: linear-gradient(120deg, color-mix(in srgb, #00a49a 10%, var(--color-surface)), var(--color-surface));
+/* 项目详情空内容页：无深度案例时的机甲占位图。 */
+.project-empty-case {
+    padding: 0;
+    overflow: hidden;
 }
 
-.project-zread-mark {
-    display: grid;
-    width: 52px;
-    height: 52px;
-    place-items: center;
-    color: #fff;
-    background: #008e86;
-    font-family: var(--font-display);
-    font-weight: bold;
-}
-
-.project-zread-card h2 {
-    margin-top: 0;
-}
-
-.project-zread-card small {
+.project-empty-mecha {
     display: block;
-    margin-top: var(--space-2);
-    color: var(--color-text-muted);
+    width: 100%;
+    height: auto;
 }
 
 /* 关于我概览卡：整卡是单一链接，信息无需悬浮即可阅读。 */
@@ -709,15 +673,6 @@ html[data-theme="dark"] .nav-link:hover {
         right: 50%;
         bottom: -1.2rem;
         transform: translateX(50%);
-    }
-
-    .project-zread-card {
-        grid-template-columns: auto minmax(0, 1fr);
-    }
-
-    .project-zread-card .pixel-button {
-        grid-column: 1 / -1;
-        justify-self: start;
     }
 
     .profile-detail-grid {
