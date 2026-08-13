@@ -110,21 +110,120 @@
     height: 22px;
 }
 
-/* Blazor 错误提示 */
+/* Blazor 错误提示（机甲风系统故障面板）：
+   显示由 blazor.webassembly.js 内部 lt() 控制（style.display="block"，故外层须兼容 block 布局）；
+   保留 .reload/.dismiss 供框架绑定点击；面板内部结构可自由重写（SD-33）。 */
 #blazor-error-ui {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 0.75rem;
-    background: #fff3cd;
-    border-bottom: 3px solid #e0a800;
+    inset: 0;
     z-index: 1000;
+    background: rgba(16, 23, 34, 0.72);
+    text-align: center;
+    overflow-y: auto;
+    padding: var(--space-4);
 }
 
+html[data-theme="dark"] #blazor-error-ui {
+    background: rgba(5, 9, 14, 0.82);
+}
+
+#blazor-error-ui .error-panel {
+    display: inline-block;
+    margin-top: 18vh;
+    max-width: 420px;
+    width: 100%;
+    position: relative;
+    background: var(--color-surface);
+    border: var(--pixel-size) solid var(--color-border);
+    box-shadow: var(--shadow-pixel);
+    padding: var(--space-4);
+    color: var(--color-text);
+    font-family: var(--font-display);
+    text-align: center;
+}
+
+/* 警示图标：CSS 方块组合（机甲硬边风，金色警示） */
+#blazor-error-ui .error-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto var(--space-3);
+    position: relative;
+    border: var(--pixel-size) solid var(--color-accent-dark);
+    background: var(--color-accent);
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    box-shadow: var(--shadow-pixel-sm);
+}
+
+#blazor-error-ui .error-icon::after {
+    content: "!";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--color-surface);
+}
+
+#blazor-error-ui .error-title {
+    margin: 0 0 var(--space-2);
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--color-text);
+}
+
+#blazor-error-ui .error-message {
+    margin: 0 0 var(--space-3);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+#blazor-error-ui .error-actions {
+    margin-top: var(--space-3);
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+}
+
+/* 重新加载：像素按钮（与 .pixel-button 同视觉，但独立定义避免依赖组件作用域） */
 #blazor-error-ui .reload {
-    margin-left: 1rem;
+    font-family: var(--font-display);
+    background: var(--color-primary);
+    color: #fff;
+    border: var(--pixel-size) solid var(--color-border);
+    box-shadow: var(--shadow-pixel-sm);
+    padding: var(--space-2) var(--space-3);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#blazor-error-ui .reload:hover {
+    background: var(--color-primary-dark);
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 rgba(45, 58, 74, 0.3);
+}
+
+/* 关闭：小号方块角标（框架点击后隐藏面板） */
+#blazor-error-ui .dismiss {
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-2);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border: var(--pixel-size) solid var(--color-border);
+    padding: var(--space-1) var(--space-2);
+    background: var(--color-surface);
+}
+
+#blazor-error-ui .dismiss:hover {
+    color: var(--color-text);
+    background: var(--color-bg);
 }
 
 /* 主导航（SD-05） */

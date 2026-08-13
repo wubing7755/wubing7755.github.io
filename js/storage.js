@@ -119,3 +119,30 @@ api.scroll = {
         }
     }
 };
+// 携带 Bearer token 下载文件（数据备份导出等 Admin 端点）：fetch → blob → 触发浏览器下载。
+api.download = {
+    async save(url, fileName) {
+        const token = api.storage.get('pp-auth-token');
+        if (!token) {
+            throw new Error('NOT_AUTHENTICATED');
+        }
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            },
+        });
+        if (!response.ok) {
+            throw new Error('HTTP_' + response.status);
+        }
+        const blob = await response.blob();
+        const objectUrl = URL.createObjectURL(blob);
+        const anchor = document.createElement('a');
+        anchor.href = objectUrl;
+        anchor.download = fileName || 'portfolio-backup.zip';
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+        URL.revokeObjectURL(objectUrl);
+    }
+};

@@ -317,11 +317,19 @@
         </div>
     </div>
 
-    <div id="blazor-error-ui">
-        An error has occurred. / 发生错误。
-        <a href="" class="reload">Reload / 重新加载</a>
-        <a class="dismiss">Dismiss / 关闭</a>
+    <div id="blazor-error-ui" role="alert">
+        <div class="error-panel">
+            <a class="dismiss" aria-label="Dismiss / 关闭">✕</a>
+            <div class="error-icon" aria-hidden="true"></div>
+            <p class="error-title">SYSTEM ERROR / 系统故障</p>
+            <p class="error-message">发生未处理的错误，请重新加载页面。An unhandled error occurred. Please reload the page.</p>
+            <div class="error-actions">
+                <a href="" class="reload">Reload / 重新加载</a>
+            </div>
+        </div>
     </div>
+    <!-- 错误捕获：先于 Blazor 运行时加载（boot 失败时也要能记录；运行时经 JS 互操作导航 /error） -->
+    <script src="js/error-boot.js"></script>
     <script src="js/storage.js"></script>
     <!-- 前端 markdown 渲染管线（markdown-it + DOMPurify + highlight.js，esbuild 打包本地 bundle）：
          必须先于 Blazor 组件运行加载；高亮样式独立 CSS（构建期从 highlight.js 拷贝） -->

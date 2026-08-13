@@ -155,6 +155,15 @@
     margin: 0 0 var(--space-2);
 }
 
+/* 404/错误页操作按钮组（返回上一页 + 返回首页，SD-33） */
+.notfound-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+}
+
 /* GitHub 项目板块（SD-12/13/14） */
 .page-hint {
     color: var(--color-text-muted);
@@ -1169,6 +1178,101 @@
     padding: var(--space-4);
 }
 
+/* 故障注入测试台（SD-33 错误测试页，Admin 后台） */
+.errortest-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    margin-bottom: var(--space-3);
+    background: var(--color-surface);
+    border-color: var(--color-accent-dark);
+}
+
+.errortest-notice-mark {
+    color: var(--color-accent);
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.errortest-notice p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+.errortest-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--space-3);
+}
+
+.errortest-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-3);
+}
+
+.errortest-card:hover {
+    border-color: var(--color-primary);
+}
+
+.errortest-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.errortest-index {
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+}
+
+.errortest-card h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1rem;
+}
+
+.errortest-card p {
+    margin: 0;
+    flex: 1;
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+.errortest-card .pixel-button {
+    align-self: flex-start;
+    margin-top: var(--space-2);
+}
+
+/* 卡片状态图标：机甲像素方块（危险=警示红 / 安全=主色蓝） */
+.errortest-icon {
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--color-surface);
+    border: var(--pixel-size) solid var(--color-border);
+    box-shadow: var(--shadow-pixel-sm);
+}
+
+.errortest-icon-danger {
+    background: var(--color-warning);
+}
+
+.errortest-icon-safe {
+    background: var(--color-primary);
+}
+
 .admin-card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -1223,6 +1327,30 @@
     color: var(--color-warning);
     font-family: var(--font-display);
     font-size: 0.85rem;
+}
+
+/* 整行状态消息 banner：左色条区分语义（成功=主色 / 错误=警示 / 信息=边框），替代散落的裸文字状态 */
+.admin-banner {
+    padding: var(--space-2) var(--space-3);
+    margin: 0;
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-border);
+    background: var(--color-surface);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--color-text);
+}
+
+.admin-banner--success {
+    border-left-color: var(--color-primary);
+}
+
+.admin-banner--error {
+    border-left-color: var(--color-warning);
+}
+
+.admin-banner--info {
+    border-left-color: var(--color-border);
 }
 
 .admin-toolbar {
@@ -1280,6 +1408,27 @@
     display: flex;
     gap: var(--space-2);
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.admin-pager-summary {
+    margin-right: var(--space-2);
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+}
+
+.admin-pager-page {
+    min-width: 2.5rem;
+    padding: var(--space-1) var(--space-2);
+}
+
+.admin-pager-page.is-current {
+    background: var(--color-primary-dark);
+    color: #fff;
+}
+
+.admin-pager-ellipsis {
+    color: var(--color-text-muted);
 }
 
 .admin-empty {
@@ -1302,9 +1451,9 @@
 }
 
 .admin-field span {
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-text);
 }
 
 .admin-field input,
@@ -1315,6 +1464,13 @@
     border: 1px solid var(--color-border);
     color: var(--color-text);
     font: inherit;
+}
+
+/* 焦点态：主色边框标识当前字段；键盘焦点可见性由 base.css 全局 :focus-visible 提供 */
+.admin-field input:focus,
+.admin-field select:focus,
+.admin-field textarea:focus {
+    border-color: var(--color-primary);
 }
 
 .admin-markdown {
@@ -1783,6 +1939,52 @@
     grid-column: 1 / -1;
 }
 
+/* 表单折叠分组（原生 details/summary，零 JS） */
+.admin-form-group {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+}
+
+.admin-form-group + .admin-form-group {
+    margin-top: var(--space-3);
+}
+
+.admin-form-group > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text);
+    list-style: none;
+    user-select: none;
+}
+
+.admin-form-group > summary::-webkit-details-marker {
+    display: none;
+}
+
+.admin-form-group > summary::after {
+    content: "+";
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.admin-form-group[open] > summary::after {
+    content: "−";
+}
+
+.admin-form-group > .admin-form-grid {
+    padding: var(--space-3);
+}
+
 .admin-bilingual-stack,
 .admin-social-list,
 .admin-skill-items-editor {
@@ -1965,6 +2167,17 @@
     font: inherit;
 }
 
+/* 搜索框聚焦：整个控件（含左侧图标）高亮，input 自身 outline 让位给 label，避免双重框 */
+.admin-search-box:focus-within {
+    border-color: var(--color-primary);
+    outline: 3px solid var(--color-accent-dark);
+    outline-offset: 2px;
+}
+
+.admin-search-box input:focus-visible {
+    outline: none;
+}
+
 .admin-entity-list,
 .admin-skill-group-grid {
     display: flex;
@@ -1974,6 +2187,7 @@
 
 .admin-entity-card,
 .admin-skill-group-card {
+    min-width: 0;
     border: 1px solid var(--color-border);
     background: var(--color-bg);
 }
@@ -2306,6 +2520,7 @@
     padding: var(--space-3);
     color: var(--color-text);
     text-decoration: none;
+    transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .admin-dashboard-kpi:hover {
@@ -2590,6 +2805,127 @@
     font-size: 0.8rem;
 }
 
+/* 数据备份与迁移页 */
+.admin-backup-export,
+.admin-backup-import {
+    min-width: 0;
+    padding: var(--space-3);
+}
+
+.admin-backup-export > p,
+.admin-backup-import > p {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    margin-bottom: var(--space-2);
+}
+
+.admin-backup-export + .admin-backup-import {
+    margin-top: var(--space-3);
+}
+
+.admin-backup-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+}
+
+.admin-backup-actions label.pixel-button {
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.admin-backup-actions label.pixel-button input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.admin-backup-confirm {
+    padding: var(--space-3);
+    border-color: var(--color-warning);
+}
+
+.admin-backup-confirm > strong {
+    display: block;
+    margin-bottom: var(--space-2);
+}
+
+.admin-backup-confirm > p {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    margin-bottom: var(--space-2);
+}
+
+.admin-backup-import .admin-status {
+    margin-top: var(--space-2);
+}
+
+.admin-backup-result {
+    margin-top: var(--space-3);
+    padding: var(--space-3);
+}
+
+.admin-backup-result .admin-inventory-grid {
+    margin-bottom: var(--space-3);
+}
+
+.admin-backup-stat {
+    display: flex;
+    flex-direction: column;
+    min-height: 110px;
+    padding: var(--space-3);
+}
+
+.admin-backup-stat > span {
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+}
+
+.admin-backup-stat strong {
+    margin: var(--space-2) 0;
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.admin-backup-stat small {
+    color: var(--color-text-muted);
+}
+
+.admin-backup-result-meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+}
+
+.admin-backup-result-meta > div {
+    min-width: 0;
+    padding: var(--space-2);
+    border: 1px solid var(--color-border);
+}
+
+.admin-backup-result-meta dt {
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    margin-bottom: var(--space-1);
+}
+
+.admin-backup-result-meta dd {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.8rem;
+}
+
 @media (max-width: 1100px) {
     .admin-profile-layout,
     .admin-master-detail,
@@ -2615,6 +2951,7 @@
 }
 
 @media (max-width: 760px) {
+    .admin-backup-result-meta { grid-template-columns: 1fr; }
     .admin-dashboard-secondary-grid,
     .admin-dashboard-operations { grid-template-columns: 1fr; }
     .admin-dashboard-sync { padding: var(--space-3) 0 0; border-top: 1px solid var(--color-border); border-left: 0; }
@@ -2739,6 +3076,15 @@
     min-width: 0;
     background: var(--color-bg);
     border: 1px solid var(--color-border);
+}
+
+/* 列表卡片 hover：边框变主色，暗示可交互/可查看（5 种卡片统一） */
+.admin-entity-card:hover,
+.admin-skill-group-card:hover,
+.admin-record-card:hover,
+.admin-user-card:hover,
+.admin-moderation-card:hover {
+    border-color: var(--color-primary);
 }
 
 .admin-record-card > header,
