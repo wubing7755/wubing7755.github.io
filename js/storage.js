@@ -48,47 +48,102 @@ api.theme = {
         api.storage.set('portfolio-theme', normalized);
         const themeColor = document.querySelector('meta[name="theme-color"]');
         if (themeColor) {
-            themeColor.setAttribute('content', normalized === 'dark' ? '#101722' : '#1a5fb4');
+            themeColor.setAttribute('content', normalized === 'dark' ? '#0d1524' : '#0b3d91');
         }
     },
     getOverrides() {
         return api.storage.get('portfolio-theme-overrides');
     },
     setOverrides(text) {
-        applyOverrides(text);
+        applyOverrides('portfolio-theme-overrides', text);
         api.storage.set('portfolio-theme-overrides', text);
     },
     clearOverrides() {
         api.storage.remove('portfolio-theme-overrides');
-        const style = document.documentElement.style;
-        for (let i = style.length - 1; i >= 0; i--) {
-            const prop = style.item(i);
-            if (prop && prop.startsWith('--')) {
-                style.removeProperty(prop);
-            }
-        }
+        removeOverrideStyle('portfolio-theme-overrides');
+    },
+    // 个人主题覆盖（仅本浏览器生效）：与站点级覆盖分离存储，应用时覆盖站点值。
+    getPersonalOverrides() {
+        return api.storage.get('portfolio-theme-personal-overrides');
+    },
+    setPersonalOverrides(text) {
+        applyOverrides('portfolio-theme-personal-overrides', text);
+        api.storage.set('portfolio-theme-personal-overrides', text);
+    },
+    clearPersonalOverrides() {
+        api.storage.remove('portfolio-theme-personal-overrides');
+        removeOverrideStyle('portfolio-theme-personal-overrides');
     }
 };
-// 站点级主题覆盖：逐行 --name: value 解析 + 值消毒后注入 <html> 内联 style（覆盖内置亮/暗主题）。
+// 主题覆盖：解析 [light]/[dark] 分组（无分组时视为 light 且 dark 继承 light），
+// 生成 <style> 规则注入（:root 亮色 + html[data-theme="dark"] 暗色），覆盖内置亮/暗主题。
 // 变量名白名单已由 C# ThemeOverrideService 在保存路径校验，此处仅做值消毒兜底。
-function applyOverrides(text) {
-    if (!text)
+function applyOverrides(styleId, text) {
+    // 运行时接管后移除预应用兜底样式，避免两套规则叠加
+    const preapply = document.getElementById('theme-preapply-overrides');
+    if (preapply)
+        preapply.remove();
+    const light = {};
+    const dark = {};
+    let section = 'light';
+    let hasDarkSection = false;
+    if (text) {
+        const lines = text.split('\n');
+        for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed || trimmed.startsWith('#'))
+                continue;
+            const sectionMatch = trimmed.match(/^\[(light|dark)\]$/i);
+            if (sectionMatch) {
+                section = sectionMatch[1].toLowerCase() === 'dark' ? 'dark' : 'light';
+                if (section === 'dark')
+                    hasDarkSection = true;
+                continue;
+            }
+            const colon = trimmed.indexOf(':');
+            if (colon < 0)
+                continue;
+            const name = trimmed.slice(0, colon).trim();
+            let value = trimmed.slice(colon + 1).trim();
+            if (value.endsWith(';'))
+                value = value.slice(0, -1).trim();
+            if (!name.startsWith('--') || isForbiddenValue(value))
+                continue;
+            (section === 'dark' ? dark : light)[name] = value;
+        }
+    }
+    // 默认继承：dark 段未声明的变量回退到 light 值（无 [dark] 段时暗色完全沿用亮色，兼容旧单值格式）
+    const mergedDark = { ...light, ...dark };
+    const hasValues = Object.keys(light).length > 0 || Object.keys(mergedDark).length > 0;
+    if (!hasValues) {
+        removeOverrideStyle(styleId);
         return;
-    const lines = text.split('\n');
-    for (const line of lines) {
-        const trimmed = line.trim();
-        if (!trimmed || trimmed.startsWith('#'))
-            continue;
-        const colon = trimmed.indexOf(':');
-        if (colon < 0)
-            continue;
-        const name = trimmed.slice(0, colon).trim();
-        let value = trimmed.slice(colon + 1).trim();
-        if (value.endsWith(';'))
-            value = value.slice(0, -1).trim();
-        if (!name.startsWith('--') || isForbiddenValue(value))
-            continue;
-        document.documentElement.style.setProperty(name, value);
+    }
+    let existing = document.getElementById(styleId);
+    if (!existing) {
+        existing = document.createElement('style');
+        existing.id = styleId;
+        existing.setAttribute('data-theme-overrides', '');
+        document.head.appendChild(existing);
+    }
+    const lightCss = Object.entries(light).map(([k, v]) => `  ${k}: ${v};`).join('\n');
+    const darkCss = Object.entries(mergedDark).map(([k, v]) => `  ${k}: ${v};`).join('\n');
+    existing.textContent = [
+        `:root {\n${lightCss}\n}`,
+        `html[data-theme="dark"] {\n${darkCss}\n}`
+    ].join('\n');
+}
+function removeOverrideStyle(styleId) {
+    const existing = document.getElementById(styleId);
+    if (existing)
+        existing.remove();
+    // 兼容旧数据：清除历史上由内联 style 写入的变量
+    const style = document.documentElement.style;
+    for (let i = style.length - 1; i >= 0; i--) {
+        const prop = style.item(i);
+        if (prop && prop.startsWith('--')) {
+            style.removeProperty(prop);
+        }
     }
 }
 function isForbiddenValue(value) {

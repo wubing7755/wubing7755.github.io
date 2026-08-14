@@ -6,12 +6,13 @@
 
 :root {
     color-scheme: light;
-    --color-primary: #1a5fb4;
-    --color-primary-dark: #144a8c;
-    --color-accent: #e6a817;
-    --color-accent-dark: #856800;
+    /* 独角兽高达配色：深藏蓝主色 + 白金强调（SD-25 机甲像素风） */
+    --color-primary: #0b3d91;
+    --color-primary-dark: #082b68;
+    --color-accent: #c9a959;
+    --color-accent-dark: #8a6d00;
     --color-warning: #c0392b;
-    --color-bg: #f2f4f8;
+    --color-bg: #f0f4f9;
     --color-surface: #ffffff;
     --color-border: #2d3a4a;
     --color-text: #1c2733;
@@ -32,13 +33,14 @@
 
 html[data-theme="dark"] {
     color-scheme: dark;
-    --color-primary: #73adff;
-    --color-primary-dark: #4d91ed;
-    --color-accent: #f2bd3f;
-    --color-accent-dark: #ffd76f;
+    /* 暗色独角兽：亮蓝主色 + 亮金强调（深藏蓝底衬托） */
+    --color-primary: #8fb4ff;
+    --color-primary-dark: #6a93e0;
+    --color-accent: #e6c069;
+    --color-accent-dark: #d4af37;
     --color-warning: #ff766a;
-    --color-bg: #101722;
-    --color-surface: #182230;
+    --color-bg: #0d1524;
+    --color-surface: #16203a;
     --color-border: #91a3b8;
     --color-text: #edf4fb;
     --color-text-muted: #b4c2d1;
@@ -109,7 +111,7 @@ html {
 
 /* 焦点可见性（SD-29） */
 :focus-visible {
-    /* 深金保证非文本对比度 ≥3:1（金色 #e6a817 白底仅 2.10:1，不达标） */
+    /* 深金保证非文本对比度 ≥3:1（白金 #c9a959 白底仅 2.04:1，不达标；深金 #8a6d00 ≈4.45:1） */
     outline: 3px solid var(--color-accent-dark);
     outline-offset: 2px;
 }
@@ -132,6 +134,11 @@ html {
 
 a {
     color: var(--color-primary);
+}
+
+/* 通用显隐工具类：组件保持挂载、仅 CSS 隐藏（tab 切换等场景避免丢失状态） */
+.is-hidden {
+    display: none !important;
 }
 
 /* 像素面板 */
@@ -253,28 +260,50 @@ a {
     background: var(--color-surface);
 }
 
+/* 品牌区：金色等宽字站名，与顶部 site-brand 呼应 */
+.footer-brand {
+    margin-bottom: var(--space-3);
+}
+
 .footer-brand h2 {
     margin: 0;
-    color: var(--color-text);
     font-family: var(--font-display);
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--color-accent);
 }
 
-.footer-bottom a {
-    color: var(--color-text);
-    text-underline-offset: 3px;
-}
-
-/* 返回顶部按钮：重置 button 默认外观，与相邻链接保持一致的视觉（无边框背景，仅下划线文本） */
+/* 返回顶部按钮：小号像素按钮，hover 位移模拟按下（与 .pixel-button 交互语言一致） */
 .footer-back-to-top {
-    padding: 0;
-    border: 0;
-    background: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
     color: var(--color-text);
     font: inherit;
-    text-decoration: underline;
-    text-underline-offset: 3px;
     cursor: pointer;
+    box-shadow: var(--shadow-pixel-sm);
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
+}
+
+.footer-back-to-top:hover {
+    background: var(--color-primary);
+    color: #fff;
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 rgba(45, 58, 74, 0.3);
+}
+
+.footer-back-to-top-arrow {
+    color: var(--color-accent);
+    font-size: 0.6rem;
+    line-height: 1;
+}
+
+.footer-back-to-top:hover .footer-back-to-top-arrow {
+    color: #fff;
 }
 
 /* 语言切换按钮 */
@@ -526,23 +555,29 @@ html[data-theme="dark"] #blazor-error-ui {
 }
 
 /* 页脚 */
-.footer-meta {
-    display: flex;
-    gap: var(--space-3);
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
 .footer-bottom {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: var(--space-2) var(--space-3);
     flex-wrap: wrap;
-    margin-top: var(--space-4);
+    margin-top: var(--space-3);
     padding-top: var(--space-3);
     border-top: 1px solid var(--color-border);
     font-family: var(--font-display);
     font-size: 0.75rem;
+}
+
+/* 底部信息行分组：builtWith + 金色分隔符 + rights */
+.footer-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+}
+
+.footer-separator {
+    color: var(--color-accent);
 }
 
 /* 读屏专用：视觉隐藏但可被辅助技术读取 */
@@ -590,7 +625,7 @@ html[data-theme="dark"] #blazor-error-ui {
 .section-index {
     font-family: var(--font-display);
     font-size: 0.8rem;
-    /* 深金：金色 #e6a817 白底 2.10:1 不达标 */
+    /* 深金：白金 #c9a959 白底 2.04:1 不达标 */
     color: var(--color-accent-dark);
     letter-spacing: 1px;
 }
@@ -1414,7 +1449,7 @@ html[data-theme="dark"] #blazor-error-ui {
 }
 
 .project-stars {
-    /* 深金：金色 #e6a817 白底 2.10:1 不达标 */
+    /* 深金：白金 #c9a959 白底 2.04:1 不达标 */
     color: var(--color-accent-dark);
     font-size: 0.8rem;
 }
@@ -4391,11 +4426,6 @@ html[data-theme="dark"] #blazor-error-ui {
     max-width: 760px;
 }
 
-.settings-account {
-    color: var(--color-text-muted);
-    margin: 0 0 var(--space-3);
-}
-
 .settings-card {
     margin-bottom: var(--space-4);
     padding: var(--space-3);
@@ -4493,6 +4523,122 @@ html[data-theme="dark"] #blazor-error-ui {
     padding-left: var(--space-3);
     color: var(--color-warning);
     font-size: 0.85rem;
+}
+
+/* 预设配色卡片：四格品牌色预览（亮主/亮强调/暗主/暗强调）+ 名称，选中态主色边框 */
+.theme-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: var(--space-2) 0 var(--space-3);
+}
+
+.theme-preset-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2);
+    background: var(--color-surface);
+    border: 2px solid var(--color-border);
+    cursor: pointer;
+    font: inherit;
+    color: var(--color-text);
+    min-width: 96px;
+}
+
+.theme-preset-card:hover {
+    border-color: var(--color-primary);
+}
+
+.theme-preset-card.is-active {
+    border-color: var(--color-accent-dark);
+    box-shadow: 0 0 0 1px var(--color-accent-dark);
+}
+
+.theme-preset-swatch {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    width: 48px;
+    height: 24px;
+    border: 1px solid var(--color-border);
+}
+
+.theme-preset-swatch i {
+    display: block;
+}
+
+.theme-preset-name {
+    font-size: 0.8rem;
+    font-family: var(--font-display);
+}
+
+/* 编辑模式切换：表格 / 文本 */
+.settings-editor-switch {
+    display: inline-flex;
+    gap: 2px;
+    margin: var(--space-2) 0;
+    border: 1px solid var(--color-border);
+}
+
+.settings-editor-switch button {
+    padding: var(--space-1) var(--space-2);
+    background: transparent;
+    border: 0;
+    color: var(--color-text-muted);
+    font: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.settings-editor-switch button.is-active {
+    background: var(--color-primary);
+    color: #fff;
+}
+
+/* 表格模式：变量名 × 亮色 × 暗色，每格色块预览 + 输入框 */
+.settings-override-table {
+    width: 100%;
+    margin-top: var(--space-2);
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.settings-override-table th,
+.settings-override-table td {
+    text-align: left;
+    padding: var(--space-1) var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.settings-override-table code {
+    font-family: "Consolas", monospace;
+    color: var(--color-primary);
+    white-space: nowrap;
+}
+
+.settings-color-preview {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    border: 1px solid var(--color-border);
+    margin-right: var(--space-1);
+}
+
+.settings-color-input {
+    width: 140px;
+    padding: var(--space-1) var(--space-2);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    font-family: "Consolas", monospace;
+    font-size: 0.85rem;
+}
+
+.settings-color-input:focus {
+    border-color: var(--color-primary);
 }
 
 /* source: interactions.css */

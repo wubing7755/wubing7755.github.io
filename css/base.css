@@ -3,12 +3,13 @@
 
 :root {
     color-scheme: light;
-    --color-primary: #1a5fb4;
-    --color-primary-dark: #144a8c;
-    --color-accent: #e6a817;
-    --color-accent-dark: #856800;
+    /* 独角兽高达配色：深藏蓝主色 + 白金强调（SD-25 机甲像素风） */
+    --color-primary: #0b3d91;
+    --color-primary-dark: #082b68;
+    --color-accent: #c9a959;
+    --color-accent-dark: #8a6d00;
     --color-warning: #c0392b;
-    --color-bg: #f2f4f8;
+    --color-bg: #f0f4f9;
     --color-surface: #ffffff;
     --color-border: #2d3a4a;
     --color-text: #1c2733;
@@ -29,13 +30,14 @@
 
 html[data-theme="dark"] {
     color-scheme: dark;
-    --color-primary: #73adff;
-    --color-primary-dark: #4d91ed;
-    --color-accent: #f2bd3f;
-    --color-accent-dark: #ffd76f;
+    /* 暗色独角兽：亮蓝主色 + 亮金强调（深藏蓝底衬托） */
+    --color-primary: #8fb4ff;
+    --color-primary-dark: #6a93e0;
+    --color-accent: #e6c069;
+    --color-accent-dark: #d4af37;
     --color-warning: #ff766a;
-    --color-bg: #101722;
-    --color-surface: #182230;
+    --color-bg: #0d1524;
+    --color-surface: #16203a;
     --color-border: #91a3b8;
     --color-text: #edf4fb;
     --color-text-muted: #b4c2d1;
@@ -106,7 +108,7 @@ html {
 
 /* 焦点可见性（SD-29） */
 :focus-visible {
-    /* 深金保证非文本对比度 ≥3:1（金色 #e6a817 白底仅 2.10:1，不达标） */
+    /* 深金保证非文本对比度 ≥3:1（白金 #c9a959 白底仅 2.04:1，不达标；深金 #8a6d00 ≈4.45:1） */
     outline: 3px solid var(--color-accent-dark);
     outline-offset: 2px;
 }
@@ -129,6 +131,11 @@ html {
 
 a {
     color: var(--color-primary);
+}
+
+/* 通用显隐工具类：组件保持挂载、仅 CSS 隐藏（tab 切换等场景避免丢失状态） */
+.is-hidden {
+    display: none !important;
 }
 
 /* 像素面板 */

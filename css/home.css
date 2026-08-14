@@ -29,7 +29,7 @@
 .section-index {
     font-family: var(--font-display);
     font-size: 0.8rem;
-    /* 深金：金色 #e6a817 白底 2.10:1 不达标 */
+    /* 深金：白金 #c9a959 白底 2.04:1 不达标 */
     color: var(--color-accent-dark);
     letter-spacing: 1px;
 }

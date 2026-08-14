@@ -321,7 +321,7 @@
 }
 
 .project-stars {
-    /* 深金：金色 #e6a817 白底 2.10:1 不达标 */
+    /* 深金：白金 #c9a959 白底 2.04:1 不达标 */
     color: var(--color-accent-dark);
     font-size: 0.8rem;
 }
@@ -3298,11 +3298,6 @@
     max-width: 760px;
 }
 
-.settings-account {
-    color: var(--color-text-muted);
-    margin: 0 0 var(--space-3);
-}
-
 .settings-card {
     margin-bottom: var(--space-4);
     padding: var(--space-3);
@@ -3400,4 +3395,120 @@
     padding-left: var(--space-3);
     color: var(--color-warning);
     font-size: 0.85rem;
+}
+
+/* 预设配色卡片：四格品牌色预览（亮主/亮强调/暗主/暗强调）+ 名称，选中态主色边框 */
+.theme-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: var(--space-2) 0 var(--space-3);
+}
+
+.theme-preset-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2);
+    background: var(--color-surface);
+    border: 2px solid var(--color-border);
+    cursor: pointer;
+    font: inherit;
+    color: var(--color-text);
+    min-width: 96px;
+}
+
+.theme-preset-card:hover {
+    border-color: var(--color-primary);
+}
+
+.theme-preset-card.is-active {
+    border-color: var(--color-accent-dark);
+    box-shadow: 0 0 0 1px var(--color-accent-dark);
+}
+
+.theme-preset-swatch {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    width: 48px;
+    height: 24px;
+    border: 1px solid var(--color-border);
+}
+
+.theme-preset-swatch i {
+    display: block;
+}
+
+.theme-preset-name {
+    font-size: 0.8rem;
+    font-family: var(--font-display);
+}
+
+/* 编辑模式切换：表格 / 文本 */
+.settings-editor-switch {
+    display: inline-flex;
+    gap: 2px;
+    margin: var(--space-2) 0;
+    border: 1px solid var(--color-border);
+}
+
+.settings-editor-switch button {
+    padding: var(--space-1) var(--space-2);
+    background: transparent;
+    border: 0;
+    color: var(--color-text-muted);
+    font: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.settings-editor-switch button.is-active {
+    background: var(--color-primary);
+    color: #fff;
+}
+
+/* 表格模式：变量名 × 亮色 × 暗色，每格色块预览 + 输入框 */
+.settings-override-table {
+    width: 100%;
+    margin-top: var(--space-2);
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.settings-override-table th,
+.settings-override-table td {
+    text-align: left;
+    padding: var(--space-1) var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.settings-override-table code {
+    font-family: "Consolas", monospace;
+    color: var(--color-primary);
+    white-space: nowrap;
+}
+
+.settings-color-preview {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    border: 1px solid var(--color-border);
+    margin-right: var(--space-1);
+}
+
+.settings-color-input {
+    width: 140px;
+    padding: var(--space-1) var(--space-2);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    font-family: "Consolas", monospace;
+    font-size: 0.85rem;
+}
+
+.settings-color-input:focus {
+    border-color: var(--color-primary);
 }

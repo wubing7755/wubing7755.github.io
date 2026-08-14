@@ -15,14 +15,25 @@
             }
             var normalizedTheme = theme === 'dark' ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', normalizedTheme);
-            // 站点级主题覆盖预应用：读缓存并注入 <html> 内联 style（防覆盖闪烁）；值消毒兜底。
+            // 主题覆盖预应用：先站点级缓存、再个人覆盖（个人优先，防覆盖闪烁）。
+            // 支持 [light]/[dark] 分组，注入 <style> 规则（:root 亮色 + html[data-theme="dark"] 暗色）；值消毒兜底。
             try {
-                var overrides = localStorage.getItem('portfolio-theme-overrides');
-                if (overrides) {
+                var overrideSources = [localStorage.getItem('portfolio-theme-overrides'), localStorage.getItem('portfolio-theme-personal-overrides')];
+                var lightMap = {};
+                var darkMap = {};
+                for (var s = 0; s < overrideSources.length; s++) {
+                    var overrides = overrideSources[s];
+                    if (!overrides) continue;
+                    var section = 'light';
                     var lines = overrides.split('\n');
                     for (var i = 0; i < lines.length; i++) {
                         var line = lines[i].trim();
                         if (!line || line.charAt(0) === '#') continue;
+                        var sectionMatch = line.match(/^\[(light|dark)\]$/i);
+                        if (sectionMatch) {
+                            section = sectionMatch[1].toLowerCase() === 'dark' ? 'dark' : 'light';
+                            continue;
+                        }
                         var colon = line.indexOf(':');
                         if (colon < 0) continue;
                         var name = line.slice(0, colon).trim();
@@ -31,14 +42,29 @@
                         var lower = value.toLowerCase();
                         if (name.indexOf('--') !== 0 || lower.indexOf('url(') !== -1 || lower.indexOf('expression(') !== -1
                             || lower.indexOf('@') !== -1 || lower.indexOf('!important') !== -1) continue;
-                        document.documentElement.style.setProperty(name, value);
+                        if (section === 'dark') darkMap[name] = value; else lightMap[name] = value;
                     }
+                }
+                // 默认继承：dark 未声明的回退到 light；合并两源（个人后写覆盖站点）
+                for (var key in lightMap) { if (!(key in darkMap)) darkMap[key] = lightMap[key]; }
+                var cssLines = [':root {'];
+                for (var lightKey in lightMap) cssLines.push('  ' + lightKey + ': ' + lightMap[lightKey] + ';');
+                cssLines.push('}');
+                cssLines.push('html[data-theme="dark"] {');
+                for (var darkKey in darkMap) cssLines.push('  ' + darkKey + ': ' + darkMap[darkKey] + ';');
+                cssLines.push('}');
+                if (Object.keys(lightMap).length > 0 || Object.keys(darkMap).length > 0) {
+                    var styleEl = document.createElement('style');
+                    styleEl.id = 'theme-preapply-overrides';
+                    styleEl.setAttribute('data-theme-overrides', '');
+                    styleEl.textContent = cssLines.join('\n');
+                    document.head.appendChild(styleEl);
                 }
             } catch (e) { /* 忽略：无缓存或存储不可用 */ }
             document.addEventListener('DOMContentLoaded', function () {
                 var themeColor = document.querySelector('meta[name="theme-color"]');
                 if (themeColor) {
-                    themeColor.setAttribute('content', normalizedTheme === 'dark' ? '#101722' : '#1a5fb4');
+                    themeColor.setAttribute('content', normalizedTheme === 'dark' ? '#0d1524' : '#0b3d91');
                 }
             }, { once: true });
         }());
@@ -48,7 +74,7 @@
     <meta id="meta-description" name="description" content="分析 Windows 环境下 Git 连接 GitHub 443 端口失败的代理配置原因，并给出查看、设置或清除 HTTP/HTTPS 代理以及验证连接的处理步骤。" />
     <link id="canonical-link" rel="canonical" href="https://wubing7755.github.io/blog/post-026/" />
     <meta id="meta-robots" name="robots" content="index, follow" />
-    <meta name="theme-color" content="#1a5fb4" />
+    <meta name="theme-color" content="#0b3d91" />
     <meta property="og:site_name" content="wubing7755's home" />
     <meta id="og-type" property="og:type" content="article" />
     <meta id="og-title" property="og:title" content="Git failed to connect to github 443 windows - wubing7755&#39;s home" />
@@ -97,7 +123,7 @@
 
         html[data-theme="dark"] .loader-scene {
             color: #dce6f2;
-            background: #101722;
+            background: #0d1524;
         }
 
         .ms-frame {
@@ -112,7 +138,7 @@
             top: 6px;
             width: 14px;
             height: 58px;
-            background: #e6a817;
+            background: #c9a959;
             z-index: 3;
         }
 
@@ -138,9 +164,9 @@
             width: 96px;
             height: 76px;
             transform: translateX(-50%);
-            background: #1a5fb4;
-            border: 3px solid #144a8c;
-            box-shadow: 0 3px 0 rgba(20, 74, 140, 0.35);
+            background: #0b3d91;
+            border: 3px solid #082b68;
+            box-shadow: 0 3px 0 rgba(8, 43, 104, 0.35);
             animation: ms-head 4s ease-in-out infinite;
             z-index: 2;
         }
@@ -188,8 +214,8 @@
             bottom: -14px;
             width: 14px;
             height: 14px;
-            background: #1a5fb4;
-            border: 2px solid #144a8c;
+            background: #0b3d91;
+            border: 2px solid #082b68;
         }
 
         .ms-cheek-l {
@@ -207,7 +233,7 @@
             transform: translateX(-50%);
             width: 26px;
             height: 14px;
-            background: #144a8c;
+            background: #082b68;
         }
 
         /* 变身瞬间两侧闪光 */
@@ -216,7 +242,7 @@
             top: 40px;
             width: 8px;
             height: 8px;
-            background: #e6a817;
+            background: #c9a959;
             opacity: 0;
             animation: ms-flash 4s step-end infinite;
         }
@@ -242,7 +268,7 @@
             display: block;
             height: 100%;
             width: 0;
-            background: #1a5fb4;
+            background: #0b3d91;
             animation: ms-bar 4s steps(8) infinite;
         }
 
@@ -275,7 +301,7 @@
             }
             38%, 100% {
                 transform: translateX(-50%) scaleY(1);
-                border-color: #144a8c;
+                border-color: #082b68;
             }
         }
 

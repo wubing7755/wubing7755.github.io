@@ -60,28 +60,50 @@
     background: var(--color-surface);
 }
 
+/* 品牌区：金色等宽字站名，与顶部 site-brand 呼应 */
+.footer-brand {
+    margin-bottom: var(--space-3);
+}
+
 .footer-brand h2 {
     margin: 0;
-    color: var(--color-text);
     font-family: var(--font-display);
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--color-accent);
 }
 
-.footer-bottom a {
-    color: var(--color-text);
-    text-underline-offset: 3px;
-}
-
-/* 返回顶部按钮：重置 button 默认外观，与相邻链接保持一致的视觉（无边框背景，仅下划线文本） */
+/* 返回顶部按钮：小号像素按钮，hover 位移模拟按下（与 .pixel-button 交互语言一致） */
 .footer-back-to-top {
-    padding: 0;
-    border: 0;
-    background: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
     color: var(--color-text);
     font: inherit;
-    text-decoration: underline;
-    text-underline-offset: 3px;
     cursor: pointer;
+    box-shadow: var(--shadow-pixel-sm);
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
+}
+
+.footer-back-to-top:hover {
+    background: var(--color-primary);
+    color: #fff;
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 rgba(45, 58, 74, 0.3);
+}
+
+.footer-back-to-top-arrow {
+    color: var(--color-accent);
+    font-size: 0.6rem;
+    line-height: 1;
+}
+
+.footer-back-to-top:hover .footer-back-to-top-arrow {
+    color: #fff;
 }
 
 /* 语言切换按钮 */
@@ -333,23 +355,29 @@ html[data-theme="dark"] #blazor-error-ui {
 }
 
 /* 页脚 */
-.footer-meta {
-    display: flex;
-    gap: var(--space-3);
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
 .footer-bottom {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: var(--space-2) var(--space-3);
     flex-wrap: wrap;
-    margin-top: var(--space-4);
+    margin-top: var(--space-3);
     padding-top: var(--space-3);
     border-top: 1px solid var(--color-border);
     font-family: var(--font-display);
     font-size: 0.75rem;
+}
+
+/* 底部信息行分组：builtWith + 金色分隔符 + rights */
+.footer-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+}
+
+.footer-separator {
+    color: var(--color-accent);
 }
 
 /* 读屏专用：视觉隐藏但可被辅助技术读取 */
