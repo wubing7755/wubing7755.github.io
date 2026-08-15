@@ -1047,6 +1047,33 @@
     margin: 0;
 }
 
+/* ===== 评论回复（单层） ===== */
+.comment-reply-toggle {
+    margin-top: var(--space-1);
+}
+
+.comment-reply-list {
+    list-style: none;
+    margin: var(--space-2) 0 0;
+    padding: 0 0 0 var(--space-3);
+    border-left: 2px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.comment-reply-item {
+    padding: var(--space-1) 0;
+}
+
+.comment-reply-form {
+    margin-top: var(--space-2);
+}
+
+.comment-reply-form .comment-input {
+    min-height: 4em;
+}
+
 /* ===== 后台管理（/admin，Phase 5） ===== */
 .admin-workspace {
     position: relative;
