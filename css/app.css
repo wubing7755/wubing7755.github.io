@@ -1947,6 +1947,11 @@ html[data-theme="dark"] #blazor-error-ui {
     color: var(--color-text-muted);
 }
 
+/* 个人中心（/me Tab 导航，复用 admin-section-tabs 的分组 tab 样式） */
+.me-tabs {
+    margin-bottom: var(--space-4);
+}
+
 /* 工作经历（SD-18/19） */
 .timeline {
     list-style: none;
