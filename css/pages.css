@@ -3141,6 +3141,29 @@
     border-top: 1px solid var(--color-border);
 }
 
+/* 用户卡片：操作与禁言分区 */
+.admin-user-card > footer {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.admin-user-actions,
+.admin-user-mute {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.admin-user-mute .admin-mute-days {
+    min-width: 0;
+    flex: 1;
+}
+
+.admin-user-card.is-muted {
+    border-color: var(--color-warning);
+}
+
 .admin-status-published,
 .admin-status-approved {
     border-color: var(--color-primary);
@@ -3511,4 +3534,175 @@
 
 .settings-color-input:focus {
     border-color: var(--color-primary);
+}
+
+/* 机甲警报（MechAlert）：屏幕中央、长方形机甲像素面板，四周红色故障闪烁。
+   可复用于强警告场景；风格与 SD-25 机甲像素风一致。 */
+.mech-alert-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1500;
+    background: rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+/* 全屏故障扫描线：从页面顶部扫到底部（不局限于警报面板，覆盖整个视口） */
+.mech-alert-backdrop::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(255, 120, 106, 0.85), transparent);
+    box-shadow: 0 0 16px rgba(255, 120, 106, 0.6);
+    animation: mech-alert-scan-screen 2.4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes mech-alert-scan-screen {
+    0% { transform: translateY(-8px); }
+    100% { transform: translateY(100vh); }
+}
+
+.mech-alert {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 1501;
+    width: min(440px, calc(100vw - (2 * var(--space-4))));
+    transform: translate(-50%, -50%);
+}
+
+/* 长方形机甲面板：直角矩形 + 双层像素阶梯边框 + 顶部黄黑警示条。
+   背景保持不透明（surface），闪烁只作用于边框/阴影，保证文字可读。 */
+.mech-alert-panel {
+    position: relative;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: var(--pixel-size) solid var(--color-warning);
+    box-shadow:
+        0 0 0 4px var(--color-surface),
+        0 0 0 6px var(--color-warning),
+        8px 8px 0 rgba(0, 0, 0, 0.45);
+    padding: var(--space-4) var(--space-3) var(--space-3);
+    text-align: center;
+    overflow: hidden;
+    animation: mech-alert-flash 1s steps(2, jump-none) infinite;
+}
+
+/* 顶部黄黑工程警示条（机甲面板顶部警示带） */
+.mech-alert-panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(
+        -45deg,
+        var(--color-warning) 0 8px,
+        #f5c542 8px 16px
+    );
+}
+
+/* 四角机甲铆钉标记（面板角部螺栓，凸起圆点） */
+.mech-alert-corner {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--color-warning);
+    border: 2px solid var(--color-warning);
+    z-index: 1;
+}
+
+.mech-alert-corner::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background: var(--color-surface);
+}
+
+.mech-alert-corner--tl { top: 3px; left: 3px; }
+.mech-alert-corner--tr { top: 3px; right: 3px; }
+.mech-alert-corner--bl { bottom: 3px; left: 3px; }
+.mech-alert-corner--br { bottom: 3px; right: 3px; }
+
+@keyframes mech-alert-flash {
+    0%, 100% {
+        border-color: var(--color-warning);
+        box-shadow:
+            0 0 0 4px var(--color-surface),
+            0 0 0 6px var(--color-warning),
+            8px 8px 0 rgba(0, 0, 0, 0.45);
+    }
+    50% {
+        border-color: #ffb3aa;
+        box-shadow:
+            0 0 0 4px var(--color-surface),
+            0 0 0 6px #ffb3aa,
+            8px 8px 0 rgba(0, 0, 0, 0.45);
+    }
+}
+
+/* 方形像素图标框：机甲 HUD 警示图标容器 */
+.mech-alert-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    margin: var(--space-2) 0 var(--space-2);
+    border: 2px solid var(--color-warning);
+    box-shadow: inset 0 0 0 2px var(--color-surface), 0 0 0 1px var(--color-warning);
+    font-size: 1.9rem;
+    line-height: 1;
+    color: var(--color-warning);
+    background: var(--color-surface);
+    animation: mech-alert-icon 0.8s steps(2, jump-none) infinite;
+}
+
+@keyframes mech-alert-icon {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+}
+
+.mech-alert h3 {
+    margin: 0 0 var(--space-2);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-warning);
+}
+
+.mech-alert p {
+    margin: 0 0 var(--space-3);
+    font-size: 0.9rem;
+    color: var(--color-text);
+}
+
+/* 底部像素分割线 */
+.mech-alert p::after {
+    content: "";
+    display: block;
+    width: 60%;
+    height: 2px;
+    margin: var(--space-3) auto 0;
+    background: var(--color-border);
+    box-shadow: 0 2px 0 var(--color-surface);
+}
+
+.mech-alert-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mech-alert-panel,
+    .mech-alert-icon,
+    .mech-alert-backdrop::after {
+        animation: none;
+    }
 }
