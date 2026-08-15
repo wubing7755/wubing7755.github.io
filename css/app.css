@@ -1881,6 +1881,12 @@ html[data-theme="dark"] #blazor-error-ui {
     margin-top: var(--space-4);
 }
 
+/* 收藏按钮（单层回复旁的同级操作）：已收藏态用强调色区分 */
+.bookmark-toggle.is-bookmarked {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
 /* 工作经历（SD-18/19） */
 .timeline {
     list-style: none;
