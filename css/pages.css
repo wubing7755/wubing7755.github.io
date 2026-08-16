@@ -819,6 +819,14 @@
     color: var(--color-text-muted);
 }
 
+/* Like 通知的被赞评论引用：左侧竖线 + 缩进，区分于回复通知正文 */
+.notification-quote {
+    color: var(--color-text);
+    overflow-wrap: break-word;
+    padding-left: var(--space-2);
+    border-left: 2px solid var(--color-border);
+}
+
 /* 个人中心（/me Tab 导航，复用 admin-section-tabs 的分组 tab 样式） */
 .me-tabs {
     margin-bottom: var(--space-4);
@@ -1116,6 +1124,42 @@
     font-family: var(--font-display);
     font-size: 0.85rem;
     margin: 0;
+}
+
+/* ===== 评论点赞 ===== */
+.comment-like {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    background: none;
+    border: none;
+    padding: 0;
+    margin-right: var(--space-2);
+    cursor: pointer;
+}
+
+.comment-like:hover:not(:disabled) {
+    color: var(--color-primary);
+}
+
+.comment-like:disabled {
+    cursor: default;
+    opacity: 0.7;
+}
+
+.comment-like-active {
+    color: var(--color-accent);
+}
+
+.comment-like-count {
+    font-weight: bold;
+}
+
+.comment-like-readonly {
+    cursor: default;
 }
 
 /* ===== 评论回复（单层） ===== */
