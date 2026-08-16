@@ -5728,6 +5728,46 @@ html[data-theme="dark"] .nav-link:hover {
     }
 }
 
+/* 自定义右键菜单（机甲/工业像素风）：context-menu.ts 动态构建 DOM，样式走 CSS 变量双主题自适应。
+   硬边 2px 边框 + 块状阴影 + 等宽字体，与 .pixel-button 交互语言一致；最高层级浮层。 */
+.context-menu {
+    position: fixed;
+    z-index: 3000;
+    min-width: 12rem;
+    padding: var(--space-1);
+    background: var(--color-surface);
+    border: 2px solid var(--color-border);
+    box-shadow: var(--shadow-pixel);
+    font-family: var(--font-display);
+}
+
+.context-menu-item {
+    display: block;
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    border: none;
+    background: transparent;
+    color: var(--color-text);
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    text-align: left;
+    cursor: pointer;
+}
+
+.context-menu-item:hover,
+.context-menu-item-active,
+.context-menu-item:focus-visible {
+    background: var(--color-primary);
+    color: #fff;
+    outline: none;
+}
+
+.context-menu-separator {
+    height: 2px;
+    margin: var(--space-1) var(--space-2);
+    background: var(--color-border);
+}
+
 /* source: responsive.css */
 /* 响应式（SD-07）：≤1200px 导航折叠为汉堡菜单。
    断点取 1200：英文导航单行需 ~1150px 顶栏宽，提高断点消除中英换行临界带宽（实测 1170px 时英文顶栏换行、中文不换 → header 差 45px） */
