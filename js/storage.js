@@ -59,8 +59,9 @@ api.theme = {
         api.storage.set('portfolio-theme-overrides', text);
     },
     clearOverrides() {
+        // 经 applyOverrides('') 同时移除预应用兜底样式与运行时样式（对齐应用路径）
+        applyOverrides('portfolio-theme-overrides', '');
         api.storage.remove('portfolio-theme-overrides');
-        removeOverrideStyle('portfolio-theme-overrides');
     },
     // 个人主题覆盖（仅本浏览器生效）：与站点级覆盖分离存储，应用时覆盖站点值。
     getPersonalOverrides() {
@@ -71,8 +72,9 @@ api.theme = {
         api.storage.set('portfolio-theme-personal-overrides', text);
     },
     clearPersonalOverrides() {
+        // 经 applyOverrides('') 同时移除预应用兜底样式与运行时样式（对齐应用路径）
+        applyOverrides('portfolio-theme-personal-overrides', '');
         api.storage.remove('portfolio-theme-personal-overrides');
-        removeOverrideStyle('portfolio-theme-personal-overrides');
     }
 };
 // 主题覆盖：解析 [light]/[dark] 分组（无分组时视为 light 且 dark 继承 light），

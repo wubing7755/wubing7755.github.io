@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+        (function () {
+            var theme = 'light';
+            try {
+                theme = localStorage.getItem('portfolio-theme')
+                    || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            } catch (e) {
+                theme = 'light';
+            }
+            var normalizedTheme = theme === 'dark' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', normalizedTheme);
+            // 主题覆盖预应用：先站点级缓存、再个人覆盖（个人优先，防覆盖闪烁）。
+            // 支持 [light]/[dark] 分组，注入 <style> 规则（:root 亮色 + html[data-theme="dark"] 暗色）；值消毒兜底。
+            try {
+                var overrideSources = [localStorage.getItem('portfolio-theme-overrides'), localStorage.getItem('portfolio-theme-personal-overrides')];
+                var lightMap = {};
+                var darkMap = {};
+                for (var s = 0; s < overrideSources.length; s++) {
+                    var overrides = overrideSources[s];
+                    if (!overrides) continue;
+                    var section = 'light';
+                    var lines = overrides.split('\n');
+                    for (var i = 0; i < lines.length; i++) {
+                        var line = lines[i].trim();
+                        if (!line || line.charAt(0) === '#') continue;
+                        var sectionMatch = line.match(/^\[(light|dark)\]$/i);
+                        if (sectionMatch) {
+                            section = sectionMatch[1].toLowerCase() === 'dark' ? 'dark' : 'light';
+                            continue;
+                        }
+                        var colon = line.indexOf(':');
+                        if (colon < 0) continue;
+                        var name = line.slice(0, colon).trim();
+                        var value = line.slice(colon + 1).trim();
+                        if (value.charAt(value.length - 1) === ';') value = value.slice(0, -1).trim();
+                        var lower = value.toLowerCase();
+                        if (name.indexOf('--') !== 0 || lower.indexOf('url(') !== -1 || lower.indexOf('expression(') !== -1
+                            || lower.indexOf('@') !== -1 || lower.indexOf('!important') !== -1) continue;
+                        if (section === 'dark') darkMap[name] = value; else lightMap[name] = value;
+                    }
+                }
+                // 默认继承：dark 未声明的回退到 light；合并两源（个人后写覆盖站点）
+                for (var key in lightMap) { if (!(key in darkMap)) darkMap[key] = lightMap[key]; }
+                var cssLines = [':root {'];
+                for (var lightKey in lightMap) cssLines.push('  ' + lightKey + ': ' + lightMap[lightKey] + ';');
+                cssLines.push('}');
+                cssLines.push('html[data-theme="dark"] {');
+                for (var darkKey in darkMap) cssLines.push('  ' + darkKey + ': ' + darkMap[darkKey] + ';');
+                cssLines.push('}');
+                if (Object.keys(lightMap).length > 0 || Object.keys(darkMap).length > 0) {
+                    var styleEl = document.createElement('style');
+                    styleEl.id = 'theme-preapply-overrides';
+                    styleEl.setAttribute('data-theme-overrides', '');
+                    styleEl.textContent = cssLines.join('\n');
+                    document.head.appendChild(styleEl);
+                }
+            } catch (e) { /* 忽略：无缓存或存储不可用 */ }
+            document.addEventListener('DOMContentLoaded', function () {
+                var themeColor = document.querySelector('meta[name="theme-color"]');
+                if (themeColor) {
+                    themeColor.setAttribute('content', normalizedTheme === 'dark' ? '#0d1524' : '#0b3d91');
+                }
+            }, { once: true });
+        }());
+    </script>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+    <title>OpenXML与Word概述 - wubing7755&#39;s home</title>
+    <base href="/" />
+    <meta id="meta-description" name="description" content="介绍 Word 文档格式从二进制到 DOCX 的演进、Open Packaging 与 WordprocessingML 的核心结构，以及使用 DocumentFormat.OpenXml 自动化处理 Word 文档的基础方法。" />
+    <link id="canonical-link" rel="canonical" href="https://wubing7755.github.io/blog/18609219/" />
+    <meta id="meta-robots" name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0b3d91" />
+    <meta property="og:site_name" content="wubing7755's home" />
+    <meta id="og-type" property="og:type" content="article" />
+    <meta id="og-title" property="og:title" content="OpenXML与Word概述 - wubing7755&#39;s home" />
+    <meta id="og-description" property="og:description" content="介绍 Word 文档格式从二进制到 DOCX 的演进、Open Packaging 与 WordprocessingML 的核心结构，以及使用 DocumentFormat.OpenXml 自动化处理 Word 文档的基础方法。" />
+    <meta id="og-url" property="og:url" content="https://wubing7755.github.io/blog/18609219/" />
+    <meta id="og-image" property="og:image" content="" />
+    <meta id="og-locale" property="og:locale" content="zh_CN" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta id="twitter-title" name="twitter:title" content="OpenXML与Word概述 - wubing7755&#39;s home" />
+    <meta id="twitter-description" name="twitter:description" content="介绍 Word 文档格式从二进制到 DOCX 的演进、Open Packaging 与 WordprocessingML 的核心结构，以及使用 DocumentFormat.OpenXml 自动化处理 Word 文档的基础方法。" />
+    <meta id="twitter-image" name="twitter:image" content="" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "wubing7755",
+      "description": "航电/工业软件工具链开发者，专注 Blazor 可视化前端与 C 语言工具链",
+      "url": "https://wubing7755.github.io/",
+      "sameAs": ["https://github.com/wubing7755"]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "wubing7755's home",
+      "url": "https://wubing7755.github.io/"
+    }
+    </script>
+    <link href="css/app.css" rel="stylesheet" />
+    <!-- 无 .razor.css 时 scoped bundle 不生成；如未来新增组件级 scoped css，恢复 PersonalPortfolio.styles.css 引用 -->
+    <style>
+        /* ===== WASM 加载页：像素机械头变身动画（纯 CSS，零第三方库，NFR-008） ===== */
+        .loader-scene {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            font-family: "Consolas", "Microsoft YaHei", monospace;
+            color: #2d3a4a;
+            text-align: center;
+        }
+
+        html[data-theme="dark"] .loader-scene {
+            color: #dce6f2;
+            background: #0d1524;
+        }
+
+        .ms-frame {
+            position: relative;
+            width: 200px;
+            height: 190px;
+        }
+
+        /* V 型天线（变身：从收起翻转到竖起） */
+        .ms-fin {
+            position: absolute;
+            top: 6px;
+            width: 14px;
+            height: 58px;
+            background: #c9a959;
+            z-index: 3;
+        }
+
+        .ms-fin-l {
+            left: 74px;
+            transform-origin: 50% 100%;
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            animation: ms-fin-l 4s ease-in-out infinite;
+        }
+
+        .ms-fin-r {
+            right: 74px;
+            transform-origin: 50% 100%;
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            animation: ms-fin-r 4s ease-in-out infinite;
+        }
+
+        /* 头部主体（变身：窄方块纵向展开） */
+        .ms-head {
+            position: absolute;
+            left: 50%;
+            top: 44px;
+            width: 96px;
+            height: 76px;
+            transform: translateX(-50%);
+            background: #0b3d91;
+            border: 3px solid #082b68;
+            box-shadow: 0 3px 0 rgba(8, 43, 104, 0.35);
+            animation: ms-head 4s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        .ms-face {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            width: 68px;
+            height: 48px;
+            background: #e8ecf1;
+            border: 2px solid #b6c2d1;
+        }
+
+        .ms-eye {
+            position: absolute;
+            top: 12px;
+            width: 16px;
+            height: 7px;
+            background: #3ddc84;
+            animation: ms-eye 4s step-end infinite;
+        }
+
+        .ms-eye-l {
+            left: 10px;
+        }
+
+        .ms-eye-r {
+            right: 10px;
+        }
+
+        .ms-vent {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            background: #2d3a4a;
+        }
+
+        /* 脸颊与颈部 */
+        .ms-cheek {
+            position: absolute;
+            bottom: -14px;
+            width: 14px;
+            height: 14px;
+            background: #0b3d91;
+            border: 2px solid #082b68;
+        }
+
+        .ms-cheek-l {
+            left: 4px;
+        }
+
+        .ms-cheek-r {
+            right: 4px;
+        }
+
+        .ms-neck {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 26px;
+            height: 14px;
+            background: #082b68;
+        }
+
+        /* 变身瞬间两侧闪光 */
+        .ms-flash {
+            position: absolute;
+            top: 40px;
+            width: 8px;
+            height: 8px;
+            background: #c9a959;
+            opacity: 0;
+            animation: ms-flash 4s step-end infinite;
+        }
+
+        .ms-flash-l {
+            left: 26px;
+        }
+
+        .ms-flash-r {
+            right: 26px;
+        }
+
+        /* 像素进度条 + 文案 */
+        .loader-bar {
+            width: 180px;
+            height: 12px;
+            border: 2px solid #2d3a4a;
+            padding: 2px;
+            background: #ffffff;
+        }
+
+        .loader-bar span {
+            display: block;
+            height: 100%;
+            width: 0;
+            background: #0b3d91;
+            animation: ms-bar 4s steps(8) infinite;
+        }
+
+        @keyframes ms-fin-l {
+            0%, 12% {
+                transform: rotate(78deg) translateY(-4px);
+                opacity: 0.35;
+            }
+            38%, 100% {
+                transform: rotate(30deg) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes ms-fin-r {
+            0%, 12% {
+                transform: rotate(-78deg) translateY(-4px);
+                opacity: 0.35;
+            }
+            38%, 100% {
+                transform: rotate(-30deg) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes ms-head {
+            0%, 12% {
+                transform: translateX(-50%) scaleY(0.45);
+                border-color: #9aa7b8;
+            }
+            38%, 100% {
+                transform: translateX(-50%) scaleY(1);
+                border-color: #082b68;
+            }
+        }
+
+        @keyframes ms-eye {
+            0%, 30% {
+                opacity: 0;
+                box-shadow: none;
+            }
+            42%, 100% {
+                opacity: 1;
+                box-shadow: 0 0 8px 2px rgba(61, 220, 132, 0.8);
+            }
+        }
+
+        @keyframes ms-flash {
+            0%, 30% {
+                opacity: 0;
+            }
+            36%, 44% {
+                opacity: 1;
+            }
+            50%, 100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes ms-bar {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="loader-scene" role="status" aria-label="Loading">
+            <div class="ms-frame">
+                <div class="ms-fin ms-fin-l"></div>
+                <div class="ms-fin ms-fin-r"></div>
+                <div class="ms-head">
+                    <div class="ms-face">
+                        <div class="ms-eye ms-eye-l"></div>
+                        <div class="ms-eye ms-eye-r"></div>
+                        <div class="ms-vent"></div>
+                    </div>
+                    <div class="ms-cheek ms-cheek-l"></div>
+                    <div class="ms-cheek ms-cheek-r"></div>
+                </div>
+                <div class="ms-neck"></div>
+                <div class="ms-flash ms-flash-l"></div>
+                <div class="ms-flash ms-flash-r"></div>
+            </div>
+            <div class="loader-text">LOADING...</div>
+            <div class="loader-bar"><span></span></div>
+        </div>
+    </div>
+
+    <div id="blazor-error-ui" role="alert">
+        <div class="error-panel">
+            <a class="dismiss" aria-label="Dismiss / 关闭">✕</a>
+            <div class="error-icon" aria-hidden="true"></div>
+            <p class="error-title">SYSTEM ERROR / 系统故障</p>
+            <p class="error-message">发生未处理的错误，请重新加载页面。An unhandled error occurred. Please reload the page.</p>
+            <div class="error-actions">
+                <a href="" class="reload">Reload / 重新加载</a>
+            </div>
+        </div>
+    </div>
+    <!-- 错误捕获：先于 Blazor 运行时加载（boot 失败时也要能记录；运行时经 JS 互操作导航 /error） -->
+    <script src="js/error-boot.js"></script>
+    <script src="js/storage.js"></script>
+    <!-- 前端 markdown 渲染管线（markdown-it + DOMPurify + highlight.js，esbuild 打包本地 bundle）：
+         必须先于 Blazor 组件运行加载；高亮样式独立 CSS（构建期从 highlight.js 拷贝） -->
+    <link href="css/highlight.css" rel="stylesheet" />
+    <script src="js/markdown-renderer.js"></script>
+    <!-- 正文目录锚点导航：必须在 blazor.webassembly.js 之前加载，捕获阶段先于 Blazor 的
+         锚点拦截处理 #链接（否则 Blazor 会把 #锚点 当路由路径导航到首页） -->
+    <script src="js/anchor-navigation.js"></script>
+    <script src="js/context-menu.js"></script>
+    <script src="js/admin-editor.js"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+
+</html>

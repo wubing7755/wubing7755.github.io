@@ -173,6 +173,7 @@
 }
 
 .flip-face-front {
+    transform: rotateY(0deg);
     overflow: hidden;
 }
 

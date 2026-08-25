@@ -1082,6 +1082,44 @@
     margin: var(--space-2) 0 0;
 }
 
+/* 图形验证码（注册）：图片 + 输入框 + 换一张，图片点击可刷新 */
+.auth-captcha-row {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+}
+
+.auth-captcha-row .auth-input {
+    width: auto;
+    flex: 1;
+}
+
+.auth-captcha-img {
+    height: 40px;
+    border: 2px solid var(--color-border);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.auth-captcha-img:hover {
+    border-color: var(--color-primary);
+}
+
+.auth-captcha-refresh {
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-1);
+}
+
+.auth-captcha-refresh:hover {
+    color: var(--color-accent);
+}
+
 /* 评论区（Phase 4）：文章详情底部，条目为弱化面板 */
 .comment-section {
     margin-top: var(--space-4);

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shape-rendering="crispEdges">
+  <title>wubing7755's home</title>
+  <!-- V 型天线（白金） -->
+  <rect x="9" y="2" width="3" height="8" fill="#c9a959"/>
+  <rect x="20" y="2" width="3" height="8" fill="#c9a959"/>
+  <!-- 头部主体（深藏蓝） -->
+  <rect x="5" y="10" width="22" height="18" fill="#0b3d91"/>
+  <rect x="5" y="10" width="22" height="18" fill="none" stroke="#082b68" stroke-width="2"/>
+  <!-- 护目镜（白金 visor） -->
+  <rect x="8" y="13" width="16" height="8" fill="#c9a959"/>
+  <rect x="8" y="13" width="16" height="8" fill="none" stroke="#082b68" stroke-width="1"/>
+  <!-- 护目镜中央分割 -->
+  <rect x="15" y="13" width="2" height="8" fill="#082b68"/>
+  <!-- 下巴通风口 -->
+  <rect x="11" y="24" width="10" height="2" fill="#082b68"/>
+</svg>

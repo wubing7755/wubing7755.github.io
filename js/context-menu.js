@@ -143,7 +143,7 @@
         menu.setAttribute('role', 'menu');
         menu.setAttribute('tabindex', '-1');
         currentItems = [];
-        items.forEach((item, index) => {
+        items.forEach((item) => {
             if (!item.label) {
                 const separator = document.createElement('div');
                 separator.className = SEPARATOR_CLASS;
@@ -160,7 +160,10 @@
                 closeMenu();
                 item.action();
             });
-            entry.addEventListener('mouseenter', () => { setActive(index); });
+            // 高亮索引必须对齐不含 separator 的 DOM 条目，而非 items 原始索引（含 separator），
+            // 否则右键链接/图片时 separator 之后的「搜索/设置」会错位高亮。
+            const entryIndex = currentItems.length;
+            entry.addEventListener('mouseenter', () => { setActive(entryIndex); });
             menu.appendChild(entry);
             currentItems.push(item.action);
         });

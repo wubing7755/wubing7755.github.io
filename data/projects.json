@@ -4,7 +4,7 @@
     "name": "Penelopa",
     "date": "2026-08-06",
     "descriptions": {
-      "zh": "基于 Atlas.Blazor 停靠式工作区的 Blazor WASM 图元对齐编辑器",
+      "zh": "\u57FA\u4E8E Atlas.Blazor \u505C\u9760\u5F0F\u5DE5\u4F5C\u533A\u7684 Blazor WASM \u56FE\u5143\u5BF9\u9F50\u7F16\u8F91\u5668",
       "en": "Blazor WASM primitive alignment editor consuming Atlas.Blazor (dockable workspace)"
     },
     "repo": "https://github.com/wubing7755/Penelopa",
@@ -20,248 +20,496 @@
       "Atlas.Blazor"
     ],
     "highlights": {
-      "zh": "基于 Atlas.Blazor 停靠式工作区的图元对齐编辑器：六方向对齐、颜色键命中测试、属性编辑器",
+      "zh": "\u57FA\u4E8E Atlas.Blazor \u505C\u9760\u5F0F\u5DE5\u4F5C\u533A\u7684\u56FE\u5143\u5BF9\u9F50\u7F16\u8F91\u5668\uFF1A\u516D\u65B9\u5411\u5BF9\u9F50\u3001\u989C\u8272\u952E\u547D\u4E2D\u6D4B\u8BD5\u3001\u5C5E\u6027\u7F16\u8F91\u5668",
       "en": "Primitive alignment editor on the Atlas.Blazor dockable workspace: six-direction alignment, color-key hit testing, property editor"
     },
-    "demoImage": "media/projects/penelopa.webp",
+    "demoImage": "media/projects/penelopa.png",
     "demoVideo": "",
-    "demoUrl": "https://wubing7755.github.io/Penelopa/",
+    "demoUrl": "https://www.wubing7755.com/Penelopa/",
     "caseStudy": {
-      "Overview": {
-        "zh": "Penelopa 是一个基于 Atlas.Blazor 停靠式工作区的 Blazor WASM 图元对齐编辑器。它以 SkiaSharp 画布承载圆、矩形、三角形三种图元，提供六方向对齐、颜色键命中测试与属性编辑，是 Atlas.Blazor 的独立消费示例。",
+      "overview": {
+        "zh": "Penelopa \u662F\u4E00\u4E2A\u57FA\u4E8E Atlas.Blazor \u505C\u9760\u5F0F\u5DE5\u4F5C\u533A\u7684 Blazor WASM \u56FE\u5143\u5BF9\u9F50\u7F16\u8F91\u5668\u3002\u5B83\u4EE5 SkiaSharp \u753B\u5E03\u627F\u8F7D\u5706\u3001\u77E9\u5F62\u3001\u4E09\u89D2\u5F62\u4E09\u79CD\u56FE\u5143\uFF0C\u63D0\u4F9B\u516D\u65B9\u5411\u5BF9\u9F50\u3001\u989C\u8272\u952E\u547D\u4E2D\u6D4B\u8BD5\u4E0E\u5C5E\u6027\u7F16\u8F91\uFF0C\u662F Atlas.Blazor \u7684\u72EC\u7ACB\u6D88\u8D39\u793A\u4F8B\u3002",
         "en": "Penelopa is a Blazor WebAssembly primitive alignment editor built on the Atlas.Blazor dockable workspace. It hosts a SkiaSharp drawing canvas for circle, rectangle, and triangle primitives, with six-direction alignment, color-key hit testing, and property editing, serving as a standalone consumer of Atlas.Blazor."
       },
-      "Architecture": {
-        "zh": "编辑器按层拆分：Penelopa.Core 承载纯领域逻辑（图元模型、对齐算法、颜色键管理），Penelopa.Rendering 负责 SkiaSharp 画布与命中测试，Penelopa WASM 应用把工作区、工具栏、状态栏与面板组织进 Atlas 六区停靠布局；核心层通过 DI 单例在面板间共享选择状态。",
+      "architecture": {
+        "zh": "\u7F16\u8F91\u5668\u6309\u5C42\u62C6\u5206\uFF1APenelopa.Core \u627F\u8F7D\u7EAF\u9886\u57DF\u903B\u8F91\uFF08\u56FE\u5143\u6A21\u578B\u3001\u5BF9\u9F50\u7B97\u6CD5\u3001\u989C\u8272\u952E\u7BA1\u7406\uFF09\uFF0CPenelopa.Rendering \u8D1F\u8D23 SkiaSharp \u753B\u5E03\u4E0E\u547D\u4E2D\u6D4B\u8BD5\uFF0CPenelopa WASM \u5E94\u7528\u628A\u5DE5\u4F5C\u533A\u3001\u5DE5\u5177\u680F\u3001\u72B6\u6001\u680F\u4E0E\u9762\u677F\u7EC4\u7EC7\u8FDB Atlas \u516D\u533A\u505C\u9760\u5E03\u5C40\uFF1B\u6838\u5FC3\u5C42\u901A\u8FC7 DI \u5355\u4F8B\u5728\u9762\u677F\u95F4\u5171\u4EAB\u9009\u62E9\u72B6\u6001\u3002",
         "en": "The editor is layered: Penelopa.Core holds pure domain logic (primitive model, alignment algorithms, color-key management), Penelopa.Rendering handles the SkiaSharp canvas and hit testing, and the Penelopa WASM app organizes the workspace, toolbar, status bar, and panels into the Atlas six-region dockable layout; core state is shared across panels via a DI singleton."
       },
-      "ArchitectureSteps": [
+      "architectureSteps": [
         {
-          "Titles": {
-            "zh": "工作区装配",
+          "titles": {
+            "zh": "\u5DE5\u4F5C\u533A\u88C5\u914D",
             "en": "Workspace assembly"
           },
-          "Descriptions": {
-            "zh": "Atlas 六区布局承载工具栏、画布与面板",
+          "descriptions": {
+            "zh": "Atlas \u516D\u533A\u5E03\u5C40\u627F\u8F7D\u5DE5\u5177\u680F\u3001\u753B\u5E03\u4E0E\u9762\u677F",
             "en": "Atlas six-region layout hosts toolbar, canvas, and panels"
           },
-          "SourcePath": "src/Penelopa/Components/PenelopaWorkspace.razor"
+          "sourcePath": "src/Penelopa/Components/PenelopaWorkspace.razor"
         },
         {
-          "Titles": {
-            "zh": "图元建模",
+          "titles": {
+            "zh": "\u56FE\u5143\u5EFA\u6A21",
             "en": "Primitive modeling"
           },
-          "Descriptions": {
-            "zh": "Core 定义图元基类与可编辑属性包",
+          "descriptions": {
+            "zh": "Core \u5B9A\u4E49\u56FE\u5143\u57FA\u7C7B\u4E0E\u53EF\u7F16\u8F91\u5C5E\u6027\u5305",
             "en": "Core defines the primitive base class and editable property bags"
           },
-          "SourcePath": "src/Penelopa.Core/Primitives"
+          "sourcePath": "src/Penelopa.Core/Primitives"
         },
         {
-          "Titles": {
-            "zh": "画布渲染",
+          "titles": {
+            "zh": "\u753B\u5E03\u6E32\u67D3",
             "en": "Canvas rendering"
           },
-          "Descriptions": {
-            "zh": "Rendering 用 SkiaSharp 绘制图元并做颜色键命中测试",
+          "descriptions": {
+            "zh": "Rendering \u7528 SkiaSharp \u7ED8\u5236\u56FE\u5143\u5E76\u505A\u989C\u8272\u952E\u547D\u4E2D\u6D4B\u8BD5",
             "en": "Rendering draws primitives with SkiaSharp and performs color-key hit testing"
           },
-          "SourcePath": "src/Penelopa.Rendering/CanvasRenderer.cs"
+          "sourcePath": "src/Penelopa.Rendering/CanvasRenderer.cs"
         },
         {
-          "Titles": {
-            "zh": "对齐计算",
+          "titles": {
+            "zh": "\u5BF9\u9F50\u8BA1\u7B97",
             "en": "Alignment computation"
           },
-          "Descriptions": {
-            "zh": "Core 按选择集包围盒计算六方向对齐",
+          "descriptions": {
+            "zh": "Core \u6309\u9009\u62E9\u96C6\u5305\u56F4\u76D2\u8BA1\u7B97\u516D\u65B9\u5411\u5BF9\u9F50",
             "en": "Core computes six-direction alignment against the selection bounding box"
           },
-          "SourcePath": "src/Penelopa.Core/Alignment"
+          "sourcePath": "src/Penelopa.Core/Alignment"
         },
         {
-          "Titles": {
-            "zh": "属性编辑",
+          "titles": {
+            "zh": "\u5C5E\u6027\u7F16\u8F91",
             "en": "Property editing"
           },
-          "Descriptions": {
-            "zh": "Properties 面板经共享服务读写图元属性",
+          "descriptions": {
+            "zh": "Properties \u9762\u677F\u7ECF\u5171\u4EAB\u670D\u52A1\u8BFB\u5199\u56FE\u5143\u5C5E\u6027",
             "en": "The Properties panel reads and writes primitive properties via the shared service"
           },
-          "SourcePath": "src/Penelopa/Components/Panels"
+          "sourcePath": "src/Penelopa/Components/Panels"
         }
       ],
-      "Capabilities": [
+      "capabilities": [
         {
-          "Titles": {
-            "zh": "六方向对齐",
+          "titles": {
+            "zh": "\u516D\u65B9\u5411\u5BF9\u9F50",
             "en": "Six-direction alignment"
           },
-          "Descriptions": {
-            "zh": "左/水平居中/右/上/垂直居中/下对齐所选图元。",
+          "descriptions": {
+            "zh": "\u5DE6/\u6C34\u5E73\u5C45\u4E2D/\u53F3/\u4E0A/\u5782\u76F4\u5C45\u4E2D/\u4E0B\u5BF9\u9F50\u6240\u9009\u56FE\u5143\u3002",
             "en": "Aligns selected primitives left, horizontal-center, right, top, vertical-center, and bottom."
           },
-          "SourcePath": "src/Penelopa.Core/Alignment"
+          "sourcePath": "src/Penelopa.Core/Alignment"
         },
         {
-          "Titles": {
-            "zh": "颜色键命中测试",
+          "titles": {
+            "zh": "\u989C\u8272\u952E\u547D\u4E2D\u6D4B\u8BD5",
             "en": "Color-key hit testing"
           },
-          "Descriptions": {
-            "zh": "以唯一打包颜色键映射图元，黑键保留为无效值。",
+          "descriptions": {
+            "zh": "\u4EE5\u552F\u4E00\u6253\u5305\u989C\u8272\u952E\u6620\u5C04\u56FE\u5143\uFF0C\u9ED1\u952E\u4FDD\u7559\u4E3A\u65E0\u6548\u503C\u3002",
             "en": "Maps primitives to unique packed color keys, reserving black as invalid."
           },
-          "SourcePath": "src/Penelopa.Core/Primitives/ColorKeyManager.cs"
+          "sourcePath": "src/Penelopa.Core/Primitives/ColorKeyManager.cs"
         },
         {
-          "Titles": {
-            "zh": "图元属性编辑",
+          "titles": {
+            "zh": "\u56FE\u5143\u5C5E\u6027\u7F16\u8F91",
             "en": "Primitive property editing"
           },
-          "Descriptions": {
-            "zh": "通过属性包编辑数值、布尔与字符串属性。",
+          "descriptions": {
+            "zh": "\u901A\u8FC7\u5C5E\u6027\u5305\u7F16\u8F91\u6570\u503C\u3001\u5E03\u5C14\u4E0E\u5B57\u7B26\u4E32\u5C5E\u6027\u3002",
             "en": "Edits numeric, boolean, and string properties through property bags."
           },
-          "SourcePath": "src/Penelopa.Core/Primitives"
+          "sourcePath": "src/Penelopa.Core/Primitives"
         },
         {
-          "Titles": {
-            "zh": "停靠式工作区",
+          "titles": {
+            "zh": "\u505C\u9760\u5F0F\u5DE5\u4F5C\u533A",
             "en": "Dockable workspace"
           },
-          "Descriptions": {
-            "zh": "复用 Atlas 六区停靠布局与工具栏/状态栏插槽。",
+          "descriptions": {
+            "zh": "\u590D\u7528 Atlas \u516D\u533A\u505C\u9760\u5E03\u5C40\u4E0E\u5DE5\u5177\u680F/\u72B6\u6001\u680F\u63D2\u69FD\u3002",
             "en": "Reuses the Atlas six-region dockable layout with toolbar and status bar slots."
           },
-          "SourcePath": "src/Penelopa/Components/PenelopaWorkspace.razor"
+          "sourcePath": "src/Penelopa/Components/PenelopaWorkspace.razor"
         },
         {
-          "Titles": {
-            "zh": "幂等对齐",
+          "titles": {
+            "zh": "\u5E42\u7B49\u5BF9\u9F50",
             "en": "Idempotent alignment"
           },
-          "Descriptions": {
-            "zh": "已对齐的选择返回不变，避免无意义位移。",
+          "descriptions": {
+            "zh": "\u5DF2\u5BF9\u9F50\u7684\u9009\u62E9\u8FD4\u56DE\u4E0D\u53D8\uFF0C\u907F\u514D\u65E0\u610F\u4E49\u4F4D\u79FB\u3002",
             "en": "Already-aligned selections return unchanged, avoiding meaningless movement."
           },
-          "SourcePath": "src/Penelopa.Core/Alignment"
+          "sourcePath": "src/Penelopa.Core/Alignment"
         }
       ],
-      "Modules": [
+      "modules": [
         {
-          "Titles": {
-            "zh": "WASM 应用",
+          "titles": {
+            "zh": "WASM \u5E94\u7528",
             "en": "WASM app"
           },
-          "Descriptions": {
-            "zh": "工作区组件、面板与主题样式。",
+          "descriptions": {
+            "zh": "\u5DE5\u4F5C\u533A\u7EC4\u4EF6\u3001\u9762\u677F\u4E0E\u4E3B\u9898\u6837\u5F0F\u3002",
             "en": "Workspace components, panels, and theme styles."
           },
-          "SourcePath": "src/Penelopa"
+          "sourcePath": "src/Penelopa"
         },
         {
-          "Titles": {
-            "zh": "核心领域层",
+          "titles": {
+            "zh": "\u6838\u5FC3\u9886\u57DF\u5C42",
             "en": "Core domain"
           },
-          "Descriptions": {
-            "zh": "图元模型、对齐算法与颜色键管理。",
+          "descriptions": {
+            "zh": "\u56FE\u5143\u6A21\u578B\u3001\u5BF9\u9F50\u7B97\u6CD5\u4E0E\u989C\u8272\u952E\u7BA1\u7406\u3002",
             "en": "Primitive model, alignment algorithms, and color-key management."
           },
-          "SourcePath": "src/Penelopa.Core"
+          "sourcePath": "src/Penelopa.Core"
         },
         {
-          "Titles": {
-            "zh": "渲染层",
+          "titles": {
+            "zh": "\u6E32\u67D3\u5C42",
             "en": "Rendering"
           },
-          "Descriptions": {
-            "zh": "SkiaSharp 画布与命中测试。",
+          "descriptions": {
+            "zh": "SkiaSharp \u753B\u5E03\u4E0E\u547D\u4E2D\u6D4B\u8BD5\u3002",
             "en": "SkiaSharp canvas and hit testing."
           },
-          "SourcePath": "src/Penelopa.Rendering"
+          "sourcePath": "src/Penelopa.Rendering"
         },
         {
-          "Titles": {
-            "zh": "文档",
+          "titles": {
+            "zh": "\u6587\u6863",
             "en": "Documentation"
           },
-          "Descriptions": {
-            "zh": "架构说明与开发指南。",
+          "descriptions": {
+            "zh": "\u67B6\u6784\u8BF4\u660E\u4E0E\u5F00\u53D1\u6307\u5357\u3002",
             "en": "Architecture notes and development guides."
           },
-          "SourcePath": "docs"
+          "sourcePath": "docs"
         },
         {
-          "Titles": {
-            "zh": "共享服务",
+          "titles": {
+            "zh": "\u5171\u4EAB\u670D\u52A1",
             "en": "Shared services"
           },
-          "Descriptions": {
-            "zh": "经 DI 共享的集合与选择状态。",
+          "descriptions": {
+            "zh": "\u7ECF DI \u5171\u4EAB\u7684\u96C6\u5408\u4E0E\u9009\u62E9\u72B6\u6001\u3002",
             "en": "Collection and selection state shared via DI."
           },
-          "SourcePath": "src/Penelopa.Core/Services"
+          "sourcePath": "src/Penelopa.Core/Services"
         },
         {
-          "Titles": {
-            "zh": "编辑器主题",
+          "titles": {
+            "zh": "\u7F16\u8F91\u5668\u4E3B\u9898",
             "en": "Editor theme"
           },
-          "Descriptions": {
-            "zh": "编辑器外壳样式与 Gundam 主题。",
+          "descriptions": {
+            "zh": "\u7F16\u8F91\u5668\u5916\u58F3\u6837\u5F0F\u4E0E Gundam \u4E3B\u9898\u3002",
             "en": "Editor shell styles and the Gundam theme."
           },
-          "SourcePath": "src/Penelopa/wwwroot/css"
+          "sourcePath": "src/Penelopa/wwwroot/css"
         }
       ],
-      "Decisions": [
+      "decisions": [
         {
-          "Titles": {
-            "zh": "消费 NuGet 而非内嵌",
+          "titles": {
+            "zh": "\u6D88\u8D39 NuGet \u800C\u975E\u5185\u5D4C",
             "en": "Consume NuGet instead of embedding"
           },
-          "Descriptions": {
-            "zh": "通过 Atlas.Blazor 0.2.0 包使用停靠工作区，独立于 Atlas 仓库演进。",
+          "descriptions": {
+            "zh": "\u901A\u8FC7 Atlas.Blazor 0.2.0 \u5305\u4F7F\u7528\u505C\u9760\u5DE5\u4F5C\u533A\uFF0C\u72EC\u7ACB\u4E8E Atlas \u4ED3\u5E93\u6F14\u8FDB\u3002",
             "en": "Uses the Atlas.Blazor 0.2.0 package for the dockable workspace, evolving independently of the Atlas repo."
           },
-          "SourcePath": "docs/en/architecture.md"
+          "sourcePath": "docs/en/architecture.md"
         },
         {
-          "Titles": {
-            "zh": "核心层零 UI 依赖",
+          "titles": {
+            "zh": "\u6838\u5FC3\u5C42\u96F6 UI \u4F9D\u8D56",
             "en": "Core layer free of UI dependencies"
           },
-          "Descriptions": {
-            "zh": "对齐与建模逻辑不依赖 SkiaSharp 或 Blazor，便于独立测试。",
+          "descriptions": {
+            "zh": "\u5BF9\u9F50\u4E0E\u5EFA\u6A21\u903B\u8F91\u4E0D\u4F9D\u8D56 SkiaSharp \u6216 Blazor\uFF0C\u4FBF\u4E8E\u72EC\u7ACB\u6D4B\u8BD5\u3002",
             "en": "Alignment and modeling logic avoids SkiaSharp and Blazor dependencies for standalone testing."
           },
-          "SourcePath": "src/Penelopa.Core"
+          "sourcePath": "src/Penelopa.Core"
         },
         {
-          "Titles": {
-            "zh": "颜色键命中而非几何测试",
+          "titles": {
+            "zh": "\u989C\u8272\u952E\u547D\u4E2D\u800C\u975E\u51E0\u4F55\u6D4B\u8BD5",
             "en": "Color-key hit testing over geometry"
           },
-          "Descriptions": {
-            "zh": "用打包颜色键做像素级命中，避免复杂的几何求交。",
+          "descriptions": {
+            "zh": "\u7528\u6253\u5305\u989C\u8272\u952E\u505A\u50CF\u7D20\u7EA7\u547D\u4E2D\uFF0C\u907F\u514D\u590D\u6742\u7684\u51E0\u4F55\u6C42\u4EA4\u3002",
             "en": "Uses packed color keys for pixel-level hit testing instead of complex geometry intersection."
           },
-          "SourcePath": "src/Penelopa.Core/Primitives/ColorKeyManager.cs"
+          "sourcePath": "src/Penelopa.Core/Primitives/ColorKeyManager.cs"
         }
       ],
-      "ZreadUrl": "https://zread.ai/wubing7755/Penelopa",
-      "UpdatedAt": "2026-08-12"
-    }
+      "zreadUrl": "https://zread.ai/wubing7755/Penelopa",
+      "updatedAt": "2026-08-12"
+    },
+    "sortOrder": 0
+  },
+  {
+    "id": "dbcview",
+    "name": "DbcView",
+    "date": "2026-08-16",
+    "descriptions": {
+      "zh": "\u57FA\u4E8E Atlas.Blazor \u505C\u9760\u5F0F\u5DE5\u4F5C\u533A\u7684 CAN \u6570\u636E\u5E93\uFF08DBC\uFF09\u6587\u4EF6\u6D4F\u89C8\u4E0E\u7F16\u8F91\u5E94\u7528",
+      "en": "CAN database (DBC) file browser and editor built on the Atlas.Blazor dockable workspace"
+    },
+    "repo": "https://github.com/HestiaLab/DbcView",
+    "language": "C#",
+    "stars": 0,
+    "featured": true,
+    "status": "active",
+    "tags": [
+      "Blazor",
+      "C#",
+      "WASM",
+      "Atlas.Blazor",
+      "DBC"
+    ],
+    "highlights": {
+      "zh": "DBC \u6587\u4EF6\u6D4F\u89C8\u5668\u4E0E\u7F16\u8F91\u5668\uFF1A\u6587\u4EF6\u6811\u6D4F\u89C8\u4E0E\u672C\u5730 .dbc \u4E0A\u4F20\u3001\u6D88\u606F/\u4FE1\u53F7\u8868\u683C\u4E0E\u539F\u59CB\u6587\u672C\u53CC\u89C6\u56FE\u3001\u5C5E\u6027\u9762\u677F\u5373\u65F6\u67E5\u770B\uFF0C\u57FA\u4E8E Atlas.Blazor \u505C\u9760\u5F0F\u5DE5\u4F5C\u533A",
+      "en": "DBC file browser and editor: file tree with local .dbc upload, message and signal table and raw text views, instant properties inspection, on the Atlas.Blazor dockable workspace"
+    },
+    "demoImage": "media/projects/dbcview.png",
+    "demoVideo": "",
+    "demoUrl": "https://HestiaLab.github.io/DbcView/",
+    "caseStudy": {
+      "overview": {
+        "zh": "DbcView \u662F\u4E00\u4E2A\u7528\u4E8E\u6D4F\u89C8\u4E0E\u7F16\u8F91 CAN \u6570\u636E\u5E93\uFF08DBC\uFF09\u6587\u4EF6\u7684\u72EC\u7ACB Blazor WebAssembly \u5E94\u7528\u2014\u2014DBC \u662F\u5B9A\u4E49\u63A7\u5236\u5668\u5C40\u57DF\u7F51\u7EDC\uFF08CAN\uFF09\u603B\u7EBF\u4E0A\u6D88\u606F\u4E0E\u4FE1\u53F7\u7684\u6807\u51C6\u683C\u5F0F\u3002\u5B83\u5B8C\u5168\u5728\u6D4F\u89C8\u5668\u4E2D\u8FD0\u884C\u3001\u65E0\u670D\u52A1\u5668\u4F9D\u8D56\uFF0C\u63D0\u4F9B IDE \u98CE\u683C\u5DE5\u4F5C\u533A\uFF08\u6587\u4EF6\u6811\u3001\u7ED3\u6784\u5316\u7F16\u8F91\u5668\u3001\u5B9E\u65F6\u5C5E\u6027\u68C0\u67E5\u5668\uFF09\uFF0C\u540C\u65F6\u4E5F\u662F Atlas \u505C\u9760\u5F0F\u5E03\u5C40\u7EC4\u4EF6\u5E93\u7684\u6D88\u8D39\u793A\u4F8B\uFF0C\u4F7F\u7528\u53D1\u5E03\u7684 Atlas.Blazor NuGet \u5305\u642D\u5EFA\u591A\u9762\u677F\u5DE5\u4F5C\u533A\u5916\u58F3\u3002",
+        "en": "DbcView is a standalone Blazor WebAssembly application for browsing and editing CAN database (DBC) files \u2014 the standard format that defines messages and signals on a Controller Area Network bus. It runs entirely in the browser with no server dependency, presenting an IDE-like workspace with a file explorer, structured editor, and live property inspector. It is also the consumer showcase for the Atlas dock layout component library, using the published Atlas.Blazor NuGet package for its multi-panel workspace shell."
+      },
+      "architecture": {
+        "zh": "DbcView \u91C7\u7528\u5355\u5411\u6570\u636E\u6D41\uFF1ADbcFileStore \u662F\u552F\u4E00\u6570\u636E\u6E90\uFF0C\u4E09\u4E2A\u89C6\u56FE\u6A21\u578B\u8BA2\u9605 store \u4E8B\u4EF6\uFF0CBlazor \u7EC4\u4EF6\u518D\u8BA2\u9605\u89C6\u56FE\u6A21\u578B\u4E8B\u4EF6\u3002DbcFileStore.Changed \u4E8B\u4EF6\u662F\u552F\u4E00\u7684\u53D8\u66F4\u5E7F\u64AD\u901A\u9053\uFF0C\u6240\u6709\u5199\u5165\u65B9\u6CD5\uFF08AddFile\u3001UpdateFileContent\u3001RenameFile\uFF09\u5728\u66F4\u65B0\u5185\u90E8\u72B6\u6001\u540E\u89E6\u53D1 Changed\uFF0C\u4FDD\u8BC1\u6240\u6709\u8BA2\u9605\u8005\u540C\u6B65\u5237\u65B0\uFF0C\u4ECE\u800C\u5728\u4E0D\u5F15\u5165\u91CD\u91CF\u7EA7\u6846\u67B6\u7684\u524D\u63D0\u4E0B\u6D88\u9664\u72B6\u6001\u4E0D\u4E00\u81F4\u7F3A\u9677\u3002",
+        "en": "DbcView follows a unidirectional data flow: the DbcFileStore is the single source of truth; three view models subscribe to store events; Blazor components subscribe to view-model events. The DbcFileStore.Changed event is the sole mutation broadcast channel \u2014 every write method (AddFile, UpdateFileContent, RenameFile) invokes Changed after updating internal state, keeping all subscribers in lockstep without introducing a heavyweight framework."
+      },
+      "architectureSteps": [
+        {
+          "titles": {
+            "zh": "\u5DE5\u4F5C\u533A\u7F16\u6392",
+            "en": "Workspace orchestration"
+          },
+          "descriptions": {
+            "zh": "DbcViewWorkspace \u8FDE\u63A5 store\u3001\u89C6\u56FE\u6A21\u578B\u4E0E Atlas \u5E03\u5C40\u3002",
+            "en": "DbcViewWorkspace wires the store to view models and the Atlas layout."
+          },
+          "sourcePath": "src/DbcView/Components/DbcViewWorkspace.razor"
+        },
+        {
+          "titles": {
+            "zh": "DBC \u89E3\u6790",
+            "en": "DBC parsing"
+          },
+          "descriptions": {
+            "zh": "\u624B\u5199\u89E3\u6790\u5668\u5C06 DBC \u6587\u672C\u89E3\u6790\u4E3A\u9886\u57DF\u6A21\u578B\u5E76\u5E8F\u5217\u5316\u56DE\u6587\u672C\u3002",
+            "en": "The hand-written parser turns DBC text into the domain model and serializes it back."
+          },
+          "sourcePath": "src/DbcView/Services/DbcParser.cs"
+        },
+        {
+          "titles": {
+            "zh": "\u4E2D\u592E\u72B6\u6001\u5B58\u50A8",
+            "en": "Central state store"
+          },
+          "descriptions": {
+            "zh": "DbcFileStore \u4F5C\u4E3A\u552F\u4E00\u6570\u636E\u6E90\uFF0C\u5199\u64CD\u4F5C\u540E\u5E7F\u64AD Changed \u4E8B\u4EF6\u3002",
+            "en": "DbcFileStore is the single source of truth and broadcasts Changed after writes."
+          },
+          "sourcePath": "src/DbcView/Services/DbcFileStore.cs"
+        },
+        {
+          "titles": {
+            "zh": "\u89C6\u56FE\u6A21\u578B\u8BA2\u9605",
+            "en": "View-model subscription"
+          },
+          "descriptions": {
+            "zh": "\u6811\u3001\u7F16\u8F91\u5668\u3001\u5C5E\u6027\u4E09\u4E2A\u89C6\u56FE\u6A21\u578B\u8BA2\u9605 store \u4E8B\u4EF6\u5E76\u7EF4\u62A4\u5404\u81EA\u72B6\u6001\u3002",
+            "en": "Tree, editor, and property view models subscribe to store events and hold their own state."
+          },
+          "sourcePath": "src/DbcView/ViewModels/"
+        },
+        {
+          "titles": {
+            "zh": "\u7EC4\u4EF6\u6E32\u67D3",
+            "en": "Component rendering"
+          },
+          "descriptions": {
+            "zh": "Blazor \u7EC4\u4EF6\u8BA2\u9605\u89C6\u56FE\u6A21\u578B\u4E8B\u4EF6\uFF0C\u6E32\u67D3\u6811\u3001\u7F16\u8F91\u5668\u4E0E\u5C5E\u6027\u9762\u677F\u3002",
+            "en": "Blazor components subscribe to view-model events and render the tree, editor, and property panels."
+          },
+          "sourcePath": "src/DbcView/Components/"
+        }
+      ],
+      "capabilities": [
+        {
+          "titles": {
+            "zh": "DBC \u6587\u4EF6\u6D4F\u89C8",
+            "en": "DBC file explorer"
+          },
+          "descriptions": {
+            "zh": "\u6587\u4EF6\u5939/\u6587\u4EF6\u6811\u4E0E\u672C\u5730 .dbc \u4E0A\u4F20\uFF0C\u9009\u62E9\u6587\u4EF6\u6253\u5F00\u3002",
+            "en": "Folder/file tree with local .dbc upload; select a file to open it."
+          },
+          "sourcePath": "src/DbcView/Components/DbcTreePanel.razor"
+        },
+        {
+          "titles": {
+            "zh": "\u6D88\u606F\u4E0E\u4FE1\u53F7\u7F16\u8F91",
+            "en": "Message and signal editing"
+          },
+          "descriptions": {
+            "zh": "\u6587\u6863\u6807\u7B7E\u9875\u7F16\u8F91\u5668\uFF0C\u6587\u672C\u4E0E\u8868\u683C\u53CC\u6A21\u5F0F\u5207\u6362\uFF0C\u7F16\u8F91\u540E\u4FDD\u5B58\u3002",
+            "en": "Document-tabbed editor with Text and Table modes; edit and save."
+          },
+          "sourcePath": "src/DbcView/Components/DbcEditorPanel.razor"
+        },
+        {
+          "titles": {
+            "zh": "\u5C5E\u6027\u5373\u65F6\u67E5\u770B",
+            "en": "Properties inspector"
+          },
+          "descriptions": {
+            "zh": "\u53EA\u8BFB\u68C0\u67E5\u5668\u5C55\u793A\u6240\u9009\u6587\u4EF6\u3001\u6D88\u606F\u6216\u4FE1\u53F7\u7684\u5B8C\u6574\u5143\u6570\u636E\u3002",
+            "en": "Read-only inspector showing full metadata for the selected file, message, or signal."
+          },
+          "sourcePath": "src/DbcView/Components/DbcPropertyPanel.razor"
+        },
+        {
+          "titles": {
+            "zh": "\u5F80\u8FD4\u65E0\u635F\u5E8F\u5217\u5316",
+            "en": "Round-trip preservation"
+          },
+          "descriptions": {
+            "zh": "\u89E3\u6790\u5668\u4FDD\u7559\u975E\u7ED3\u6784\u5185\u5BB9\uFF0C\u5E8F\u5217\u5316\u540E\u8FD8\u539F\u539F\u59CB\u7ED3\u6784\u3002",
+            "en": "The parser preserves non-structural content so serialization restores the original structure."
+          },
+          "sourcePath": "src/DbcView/Services/DbcParser.cs"
+        }
+      ],
+      "modules": [
+        {
+          "titles": {
+            "zh": "\u5DE5\u4F5C\u533A\u5916\u58F3",
+            "en": "Workspace shell"
+          },
+          "descriptions": {
+            "zh": "Atlas \u5E03\u5C40\u5B9A\u4E49\uFF08\u5206\u5272\u3001\u5206\u7EC4\u3001\u5DE5\u5177\u680F\uFF09\u4E0E\u5DE5\u4F5C\u533A\u7F16\u6392\u3002",
+            "en": "Atlas layout definition (splits, groups, toolbars) and workspace orchestration."
+          },
+          "sourcePath": "src/DbcView/Components/DbcViewWorkspaceDefinition.cs"
+        },
+        {
+          "titles": {
+            "zh": "\u9886\u57DF\u6A21\u578B",
+            "en": "Domain model"
+          },
+          "descriptions": {
+            "zh": "DbcDocument\u3001DbcMessage\u3001DbcSignal \u4E0D\u53EF\u53D8\u5B9E\u4F53\u3002",
+            "en": "Immutable DbcDocument, DbcMessage, and DbcSignal entities."
+          },
+          "sourcePath": "src/DbcView/Models/Dbc/DbcDocument.cs"
+        },
+        {
+          "titles": {
+            "zh": "\u89E3\u6790\u5668\u4E0E\u5B58\u50A8",
+            "en": "Parser and store"
+          },
+          "descriptions": {
+            "zh": "\u624B\u5199 DBC \u89E3\u6790\u5668\u4E0E\u5185\u5B58\u6587\u4EF6\u5939/\u6587\u4EF6\u5B58\u50A8\u3002",
+            "en": "Hand-written DBC parser and the in-memory folder/file store."
+          },
+          "sourcePath": "src/DbcView/Services/"
+        },
+        {
+          "titles": {
+            "zh": "\u89C6\u56FE\u6A21\u578B",
+            "en": "View models"
+          },
+          "descriptions": {
+            "zh": "\u6811\u9009\u62E9\u3001\u7F16\u8F91\u5668\u5185\u5BB9\u4E0E\u5C5E\u6027\u5C55\u793A\u72B6\u6001\u3002",
+            "en": "Explorer selection, editor content, and property display state."
+          },
+          "sourcePath": "src/DbcView/ViewModels/"
+        },
+        {
+          "titles": {
+            "zh": "\u6D4B\u8BD5\u5957\u4EF6",
+            "en": "Test suite"
+          },
+          "descriptions": {
+            "zh": "xUnit \u002B bUnit \u89E3\u6790\u5F80\u8FD4\u4E0E\u7EC4\u4EF6\u6E32\u67D3\u6D4B\u8BD5\u3002",
+            "en": "xUnit \u002B bUnit parser round-trip and component rendering tests."
+          },
+          "sourcePath": "tests/DbcView.Tests/"
+        }
+      ],
+      "decisions": [
+        {
+          "titles": {
+            "zh": "\u4E0D\u53EF\u53D8\u9886\u57DF\u6A21\u578B",
+            "en": "Immutable domain models"
+          },
+          "descriptions": {
+            "zh": "DbcDocument\u3001DbcMessage\u3001DbcSignal \u5747\u4E3A sealed \u002B get-only\uFF0C\u53D8\u66F4\u4EC5\u7ECF DbcFileStore \u91CD\u89E3\u6790\u5E76\u6574\u4F53\u66FF\u6362\u3002",
+            "en": "DbcDocument, DbcMessage, and DbcSignal are sealed with get-only properties; mutation only happens through DbcFileStore, which re-parses and replaces the whole record."
+          },
+          "sourcePath": "src/DbcView/Models/Dbc/DbcDocument.cs"
+        },
+        {
+          "titles": {
+            "zh": "\u5F80\u8FD4\u4FDD\u7559",
+            "en": "Round-trip preservation"
+          },
+          "descriptions": {
+            "zh": "\u624B\u5199\u89E3\u6790\u5668\u4FDD\u7559\u5934\u90E8\u4E0E\u5C3E\u90E8\u7AE0\u8282\u539F\u59CB\u6587\u672C\uFF0C\u4FDD\u8BC1\u5E8F\u5217\u5316\u65E0\u635F\u3002",
+            "en": "The hand-written parser captures header and trailing sections verbatim so serialize(parse(content)) is lossless."
+          },
+          "sourcePath": "src/DbcView/Services/DbcParser.cs"
+        },
+        {
+          "titles": {
+            "zh": "\u6BCF\u6807\u7B7E\u9875\u72B6\u6001\u9694\u79BB",
+            "en": "Per-tab state scoping"
+          },
+          "descriptions": {
+            "zh": "\u6BCF\u4E2A\u6587\u6863\u6807\u7B7E\u9875\u7ECF AtlasContentContext \u83B7\u5F97\u72EC\u7ACB DbcEditorModel\uFF0C\u5173\u6807\u7B7E\u5373\u9500\u6BC1\u3002",
+            "en": "Each document tab gets its own DbcEditorModel via AtlasContentContext; closing a tab disposes its model."
+          },
+          "sourcePath": "src/DbcView/ViewModels/DbcEditorModel.cs"
+        },
+        {
+          "titles": {
+            "zh": "\u5185\u5BB9\u7C7B\u578B\u5355\u4E00\u6765\u6E90",
+            "en": "Single-source content kinds"
+          },
+          "descriptions": {
+            "zh": "DbcContentKinds \u96C6\u4E2D\u5B9A\u4E49\u4E09\u79CD\u5185\u5BB9\u7C7B\u578B\u5B57\u7B26\u4E32\uFF0C\u907F\u514D\u62FC\u5199\u4E0D\u4E00\u81F4\u5BFC\u81F4\u7684\u8FD0\u884C\u65F6\u5931\u8D25\u3002",
+            "en": "DbcContentKinds centralizes the three content-kind strings to eliminate typo-induced runtime failures."
+          },
+          "sourcePath": "src/DbcView/DbcContentKinds.cs"
+        }
+      ],
+      "zreadUrl": "https://zread.ai/wubing7755/DbcView",
+      "updatedAt": "2026-08-25"
+    },
+    "sortOrder": 1
   },
   {
     "id": "project-006",
     "name": "cloc",
     "date": "2026-07-09",
     "descriptions": {
-      "zh": "统计项目目录代码行数的 C11 命令行工具",
+      "zh": "\u7EDF\u8BA1\u9879\u76EE\u76EE\u5F55\u4EE3\u7801\u884C\u6570\u7684 C11 \u547D\u4EE4\u884C\u5DE5\u5177",
       "en": "C11 CLI tool for counting source-code line across project directories"
     },
     "repo": "https://github.com/wubing7755/cloc",
@@ -275,215 +523,216 @@
       "CLI"
     ],
     "highlights": {
-      "zh": "面向软件著作权登记等场景的 C11 源码行数统计工具：支持预设与自定义后缀两种过滤方式、交互式引导；仅依赖标准 C 库，跨平台可移植；测试覆盖选项解析、行计数与预设映射。",
+      "zh": "\u9762\u5411\u8F6F\u4EF6\u8457\u4F5C\u6743\u767B\u8BB0\u7B49\u573A\u666F\u7684 C11 \u6E90\u7801\u884C\u6570\u7EDF\u8BA1\u5DE5\u5177\uFF1A\u652F\u6301\u9884\u8BBE\u4E0E\u81EA\u5B9A\u4E49\u540E\u7F00\u4E24\u79CD\u8FC7\u6EE4\u65B9\u5F0F\u3001\u4EA4\u4E92\u5F0F\u5F15\u5BFC\uFF1B\u4EC5\u4F9D\u8D56\u6807\u51C6 C \u5E93\uFF0C\u8DE8\u5E73\u53F0\u53EF\u79FB\u690D\uFF1B\u6D4B\u8BD5\u8986\u76D6\u9009\u9879\u89E3\u6790\u3001\u884C\u8BA1\u6570\u4E0E\u9884\u8BBE\u6620\u5C04\u3002",
       "en": "C11 source-line counting tool for scenarios such as software copyright registration: supports preset and custom-suffix filtering plus an interactive flow; depends only on the standard C library for portability; tests cover option parsing, counting, and preset mapping."
     },
     "demoImage": "",
     "demoVideo": "",
     "demoUrl": "",
     "caseStudy": {
-      "Overview": {
-        "zh": "cloc 是一个使用 C11 编写的命令行源码行数统计工具，面向软件著作权登记等需要总源码行数的场景。它以预设或文件后缀两种方式识别目标源码，支持交互式模式与可复用的构建/测试基础设施。",
+      "overview": {
+        "zh": "cloc \u662F\u4E00\u4E2A\u4F7F\u7528 C11 \u7F16\u5199\u7684\u547D\u4EE4\u884C\u6E90\u7801\u884C\u6570\u7EDF\u8BA1\u5DE5\u5177\uFF0C\u9762\u5411\u8F6F\u4EF6\u8457\u4F5C\u6743\u767B\u8BB0\u7B49\u9700\u8981\u603B\u6E90\u7801\u884C\u6570\u7684\u573A\u666F\u3002\u5B83\u4EE5\u9884\u8BBE\u6216\u6587\u4EF6\u540E\u7F00\u4E24\u79CD\u65B9\u5F0F\u8BC6\u522B\u76EE\u6807\u6E90\u7801\uFF0C\u652F\u6301\u4EA4\u4E92\u5F0F\u6A21\u5F0F\u4E0E\u53EF\u590D\u7528\u7684\u6784\u5EFA/\u6D4B\u8BD5\u57FA\u7840\u8BBE\u65BD\u3002",
         "en": "cloc is a C11 command-line tool for counting physical source lines in a project directory, built for scenarios such as software copyright registration forms that require a total source-code line count. It identifies target sources by preset or file suffix, and supports an interactive mode backed by reusable build and test infrastructure."
       },
-      "Architecture": {
-        "zh": "CLI 入口解析绝对路径、预设或后缀参数后，行计数器遍历目标目录并按规则过滤文件；预设系统把项目类型映射到后缀集合，内部工具函数提供跨平台字符串与路径能力，测试通过脚本烟测验证计数结果。",
+      "architecture": {
+        "zh": "CLI \u5165\u53E3\u89E3\u6790\u7EDD\u5BF9\u8DEF\u5F84\u3001\u9884\u8BBE\u6216\u540E\u7F00\u53C2\u6570\u540E\uFF0C\u884C\u8BA1\u6570\u5668\u904D\u5386\u76EE\u6807\u76EE\u5F55\u5E76\u6309\u89C4\u5219\u8FC7\u6EE4\u6587\u4EF6\uFF1B\u9884\u8BBE\u7CFB\u7EDF\u628A\u9879\u76EE\u7C7B\u578B\u6620\u5C04\u5230\u540E\u7F00\u96C6\u5408\uFF0C\u5185\u90E8\u5DE5\u5177\u51FD\u6570\u63D0\u4F9B\u8DE8\u5E73\u53F0\u5B57\u7B26\u4E32\u4E0E\u8DEF\u5F84\u80FD\u529B\uFF0C\u6D4B\u8BD5\u901A\u8FC7\u811A\u672C\u70DF\u6D4B\u9A8C\u8BC1\u8BA1\u6570\u7ED3\u679C\u3002",
         "en": "The CLI entry parses an absolute path, preset, or suffix list; the line counter walks the target directory and filters files by rule; the preset system maps project types to suffix sets, while internal utilities provide cross-platform string and path helpers, and tests validate counts via scripted smoke checks."
       },
-      "ArchitectureSteps": [
+      "architectureSteps": [
         {
-          "Titles": {
-            "zh": "命令行入口",
+          "titles": {
+            "zh": "\u547D\u4EE4\u884C\u5165\u53E3",
             "en": "CLI entry"
           },
-          "Descriptions": {
-            "zh": "解析参数，分发到计数/交互/预设列表流程",
+          "descriptions": {
+            "zh": "\u89E3\u6790\u53C2\u6570\uFF0C\u5206\u53D1\u5230\u8BA1\u6570/\u4EA4\u4E92/\u9884\u8BBE\u5217\u8868\u6D41\u7A0B",
             "en": "Parses arguments and dispatches to count, interactive, or preset-list flows"
           },
-          "SourcePath": "src/main.c"
+          "sourcePath": "src/main.c"
         },
         {
-          "Titles": {
-            "zh": "选项解析",
+          "titles": {
+            "zh": "\u9009\u9879\u89E3\u6790",
             "en": "Option parsing"
           },
-          "Descriptions": {
-            "zh": "识别帮助、交互、预设与绝对路径参数",
+          "descriptions": {
+            "zh": "\u8BC6\u522B\u5E2E\u52A9\u3001\u4EA4\u4E92\u3001\u9884\u8BBE\u4E0E\u7EDD\u5BF9\u8DEF\u5F84\u53C2\u6570",
             "en": "Recognizes help, interactive, preset, and absolute-path arguments"
           },
-          "SourcePath": "src/cli_options.c"
+          "sourcePath": "src/cli_options.c"
         },
         {
-          "Titles": {
-            "zh": "目录遍历与过滤",
+          "titles": {
+            "zh": "\u76EE\u5F55\u904D\u5386\u4E0E\u8FC7\u6EE4",
             "en": "Directory walk and filter"
           },
-          "Descriptions": {
-            "zh": "按预设或后缀过滤目标源文件",
+          "descriptions": {
+            "zh": "\u6309\u9884\u8BBE\u6216\u540E\u7F00\u8FC7\u6EE4\u76EE\u6807\u6E90\u6587\u4EF6",
             "en": "Filters target source files by preset or suffix"
           },
-          "SourcePath": "src"
+          "sourcePath": "src"
         },
         {
-          "Titles": {
-            "zh": "行计数",
+          "titles": {
+            "zh": "\u884C\u8BA1\u6570",
             "en": "Line counting"
           },
-          "Descriptions": {
-            "zh": "统计物理源码行数并汇总结果",
+          "descriptions": {
+            "zh": "\u7EDF\u8BA1\u7269\u7406\u6E90\u7801\u884C\u6570\u5E76\u6C47\u603B\u7ED3\u679C",
             "en": "Counts physical source lines and aggregates the result"
           },
-          "SourcePath": "src"
+          "sourcePath": "src"
         },
         {
-          "Titles": {
-            "zh": "测试验证",
+          "titles": {
+            "zh": "\u6D4B\u8BD5\u9A8C\u8BC1",
             "en": "Test verification"
           },
-          "Descriptions": {
-            "zh": "单元测试与包级烟测脚本核对计数",
+          "descriptions": {
+            "zh": "\u5355\u5143\u6D4B\u8BD5\u4E0E\u5305\u7EA7\u70DF\u6D4B\u811A\u672C\u6838\u5BF9\u8BA1\u6570",
             "en": "Unit tests and package smoke scripts verify counts"
           },
-          "SourcePath": "tests"
+          "sourcePath": "tests"
         }
       ],
-      "Capabilities": [
+      "capabilities": [
         {
-          "Titles": {
-            "zh": "目录源码计数",
+          "titles": {
+            "zh": "\u76EE\u5F55\u6E90\u7801\u8BA1\u6570",
             "en": "Directory source counting"
           },
-          "Descriptions": {
-            "zh": "统计项目目录中的物理源码行数。",
+          "descriptions": {
+            "zh": "\u7EDF\u8BA1\u9879\u76EE\u76EE\u5F55\u4E2D\u7684\u7269\u7406\u6E90\u7801\u884C\u6570\u3002",
             "en": "Counts physical source lines across a project directory."
           },
-          "SourcePath": "src/main.c"
+          "sourcePath": "src/main.c"
         },
         {
-          "Titles": {
-            "zh": "预设与后缀过滤",
+          "titles": {
+            "zh": "\u9884\u8BBE\u4E0E\u540E\u7F00\u8FC7\u6EE4",
             "en": "Preset and suffix filtering"
           },
-          "Descriptions": {
-            "zh": "按项目类型预设或自定义后缀识别目标源。",
+          "descriptions": {
+            "zh": "\u6309\u9879\u76EE\u7C7B\u578B\u9884\u8BBE\u6216\u81EA\u5B9A\u4E49\u540E\u7F00\u8BC6\u522B\u76EE\u6807\u6E90\u3002",
             "en": "Identifies target sources by project-type preset or custom suffixes."
           },
-          "SourcePath": "src/cli_options.c"
+          "sourcePath": "src/cli_options.c"
         },
         {
-          "Titles": {
-            "zh": "交互模式",
+          "titles": {
+            "zh": "\u4EA4\u4E92\u6A21\u5F0F",
             "en": "Interactive mode"
           },
-          "Descriptions": {
-            "zh": "交互式引导计数流程与参数选择。",
+          "descriptions": {
+            "zh": "\u4EA4\u4E92\u5F0F\u5F15\u5BFC\u8BA1\u6570\u6D41\u7A0B\u4E0E\u53C2\u6570\u9009\u62E9\u3002",
             "en": "Walks through counting and options interactively."
           },
-          "SourcePath": "src/cli_options.c"
+          "sourcePath": "src/cli_options.c"
         },
         {
-          "Titles": {
-            "zh": "跨平台路径处理",
+          "titles": {
+            "zh": "\u8DE8\u5E73\u53F0\u8DEF\u5F84\u5904\u7406",
             "en": "Cross-platform path handling"
           },
-          "Descriptions": {
-            "zh": "封装大小写比较、路径分隔与字符串工具。",
+          "descriptions": {
+            "zh": "\u5C01\u88C5\u5927\u5C0F\u5199\u6BD4\u8F83\u3001\u8DEF\u5F84\u5206\u9694\u4E0E\u5B57\u7B26\u4E32\u5DE5\u5177\u3002",
             "en": "Wraps case-insensitive comparison, path separators, and string helpers."
           },
-          "SourcePath": "src/internal_utils.h"
+          "sourcePath": "src/internal_utils.h"
         }
       ],
-      "Modules": [
+      "modules": [
         {
-          "Titles": {
-            "zh": "CLI 主程序",
+          "titles": {
+            "zh": "CLI \u4E3B\u7A0B\u5E8F",
             "en": "CLI main"
           },
-          "Descriptions": {
-            "zh": "程序入口与整体流程编排。",
+          "descriptions": {
+            "zh": "\u7A0B\u5E8F\u5165\u53E3\u4E0E\u6574\u4F53\u6D41\u7A0B\u7F16\u6392\u3002",
             "en": "Program entry and overall flow orchestration."
           },
-          "SourcePath": "src/main.c"
+          "sourcePath": "src/main.c"
         },
         {
-          "Titles": {
-            "zh": "命令行选项",
+          "titles": {
+            "zh": "\u547D\u4EE4\u884C\u9009\u9879",
             "en": "CLI options"
           },
-          "Descriptions": {
-            "zh": "参数解析、预设映射与交互引导。",
+          "descriptions": {
+            "zh": "\u53C2\u6570\u89E3\u6790\u3001\u9884\u8BBE\u6620\u5C04\u4E0E\u4EA4\u4E92\u5F15\u5BFC\u3002",
             "en": "Argument parsing, preset mapping, and interactive guidance."
           },
-          "SourcePath": "src/cli_options.c"
+          "sourcePath": "src/cli_options.c"
         },
         {
-          "Titles": {
-            "zh": "内部工具",
+          "titles": {
+            "zh": "\u5185\u90E8\u5DE5\u5177",
             "en": "Internal utilities"
           },
-          "Descriptions": {
-            "zh": "跨平台字符串与路径辅助函数。",
+          "descriptions": {
+            "zh": "\u8DE8\u5E73\u53F0\u5B57\u7B26\u4E32\u4E0E\u8DEF\u5F84\u8F85\u52A9\u51FD\u6570\u3002",
             "en": "Cross-platform string and path helpers."
           },
-          "SourcePath": "src/internal_utils.h"
+          "sourcePath": "src/internal_utils.h"
         },
         {
-          "Titles": {
-            "zh": "测试套件",
+          "titles": {
+            "zh": "\u6D4B\u8BD5\u5957\u4EF6",
             "en": "Test suite"
           },
-          "Descriptions": {
-            "zh": "选项、行计数器与预设的单元测试及烟测。",
+          "descriptions": {
+            "zh": "\u9009\u9879\u3001\u884C\u8BA1\u6570\u5668\u4E0E\u9884\u8BBE\u7684\u5355\u5143\u6D4B\u8BD5\u53CA\u70DF\u6D4B\u3002",
             "en": "Unit tests and smoke checks for options, counting, and presets."
           },
-          "SourcePath": "tests"
+          "sourcePath": "tests"
         },
         {
-          "Titles": {
-            "zh": "构建脚本",
+          "titles": {
+            "zh": "\u6784\u5EFA\u811A\u672C",
             "en": "Build scripts"
           },
-          "Descriptions": {
-            "zh": "CMake 源文件/测试/打包配置。",
+          "descriptions": {
+            "zh": "CMake \u6E90\u6587\u4EF6/\u6D4B\u8BD5/\u6253\u5305\u914D\u7F6E\u3002",
             "en": "CMake sources, tests, and packaging configuration."
           },
-          "SourcePath": "cmake"
+          "sourcePath": "cmake"
         }
       ],
-      "Decisions": [
+      "decisions": [
         {
-          "Titles": {
-            "zh": "纯 C11 零依赖",
+          "titles": {
+            "zh": "\u7EAF C11 \u96F6\u4F9D\u8D56",
             "en": "Pure C11, zero dependencies"
           },
-          "Descriptions": {
-            "zh": "仅依赖标准 C 库，保证跨平台可移植与最小构建面。",
+          "descriptions": {
+            "zh": "\u4EC5\u4F9D\u8D56\u6807\u51C6 C \u5E93\uFF0C\u4FDD\u8BC1\u8DE8\u5E73\u53F0\u53EF\u79FB\u690D\u4E0E\u6700\u5C0F\u6784\u5EFA\u9762\u3002",
             "en": "Relies only on the standard C library for portability and a minimal build surface."
           },
-          "SourcePath": "README.md"
+          "sourcePath": "README.md"
         },
         {
-          "Titles": {
-            "zh": "预设驱动过滤",
+          "titles": {
+            "zh": "\u9884\u8BBE\u9A71\u52A8\u8FC7\u6EE4",
             "en": "Preset-driven filtering"
           },
-          "Descriptions": {
-            "zh": "以项目类型预设表达后缀集合，避免在调用方重复维护过滤规则。",
+          "descriptions": {
+            "zh": "\u4EE5\u9879\u76EE\u7C7B\u578B\u9884\u8BBE\u8868\u8FBE\u540E\u7F00\u96C6\u5408\uFF0C\u907F\u514D\u5728\u8C03\u7528\u65B9\u91CD\u590D\u7EF4\u62A4\u8FC7\u6EE4\u89C4\u5219\u3002",
             "en": "Expresses suffix sets as project-type presets so callers do not duplicate filtering rules."
           },
-          "SourcePath": "src/cli_options.c"
+          "sourcePath": "src/cli_options.c"
         }
       ],
-      "ZreadUrl": "https://zread.ai/wubing7755/cloc",
-      "UpdatedAt": "2026-08-12"
-    }
+      "zreadUrl": "https://zread.ai/wubing7755/cloc",
+      "updatedAt": "2026-08-12"
+    },
+    "sortOrder": 5
   },
   {
     "id": "project-009",
     "name": "GLDraw",
     "date": "2026-07-09",
     "descriptions": {
-      "zh": "使用 C11 编写、以画布为中心的 OpenGL 绘图编辑器",
+      "zh": "\u4F7F\u7528 C11 \u7F16\u5199\u3001\u4EE5\u753B\u5E03\u4E3A\u4E2D\u5FC3\u7684 OpenGL \u7ED8\u56FE\u7F16\u8F91\u5668",
       "en": "A canvas-centered OpenGL drawing editor written in C11"
     },
     "repo": "https://github.com/wubing7755/GLDraw",
@@ -498,270 +747,271 @@
       "Nuklear"
     ],
     "highlights": {
-      "zh": "文档模型、编辑命令、交互工具、UI 与渲染系统分层组织，并通过命令系统提供可持久化的撤销与重做。",
+      "zh": "\u6587\u6863\u6A21\u578B\u3001\u7F16\u8F91\u547D\u4EE4\u3001\u4EA4\u4E92\u5DE5\u5177\u3001UI \u4E0E\u6E32\u67D3\u7CFB\u7EDF\u5206\u5C42\u7EC4\u7EC7\uFF0C\u5E76\u901A\u8FC7\u547D\u4EE4\u7CFB\u7EDF\u63D0\u4F9B\u53EF\u6301\u4E45\u5316\u7684\u64A4\u9500\u4E0E\u91CD\u505A\u3002",
       "en": "Separates the document model, editing commands, tools, UI, and rendering, with durable undo and redo through a command system."
     },
     "demoImage": "https://raw.githubusercontent.com/wubing7755/GLDraw/main/assets/preview.png",
     "demoVideo": "",
     "demoUrl": "",
     "caseStudy": {
-      "Overview": {
-        "zh": "GLDraw 是一个使用 C11 编写、以画布为中心的 OpenGL 绘图编辑器。项目把文档数据、编辑规则、用户交互与 GPU 渲染拆分为清晰的模块，使新增图形、工具和界面能力不必侵入其他层。",
+      "overview": {
+        "zh": "GLDraw \u662F\u4E00\u4E2A\u4F7F\u7528 C11 \u7F16\u5199\u3001\u4EE5\u753B\u5E03\u4E3A\u4E2D\u5FC3\u7684 OpenGL \u7ED8\u56FE\u7F16\u8F91\u5668\u3002\u9879\u76EE\u628A\u6587\u6863\u6570\u636E\u3001\u7F16\u8F91\u89C4\u5219\u3001\u7528\u6237\u4EA4\u4E92\u4E0E GPU \u6E32\u67D3\u62C6\u5206\u4E3A\u6E05\u6670\u7684\u6A21\u5757\uFF0C\u4F7F\u65B0\u589E\u56FE\u5F62\u3001\u5DE5\u5177\u548C\u754C\u9762\u80FD\u529B\u4E0D\u5FC5\u4FB5\u5165\u5176\u4ED6\u5C42\u3002",
         "en": "GLDraw is a canvas-centered OpenGL drawing editor written in C11. It separates document data, editing rules, user interaction, and GPU rendering so new shapes, tools, and UI features can evolve without crossing layer boundaries."
       },
-      "Architecture": {
-        "zh": "输入事件先由快捷键与工具系统解释，再通过 Workspace 和 Command 修改 Document；渲染系统读取场景快照并提交给 OpenGL 3.3。UI 只发出编辑意图，不直接持有业务规则。",
+      "architecture": {
+        "zh": "\u8F93\u5165\u4E8B\u4EF6\u5148\u7531\u5FEB\u6377\u952E\u4E0E\u5DE5\u5177\u7CFB\u7EDF\u89E3\u91CA\uFF0C\u518D\u901A\u8FC7 Workspace \u548C Command \u4FEE\u6539 Document\uFF1B\u6E32\u67D3\u7CFB\u7EDF\u8BFB\u53D6\u573A\u666F\u5FEB\u7167\u5E76\u63D0\u4EA4\u7ED9 OpenGL 3.3\u3002UI \u53EA\u53D1\u51FA\u7F16\u8F91\u610F\u56FE\uFF0C\u4E0D\u76F4\u63A5\u6301\u6709\u4E1A\u52A1\u89C4\u5219\u3002",
         "en": "Input is interpreted by key bindings and tools, then routed through Workspace and Commands to mutate the Document. The render system consumes a scene snapshot and submits it to OpenGL 3.3, while the UI expresses intent without owning editing rules."
       },
-      "ArchitectureSteps": [
+      "architectureSteps": [
         {
-          "Titles": {
-            "zh": "输入事件",
+          "titles": {
+            "zh": "\u8F93\u5165\u4E8B\u4EF6",
             "en": "Input"
           },
-          "Descriptions": {
-            "zh": "鼠标与键盘",
+          "descriptions": {
+            "zh": "\u9F20\u6807\u4E0E\u952E\u76D8",
             "en": "Pointer and keyboard"
           },
-          "SourcePath": "src/input"
+          "sourcePath": "src/input"
         },
         {
-          "Titles": {
-            "zh": "工具系统",
+          "titles": {
+            "zh": "\u5DE5\u5177\u7CFB\u7EDF",
             "en": "Tools"
           },
-          "Descriptions": {
-            "zh": "选择、平移、绘制",
+          "descriptions": {
+            "zh": "\u9009\u62E9\u3001\u5E73\u79FB\u3001\u7ED8\u5236",
             "en": "Select, pan, draw"
           },
-          "SourcePath": "src/tools"
+          "sourcePath": "src/tools"
         },
         {
-          "Titles": {
-            "zh": "工作区与命令",
-            "en": "Workspace & Commands"
+          "titles": {
+            "zh": "\u5DE5\u4F5C\u533A\u4E0E\u547D\u4EE4",
+            "en": "Workspace \u0026 Commands"
           },
-          "Descriptions": {
-            "zh": "调度可撤销操作",
+          "descriptions": {
+            "zh": "\u8C03\u5EA6\u53EF\u64A4\u9500\u64CD\u4F5C",
             "en": "Dispatch undoable actions"
           },
-          "SourcePath": "src/app"
+          "sourcePath": "src/app"
         },
         {
-          "Titles": {
-            "zh": "文档模型",
+          "titles": {
+            "zh": "\u6587\u6863\u6A21\u578B",
             "en": "Document"
           },
-          "Descriptions": {
-            "zh": "对象、图层与选择",
+          "descriptions": {
+            "zh": "\u5BF9\u8C61\u3001\u56FE\u5C42\u4E0E\u9009\u62E9",
             "en": "Objects, layers, selection"
           },
-          "SourcePath": "src/document"
+          "sourcePath": "src/document"
         },
         {
-          "Titles": {
-            "zh": "渲染系统",
+          "titles": {
+            "zh": "\u6E32\u67D3\u7CFB\u7EDF",
             "en": "Rendering"
           },
-          "Descriptions": {
-            "zh": "场景快照到 OpenGL",
+          "descriptions": {
+            "zh": "\u573A\u666F\u5FEB\u7167\u5230 OpenGL",
             "en": "Scene snapshot to OpenGL"
           },
-          "SourcePath": "src/render"
+          "sourcePath": "src/render"
         }
       ],
-      "Capabilities": [
+      "capabilities": [
         {
-          "Titles": {
-            "zh": "图形绘制",
+          "titles": {
+            "zh": "\u56FE\u5F62\u7ED8\u5236",
             "en": "Shape Drawing"
           },
-          "Descriptions": {
-            "zh": "在世界坐标画布中创建线段、矩形和椭圆。",
+          "descriptions": {
+            "zh": "\u5728\u4E16\u754C\u5750\u6807\u753B\u5E03\u4E2D\u521B\u5EFA\u7EBF\u6BB5\u3001\u77E9\u5F62\u548C\u692D\u5706\u3002",
             "en": "Create lines, rectangles, and ellipses on a world-space canvas."
           },
-          "SourcePath": "src/tools"
+          "sourcePath": "src/tools"
         },
         {
-          "Titles": {
-            "zh": "选择与视图",
-            "en": "Selection & View"
+          "titles": {
+            "zh": "\u9009\u62E9\u4E0E\u89C6\u56FE",
+            "en": "Selection \u0026 View"
           },
-          "Descriptions": {
-            "zh": "支持选择、移动、平移、缩放与画布适配。",
+          "descriptions": {
+            "zh": "\u652F\u6301\u9009\u62E9\u3001\u79FB\u52A8\u3001\u5E73\u79FB\u3001\u7F29\u653E\u4E0E\u753B\u5E03\u9002\u914D\u3002",
             "en": "Select and move objects, pan, zoom, and fit the canvas."
           },
-          "SourcePath": "src/canvas"
+          "sourcePath": "src/canvas"
         },
         {
-          "Titles": {
-            "zh": "图层管理",
+          "titles": {
+            "zh": "\u56FE\u5C42\u7BA1\u7406",
             "en": "Layer Management"
           },
-          "Descriptions": {
-            "zh": "提供显隐、锁定、重命名和顺序调整。",
+          "descriptions": {
+            "zh": "\u63D0\u4F9B\u663E\u9690\u3001\u9501\u5B9A\u3001\u91CD\u547D\u540D\u548C\u987A\u5E8F\u8C03\u6574\u3002",
             "en": "Control visibility, locking, naming, and layer order."
           },
-          "SourcePath": "src/document/document_layers.c"
+          "sourcePath": "src/document/document_layers.c"
         },
         {
-          "Titles": {
-            "zh": "属性编辑",
+          "titles": {
+            "zh": "\u5C5E\u6027\u7F16\u8F91",
             "en": "Property Editing"
           },
-          "Descriptions": {
-            "zh": "通过 Inspector 检查并修改图形属性。",
+          "descriptions": {
+            "zh": "\u901A\u8FC7 Inspector \u68C0\u67E5\u5E76\u4FEE\u6539\u56FE\u5F62\u5C5E\u6027\u3002",
             "en": "Inspect and edit object properties through the Inspector."
           },
-          "SourcePath": "src/ui/ui_inspector_panel.c"
+          "sourcePath": "src/ui/ui_inspector_panel.c"
         },
         {
-          "Titles": {
-            "zh": "文档与导出",
-            "en": "Documents & Export"
+          "titles": {
+            "zh": "\u6587\u6863\u4E0E\u5BFC\u51FA",
+            "en": "Documents \u0026 Export"
           },
-          "Descriptions": {
-            "zh": "以 JSON 保存和加载文档，并将渲染结果导出为 PNG。",
+          "descriptions": {
+            "zh": "\u4EE5 JSON \u4FDD\u5B58\u548C\u52A0\u8F7D\u6587\u6863\uFF0C\u5E76\u5C06\u6E32\u67D3\u7ED3\u679C\u5BFC\u51FA\u4E3A PNG\u3002",
             "en": "Save and load JSON documents and export rendered output to PNG."
           },
-          "SourcePath": "src/document/persistence.c"
+          "sourcePath": "src/document/persistence.c"
         },
         {
-          "Titles": {
-            "zh": "撤销与重做",
-            "en": "Undo & Redo"
+          "titles": {
+            "zh": "\u64A4\u9500\u4E0E\u91CD\u505A",
+            "en": "Undo \u0026 Redo"
           },
-          "Descriptions": {
-            "zh": "用命令和事务记录可逆的编辑操作。",
+          "descriptions": {
+            "zh": "\u7528\u547D\u4EE4\u548C\u4E8B\u52A1\u8BB0\u5F55\u53EF\u9006\u7684\u7F16\u8F91\u64CD\u4F5C\u3002",
             "en": "Record reversible editing operations with commands and transactions."
           },
-          "SourcePath": "src/commands"
+          "sourcePath": "src/commands"
         }
       ],
-      "Modules": [
+      "modules": [
         {
-          "Titles": {
+          "titles": {
             "zh": "Application",
             "en": "Application"
           },
-          "Descriptions": {
-            "zh": "应用生命周期、工作区服务与命令调度。",
+          "descriptions": {
+            "zh": "\u5E94\u7528\u751F\u547D\u5468\u671F\u3001\u5DE5\u4F5C\u533A\u670D\u52A1\u4E0E\u547D\u4EE4\u8C03\u5EA6\u3002",
             "en": "Application lifecycle, workspace services, and command dispatch."
           },
-          "SourcePath": "src/app"
+          "sourcePath": "src/app"
         },
         {
-          "Titles": {
+          "titles": {
             "zh": "Commands",
             "en": "Commands"
           },
-          "Descriptions": {
-            "zh": "编辑命令、事务以及撤销重做执行器。",
+          "descriptions": {
+            "zh": "\u7F16\u8F91\u547D\u4EE4\u3001\u4E8B\u52A1\u4EE5\u53CA\u64A4\u9500\u91CD\u505A\u6267\u884C\u5668\u3002",
             "en": "Editing commands, transactions, and the undo/redo executor."
           },
-          "SourcePath": "src/commands"
+          "sourcePath": "src/commands"
         },
         {
-          "Titles": {
+          "titles": {
             "zh": "Document",
             "en": "Document"
           },
-          "Descriptions": {
-            "zh": "图形对象、图层、空间索引与 JSON 持久化。",
+          "descriptions": {
+            "zh": "\u56FE\u5F62\u5BF9\u8C61\u3001\u56FE\u5C42\u3001\u7A7A\u95F4\u7D22\u5F15\u4E0E JSON \u6301\u4E45\u5316\u3002",
             "en": "Objects, layers, spatial indexing, and JSON persistence."
           },
-          "SourcePath": "src/document"
+          "sourcePath": "src/document"
         },
         {
-          "Titles": {
+          "titles": {
             "zh": "Tools",
             "en": "Tools"
           },
-          "Descriptions": {
-            "zh": "选择、平移、形状创建与输入分派。",
+          "descriptions": {
+            "zh": "\u9009\u62E9\u3001\u5E73\u79FB\u3001\u5F62\u72B6\u521B\u5EFA\u4E0E\u8F93\u5165\u5206\u6D3E\u3002",
             "en": "Selection, panning, shape creation, and input dispatch."
           },
-          "SourcePath": "src/tools"
+          "sourcePath": "src/tools"
         },
         {
-          "Titles": {
+          "titles": {
             "zh": "Render",
             "en": "Render"
           },
-          "Descriptions": {
-            "zh": "场景快照、缓冲池、绘制列表和 OpenGL 设备。",
+          "descriptions": {
+            "zh": "\u573A\u666F\u5FEB\u7167\u3001\u7F13\u51B2\u6C60\u3001\u7ED8\u5236\u5217\u8868\u548C OpenGL \u8BBE\u5907\u3002",
             "en": "Scene snapshots, buffer pools, draw lists, and the OpenGL device."
           },
-          "SourcePath": "src/render"
+          "sourcePath": "src/render"
         },
         {
-          "Titles": {
+          "titles": {
             "zh": "UI",
             "en": "UI"
           },
-          "Descriptions": {
-            "zh": "菜单、Inspector、图层面板、上下文菜单和主题。",
+          "descriptions": {
+            "zh": "\u83DC\u5355\u3001Inspector\u3001\u56FE\u5C42\u9762\u677F\u3001\u4E0A\u4E0B\u6587\u83DC\u5355\u548C\u4E3B\u9898\u3002",
             "en": "Menus, Inspector, layer panel, context menus, and themes."
           },
-          "SourcePath": "src/ui"
+          "sourcePath": "src/ui"
         }
       ],
-      "Decisions": [
+      "decisions": [
         {
-          "Titles": {
-            "zh": "Workspace 作为编辑器中枢",
+          "titles": {
+            "zh": "Workspace \u4F5C\u4E3A\u7F16\u8F91\u5668\u4E2D\u67A2",
             "en": "Workspace as the editor hub"
           },
-          "Descriptions": {
-            "zh": "集中协调文档、选择、工具和命令可用性，减少跨模块耦合。",
+          "descriptions": {
+            "zh": "\u96C6\u4E2D\u534F\u8C03\u6587\u6863\u3001\u9009\u62E9\u3001\u5DE5\u5177\u548C\u547D\u4EE4\u53EF\u7528\u6027\uFF0C\u51CF\u5C11\u8DE8\u6A21\u5757\u8026\u5408\u3002",
             "en": "Coordinates documents, selection, tools, and command availability to reduce cross-module coupling."
           },
-          "SourcePath": "docs/adr/0001-workspace-as-editor-hub.md"
+          "sourcePath": "docs/adr/0001-workspace-as-editor-hub.md"
         },
         {
-          "Titles": {
-            "zh": "命令执行器承载持久变更",
+          "titles": {
+            "zh": "\u547D\u4EE4\u6267\u884C\u5668\u627F\u8F7D\u6301\u4E45\u53D8\u66F4",
             "en": "Command executor for durable mutations"
           },
-          "Descriptions": {
-            "zh": "所有需要撤销的文档变更经过统一执行器和事务边界。",
+          "descriptions": {
+            "zh": "\u6240\u6709\u9700\u8981\u64A4\u9500\u7684\u6587\u6863\u53D8\u66F4\u7ECF\u8FC7\u7EDF\u4E00\u6267\u884C\u5668\u548C\u4E8B\u52A1\u8FB9\u754C\u3002",
             "en": "All undoable document mutations pass through one executor and transaction boundary."
           },
-          "SourcePath": "docs/adr/0002-command-executor-for-durable-mutations.md"
+          "sourcePath": "docs/adr/0002-command-executor-for-durable-mutations.md"
         },
         {
-          "Titles": {
-            "zh": "描述符驱动对象与工具",
+          "titles": {
+            "zh": "\u63CF\u8FF0\u7B26\u9A71\u52A8\u5BF9\u8C61\u4E0E\u5DE5\u5177",
             "en": "Descriptor-driven objects and tools"
           },
-          "Descriptions": {
-            "zh": "使用注册信息扩展对象和工具，避免把内建类型判断散落到系统各处。",
+          "descriptions": {
+            "zh": "\u4F7F\u7528\u6CE8\u518C\u4FE1\u606F\u6269\u5C55\u5BF9\u8C61\u548C\u5DE5\u5177\uFF0C\u907F\u514D\u628A\u5185\u5EFA\u7C7B\u578B\u5224\u65AD\u6563\u843D\u5230\u7CFB\u7EDF\u5404\u5904\u3002",
             "en": "Registers objects and tools through descriptors instead of spreading built-in type checks across the system."
           },
-          "SourcePath": "docs/adr/0003-descriptor-driven-objects-and-tools.md"
+          "sourcePath": "docs/adr/0003-descriptor-driven-objects-and-tools.md"
         },
         {
-          "Titles": {
-            "zh": "UI 不持有编辑规则",
+          "titles": {
+            "zh": "UI \u4E0D\u6301\u6709\u7F16\u8F91\u89C4\u5219",
             "en": "UI does not own editing rules"
           },
-          "Descriptions": {
-            "zh": "界面只展示状态并发出意图，编辑约束留在应用与文档层。",
+          "descriptions": {
+            "zh": "\u754C\u9762\u53EA\u5C55\u793A\u72B6\u6001\u5E76\u53D1\u51FA\u610F\u56FE\uFF0C\u7F16\u8F91\u7EA6\u675F\u7559\u5728\u5E94\u7528\u4E0E\u6587\u6863\u5C42\u3002",
             "en": "The UI presents state and raises intent while editing constraints remain in application and document layers."
           },
-          "SourcePath": "docs/adr/0004-ui-does-not-own-editing-rules.md"
+          "sourcePath": "docs/adr/0004-ui-does-not-own-editing-rules.md"
         }
       ],
-      "ZreadUrl": "https://zread.ai/wubing7755/GLDraw",
-      "UpdatedAt": "2026-08-12"
-    }
+      "zreadUrl": "https://zread.ai/wubing7755/GLDraw",
+      "updatedAt": "2026-08-12"
+    },
+    "sortOrder": 8
   },
   {
     "id": "project-011",
     "name": "CalcExpr",
     "date": "2026-04-01",
     "descriptions": {
-      "zh": "用 C 语言编写的表达式计算器",
+      "zh": "\u7528 C \u8BED\u8A00\u7F16\u5199\u7684\u8868\u8FBE\u5F0F\u8BA1\u7B97\u5668",
       "en": "an expression calculator written in C language"
     },
     "repo": "https://github.com/wubing7755/CalcExpr",
@@ -775,229 +1025,230 @@
       "CLI"
     ],
     "highlights": {
-      "zh": "递归下降解析器实现的 C11 数学表达式计算器：支持四则运算与括号优先级，零依赖模块化设计（词法/解析/计算/命令分层）；运行时可控的调试系统与完整单元测试覆盖。",
+      "zh": "\u9012\u5F52\u4E0B\u964D\u89E3\u6790\u5668\u5B9E\u73B0\u7684 C11 \u6570\u5B66\u8868\u8FBE\u5F0F\u8BA1\u7B97\u5668\uFF1A\u652F\u6301\u56DB\u5219\u8FD0\u7B97\u4E0E\u62EC\u53F7\u4F18\u5148\u7EA7\uFF0C\u96F6\u4F9D\u8D56\u6A21\u5757\u5316\u8BBE\u8BA1\uFF08\u8BCD\u6CD5/\u89E3\u6790/\u8BA1\u7B97/\u547D\u4EE4\u5206\u5C42\uFF09\uFF1B\u8FD0\u884C\u65F6\u53EF\u63A7\u7684\u8C03\u8BD5\u7CFB\u7EDF\u4E0E\u5B8C\u6574\u5355\u5143\u6D4B\u8BD5\u8986\u76D6\u3002",
       "en": "C11 math expression calculator built on a recursive descent parser: supports arithmetic and parentheses priority with zero-dependency modular design (lexer/parser/calculator/command layers); runtime-controllable debugging and complete unit test coverage."
     },
     "demoImage": "",
     "demoVideo": "",
     "demoUrl": "",
     "caseStudy": {
-      "Overview": {
-        "zh": "CalcExpr 是一个用 C 语言编写的数学表达式计算器，采用递归下降解析器把人类可读的数学表达式解析为精确数值结果。项目保持零外部依赖的模块化架构，并带有运行时可控的调试系统与完整的单元测试覆盖。",
+      "overview": {
+        "zh": "CalcExpr \u662F\u4E00\u4E2A\u7528 C \u8BED\u8A00\u7F16\u5199\u7684\u6570\u5B66\u8868\u8FBE\u5F0F\u8BA1\u7B97\u5668\uFF0C\u91C7\u7528\u9012\u5F52\u4E0B\u964D\u89E3\u6790\u5668\u628A\u4EBA\u7C7B\u53EF\u8BFB\u7684\u6570\u5B66\u8868\u8FBE\u5F0F\u89E3\u6790\u4E3A\u7CBE\u786E\u6570\u503C\u7ED3\u679C\u3002\u9879\u76EE\u4FDD\u6301\u96F6\u5916\u90E8\u4F9D\u8D56\u7684\u6A21\u5757\u5316\u67B6\u6784\uFF0C\u5E76\u5E26\u6709\u8FD0\u884C\u65F6\u53EF\u63A7\u7684\u8C03\u8BD5\u7CFB\u7EDF\u4E0E\u5B8C\u6574\u7684\u5355\u5143\u6D4B\u8BD5\u8986\u76D6\u3002",
         "en": "CalcExpr is a mathematical expression calculator written in C, built around a recursive descent parser that turns human-readable math expressions into precise numerical results. The project keeps a modular architecture with zero external dependencies, a runtime-controllable debug system, and complete unit test coverage."
       },
-      "Architecture": {
-        "zh": "表达式文本先由词法分析器切分为 token 流，递归下降解析器按优先级语法构造求值过程，计算器将中间结果整理为可用的表达式上下文；命令模块接入命令行交互，调试与日志系统提供运行时诊断能力。",
+      "architecture": {
+        "zh": "\u8868\u8FBE\u5F0F\u6587\u672C\u5148\u7531\u8BCD\u6CD5\u5206\u6790\u5668\u5207\u5206\u4E3A token \u6D41\uFF0C\u9012\u5F52\u4E0B\u964D\u89E3\u6790\u5668\u6309\u4F18\u5148\u7EA7\u8BED\u6CD5\u6784\u9020\u6C42\u503C\u8FC7\u7A0B\uFF0C\u8BA1\u7B97\u5668\u5C06\u4E2D\u95F4\u7ED3\u679C\u6574\u7406\u4E3A\u53EF\u7528\u7684\u8868\u8FBE\u5F0F\u4E0A\u4E0B\u6587\uFF1B\u547D\u4EE4\u6A21\u5757\u63A5\u5165\u547D\u4EE4\u884C\u4EA4\u4E92\uFF0C\u8C03\u8BD5\u4E0E\u65E5\u5FD7\u7CFB\u7EDF\u63D0\u4F9B\u8FD0\u884C\u65F6\u8BCA\u65AD\u80FD\u529B\u3002",
         "en": "Expression text is first split into a token stream by the lexer; the recursive descent parser evaluates it against a precedence grammar; the calculator assembles intermediate results into a usable expression context; the command module wires up CLI interaction, and debug/logging systems provide runtime diagnostics."
       },
-      "ArchitectureSteps": [
+      "architectureSteps": [
         {
-          "Titles": {
-            "zh": "词法分析",
+          "titles": {
+            "zh": "\u8BCD\u6CD5\u5206\u6790",
             "en": "Lexing"
           },
-          "Descriptions": {
-            "zh": "把表达式文本切分为运算符与操作数 token",
+          "descriptions": {
+            "zh": "\u628A\u8868\u8FBE\u5F0F\u6587\u672C\u5207\u5206\u4E3A\u8FD0\u7B97\u7B26\u4E0E\u64CD\u4F5C\u6570 token",
             "en": "Splits expression text into operator and operand tokens"
           },
-          "SourcePath": "src/lexer.c"
+          "sourcePath": "src/lexer.c"
         },
         {
-          "Titles": {
-            "zh": "语法解析",
+          "titles": {
+            "zh": "\u8BED\u6CD5\u89E3\u6790",
             "en": "Parsing"
           },
-          "Descriptions": {
-            "zh": "递归下降按优先级解析并求值",
+          "descriptions": {
+            "zh": "\u9012\u5F52\u4E0B\u964D\u6309\u4F18\u5148\u7EA7\u89E3\u6790\u5E76\u6C42\u503C",
             "en": "Recursive descent parses and evaluates by precedence"
           },
-          "SourcePath": "src/parser.c"
+          "sourcePath": "src/parser.c"
         },
         {
-          "Titles": {
-            "zh": "表达式上下文",
+          "titles": {
+            "zh": "\u8868\u8FBE\u5F0F\u4E0A\u4E0B\u6587",
             "en": "Expression context"
           },
-          "Descriptions": {
-            "zh": "计算器整理中间结果与运算上下文",
+          "descriptions": {
+            "zh": "\u8BA1\u7B97\u5668\u6574\u7406\u4E2D\u95F4\u7ED3\u679C\u4E0E\u8FD0\u7B97\u4E0A\u4E0B\u6587",
             "en": "The calculator assembles intermediate results and evaluation context"
           },
-          "SourcePath": "src/calculator.c"
+          "sourcePath": "src/calculator.c"
         },
         {
-          "Titles": {
-            "zh": "命令行交互",
+          "titles": {
+            "zh": "\u547D\u4EE4\u884C\u4EA4\u4E92",
             "en": "CLI interaction"
           },
-          "Descriptions": {
-            "zh": "命令模块解析输入并输出结果",
+          "descriptions": {
+            "zh": "\u547D\u4EE4\u6A21\u5757\u89E3\u6790\u8F93\u5165\u5E76\u8F93\u51FA\u7ED3\u679C",
             "en": "The command module parses input and prints results"
           },
-          "SourcePath": "src/command.c"
+          "sourcePath": "src/command.c"
         },
         {
-          "Titles": {
-            "zh": "诊断与日志",
+          "titles": {
+            "zh": "\u8BCA\u65AD\u4E0E\u65E5\u5FD7",
             "en": "Diagnostics and logging"
           },
-          "Descriptions": {
-            "zh": "调试与日志系统输出运行时信息",
+          "descriptions": {
+            "zh": "\u8C03\u8BD5\u4E0E\u65E5\u5FD7\u7CFB\u7EDF\u8F93\u51FA\u8FD0\u884C\u65F6\u4FE1\u606F",
             "en": "Debug and logging systems emit runtime information"
           },
-          "SourcePath": "src/debug.c"
+          "sourcePath": "src/debug.c"
         }
       ],
-      "Capabilities": [
+      "capabilities": [
         {
-          "Titles": {
-            "zh": "四则运算与括号",
+          "titles": {
+            "zh": "\u56DB\u5219\u8FD0\u7B97\u4E0E\u62EC\u53F7",
             "en": "Arithmetic and parentheses"
           },
-          "Descriptions": {
-            "zh": "支持加减乘除与括号优先级。",
+          "descriptions": {
+            "zh": "\u652F\u6301\u52A0\u51CF\u4E58\u9664\u4E0E\u62EC\u53F7\u4F18\u5148\u7EA7\u3002",
             "en": "Supports addition, subtraction, multiplication, division, and parentheses priority."
           },
-          "SourcePath": "src/parser.c"
+          "sourcePath": "src/parser.c"
         },
         {
-          "Titles": {
-            "zh": "递归下降解析",
+          "titles": {
+            "zh": "\u9012\u5F52\u4E0B\u964D\u89E3\u6790",
             "en": "Recursive descent parsing"
           },
-          "Descriptions": {
-            "zh": "按语法优先级将表达式解析为精确结果。",
+          "descriptions": {
+            "zh": "\u6309\u8BED\u6CD5\u4F18\u5148\u7EA7\u5C06\u8868\u8FBE\u5F0F\u89E3\u6790\u4E3A\u7CBE\u786E\u7ED3\u679C\u3002",
             "en": "Parses expressions into exact results following grammar precedence."
           },
-          "SourcePath": "src/parser.c"
+          "sourcePath": "src/parser.c"
         },
         {
-          "Titles": {
-            "zh": "零依赖模块化",
+          "titles": {
+            "zh": "\u96F6\u4F9D\u8D56\u6A21\u5757\u5316",
             "en": "Zero-dependency modularity"
           },
-          "Descriptions": {
-            "zh": "仅依赖标准 C 库，模块边界清晰。",
+          "descriptions": {
+            "zh": "\u4EC5\u4F9D\u8D56\u6807\u51C6 C \u5E93\uFF0C\u6A21\u5757\u8FB9\u754C\u6E05\u6670\u3002",
             "en": "Depends only on the standard C library with clear module boundaries."
           },
-          "SourcePath": "src"
+          "sourcePath": "src"
         },
         {
-          "Titles": {
-            "zh": "运行时调试",
+          "titles": {
+            "zh": "\u8FD0\u884C\u65F6\u8C03\u8BD5",
             "en": "Runtime debugging"
           },
-          "Descriptions": {
-            "zh": "运行时可控的调试输出与日志。",
+          "descriptions": {
+            "zh": "\u8FD0\u884C\u65F6\u53EF\u63A7\u7684\u8C03\u8BD5\u8F93\u51FA\u4E0E\u65E5\u5FD7\u3002",
             "en": "Runtime-controllable debug output and logging."
           },
-          "SourcePath": "src/debug.c"
+          "sourcePath": "src/debug.c"
         },
         {
-          "Titles": {
-            "zh": "单元测试覆盖",
+          "titles": {
+            "zh": "\u5355\u5143\u6D4B\u8BD5\u8986\u76D6",
             "en": "Unit test coverage"
           },
-          "Descriptions": {
-            "zh": "对词法、解析与求值提供完整测试。",
+          "descriptions": {
+            "zh": "\u5BF9\u8BCD\u6CD5\u3001\u89E3\u6790\u4E0E\u6C42\u503C\u63D0\u4F9B\u5B8C\u6574\u6D4B\u8BD5\u3002",
             "en": "Provides complete tests for lexing, parsing, and evaluation."
           },
-          "SourcePath": "test"
+          "sourcePath": "test"
         }
       ],
-      "Modules": [
+      "modules": [
         {
-          "Titles": {
-            "zh": "词法分析器",
+          "titles": {
+            "zh": "\u8BCD\u6CD5\u5206\u6790\u5668",
             "en": "Lexer"
           },
-          "Descriptions": {
-            "zh": "文本切分为 token 流。",
+          "descriptions": {
+            "zh": "\u6587\u672C\u5207\u5206\u4E3A token \u6D41\u3002",
             "en": "Splits text into a token stream."
           },
-          "SourcePath": "src/lexer.c"
+          "sourcePath": "src/lexer.c"
         },
         {
-          "Titles": {
-            "zh": "解析器",
+          "titles": {
+            "zh": "\u89E3\u6790\u5668",
             "en": "Parser"
           },
-          "Descriptions": {
-            "zh": "递归下降解析与求值。",
+          "descriptions": {
+            "zh": "\u9012\u5F52\u4E0B\u964D\u89E3\u6790\u4E0E\u6C42\u503C\u3002",
             "en": "Recursive descent parsing and evaluation."
           },
-          "SourcePath": "src/parser.c"
+          "sourcePath": "src/parser.c"
         },
         {
-          "Titles": {
-            "zh": "计算器",
+          "titles": {
+            "zh": "\u8BA1\u7B97\u5668",
             "en": "Calculator"
           },
-          "Descriptions": {
-            "zh": "表达式上下文与结果整理。",
+          "descriptions": {
+            "zh": "\u8868\u8FBE\u5F0F\u4E0A\u4E0B\u6587\u4E0E\u7ED3\u679C\u6574\u7406\u3002",
             "en": "Expression context and result assembly."
           },
-          "SourcePath": "src/calculator.c"
+          "sourcePath": "src/calculator.c"
         },
         {
-          "Titles": {
-            "zh": "命令行",
+          "titles": {
+            "zh": "\u547D\u4EE4\u884C",
             "en": "Command"
           },
-          "Descriptions": {
-            "zh": "输入解析与输出。",
+          "descriptions": {
+            "zh": "\u8F93\u5165\u89E3\u6790\u4E0E\u8F93\u51FA\u3002",
             "en": "Input parsing and output."
           },
-          "SourcePath": "src/command.c"
+          "sourcePath": "src/command.c"
         },
         {
-          "Titles": {
-            "zh": "调试与日志",
+          "titles": {
+            "zh": "\u8C03\u8BD5\u4E0E\u65E5\u5FD7",
             "en": "Debug and logging"
           },
-          "Descriptions": {
-            "zh": "运行时诊断能力。",
+          "descriptions": {
+            "zh": "\u8FD0\u884C\u65F6\u8BCA\u65AD\u80FD\u529B\u3002",
             "en": "Runtime diagnostics."
           },
-          "SourcePath": "src/debug.c"
+          "sourcePath": "src/debug.c"
         },
         {
-          "Titles": {
-            "zh": "平台适配",
+          "titles": {
+            "zh": "\u5E73\u53F0\u9002\u914D",
             "en": "Platform"
           },
-          "Descriptions": {
-            "zh": "跨平台类型与常量定义。",
+          "descriptions": {
+            "zh": "\u8DE8\u5E73\u53F0\u7C7B\u578B\u4E0E\u5E38\u91CF\u5B9A\u4E49\u3002",
             "en": "Cross-platform types and constants."
           },
-          "SourcePath": "src/platform"
+          "sourcePath": "src/platform"
         }
       ],
-      "Decisions": [
+      "decisions": [
         {
-          "Titles": {
-            "zh": "递归下降而非运算符栈",
+          "titles": {
+            "zh": "\u9012\u5F52\u4E0B\u964D\u800C\u975E\u8FD0\u7B97\u7B26\u6808",
             "en": "Recursive descent over operator stack"
           },
-          "Descriptions": {
-            "zh": "用递归下降直接表达优先级文法，代码可读且易扩展新运算符。",
+          "descriptions": {
+            "zh": "\u7528\u9012\u5F52\u4E0B\u964D\u76F4\u63A5\u8868\u8FBE\u4F18\u5148\u7EA7\u6587\u6CD5\uFF0C\u4EE3\u7801\u53EF\u8BFB\u4E14\u6613\u6269\u5C55\u65B0\u8FD0\u7B97\u7B26\u3002",
             "en": "Expresses the precedence grammar directly, staying readable and easy to extend with new operators."
           },
-          "SourcePath": "src/parser.c"
+          "sourcePath": "src/parser.c"
         },
         {
-          "Titles": {
-            "zh": "标准 C 库零依赖",
+          "titles": {
+            "zh": "\u6807\u51C6 C \u5E93\u96F6\u4F9D\u8D56",
             "en": "Standard C library only"
           },
-          "Descriptions": {
-            "zh": "避免外部依赖，保证可移植与可审计。",
+          "descriptions": {
+            "zh": "\u907F\u514D\u5916\u90E8\u4F9D\u8D56\uFF0C\u4FDD\u8BC1\u53EF\u79FB\u690D\u4E0E\u53EF\u5BA1\u8BA1\u3002",
             "en": "Avoids external dependencies for portability and auditability."
           },
-          "SourcePath": "README.md"
+          "sourcePath": "README.md"
         }
       ],
-      "ZreadUrl": "https://zread.ai/wubing7755/CalcExpr",
-      "UpdatedAt": "2026-08-12"
-    }
+      "zreadUrl": "https://zread.ai/wubing7755/CalcExpr",
+      "updatedAt": "2026-08-12"
+    },
+    "sortOrder": 10
   }
 ]

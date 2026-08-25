@@ -2,172 +2,276 @@
   "language": "en",
   "items": [
     {
-      "id": "example-project-retrospective",
-      "type": "articles",
-      "title": "Example: How to Write a Personal Project Retrospective",
-      "intro": "Placeholder content demonstrating the local article structure through problem, decisions, results, and next steps.",
-      "link": "",
-      "route": "/articles/example-project-retrospective"
-    },
-    {
-      "id": "post-001",
+      "id": "22081752",
       "type": "blog",
-      "title": "TypeScript Essentials",
+      "title": "TypeScript \u77E5\u8BC6\u70B9",
       "intro": "Progressive notes for C# developers: each topic starts with minimal runnable code, then a C# analogy, then a pitfall checklist. Target: TypeScript 5.x.",
-      "link": "https://www.cnblogs.com/wubing7755/p/22081752",
-      "route": ""
+      "link": "https://www.cnblogs.com/wubing7755/p/22081752.html",
+      "route": "/blog/22081752"
     },
     {
-      "id": "post-002",
+      "id": "22011780",
       "type": "blog",
-      "title": "Design Patterns Summary (GoF 23)",
+      "title": "\u8BBE\u8BA1\u6A21\u5F0F\u603B\u7ED3\uFF08GoF 23 \u79CD\uFF09",
       "intro": "A categorized summary of the 23 GoF patterns: one-line overview, structure diagram, code sample, usage timing and anti-patterns for each.",
-      "link": "https://www.cnblogs.com/wubing7755/p/22011780",
-      "route": ""
+      "link": "https://www.cnblogs.com/wubing7755/p/22011780.html",
+      "route": "/blog/22011780"
     },
     {
-      "id": "post-003",
+      "id": "21162894",
       "type": "blog",
-      "title": "AI and the Right to Be Answered",
+      "title": "AI\u4E0E\u88AB\u56DE\u5E94\u7684\u6743\u5229",
       "intro": "An essay on the cost of understanding: asking never needs permission, but being answered does \u2014 not a link or a page, but being truly understood.",
-      "link": "https://www.cnblogs.com/wubing7755/p/21162894",
-      "route": ""
+      "link": "https://www.cnblogs.com/wubing7755/p/21162894.html",
+      "route": "/blog/21162894"
     },
     {
-      "id": "post-004",
+      "id": "19808766",
       "type": "blog",
-      "title": "Parsing Expressions with Recursive Descent",
+      "title": "\u4F7F\u7528\u9012\u5F52\u4E0B\u964D\u7B97\u6CD5\u6C42\u89E3\u8868\u8FBE\u5F0F",
       "intro": "How to build an expression parser in C: the principle of recursive descent, a minimal implementation, and key engineering details.",
-      "link": "https://www.cnblogs.com/wubing7755/p/19808766",
-      "route": ""
+      "link": "https://www.cnblogs.com/wubing7755/p/19808766.html",
+      "route": "/blog/19808766"
     },
     {
-      "id": "post-005",
+      "id": "19778204",
       "type": "blog",
-      "title": "Installing STEP 7 MicroWIN SMART (S7-200 SMART)",
+      "title": "\u897F\u95E8\u5B50S7-200 SMART STEP 7 MicroWIN SMART\u7F16\u7A0B\u8F6F\u4EF6\u5B89\u88C5\u65B9\u6CD5",
       "intro": "Installation guide for Siemens STEP 7 MicroWIN SMART, the programming software for S7-200 SMART PLCs, supporting LAD, FBD and SCL.",
-      "link": "https://www.cnblogs.com/wubing7755/p/19778204",
-      "route": ""
+      "link": "https://www.cnblogs.com/wubing7755/p/19778204.html",
+      "route": "/blog/19778204"
     },
     {
-      "id": "post-006",
+      "id": "19713445",
       "type": "blog",
-      "title": "A Unified Model for Tree-Based UI Frameworks",
+      "title": "\u63A2\u7D22\u57FA\u4E8E\u6811\u7684UI\u6846\u67B6\u7684\u7EDF\u4E00\u6A21\u578B",
       "intro": "From State -\u003E Tree -\u003E Diff -\u003E Render: comparing Vue 3, Blazor and WPF to uncover the common architecture behind modern UI frameworks.",
-      "link": "https://www.cnblogs.com/wubing7755/p/19713445",
-      "route": ""
+      "link": "https://www.cnblogs.com/wubing7755/p/19713445.html",
+      "route": "/blog/19713445"
     },
     {
-      "id": "post-007",
+      "id": "19530101",
       "type": "blog",
-      "title": "Setting Up an OpenGL Development Environment",
-      "intro": "Building an OpenGL environment on Windows 11 \u002B Visual Studio 2022, using GLFW and GLAD.",
-      "link": "https://www.cnblogs.com/wubing7755/p/18926072",
-      "route": "/blog/post-007"
+      "title": "\u57FA\u4E8Evscode\u9879\u76EE\u8FDB\u884C\u4E8C\u6B21\u5F00\u53D1",
+      "intro": "Explains how to build a second-generation project on top of microsoft/vscode, covering local deployment and local development.",
+      "link": "https://www.cnblogs.com/wubing7755/p/19530101.html",
+      "route": "/blog/19530101"
     },
     {
-      "id": "post-008",
+      "id": "18926072",
       "type": "blog",
-      "title": "Viewing Blazor WASM Asset Loading Order via Middleware Logging",
-      "intro": "Use a logging middleware to observe how Blazor WebAssembly loads static resources (.html, .js, .wasm) when hosted on a server.",
-      "link": "https://www.cnblogs.com/wubing7755/p/18879791",
-      "route": "/blog/post-008"
+      "title": "OpenGL \u5F00\u53D1\u73AF\u5883\u642D\u5EFA",
+      "intro": "A complete OpenGL setup guide for Windows 11 and Visual Studio 2022 using GLFW and GLAD, including prebuilt packages, CMake builds, a sample program, and FetchContent.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18926072.html",
+      "route": "/blog/18926072"
     },
     {
-      "id": "post-009",
+      "id": "18879791",
       "type": "blog",
-      "title": "Installing Emscripten 4.x",
-      "intro": "Emscripten is an open-source compiler toolchain that compiles C/C\u002B\u002B to WebAssembly. Installation guide for 4.x.",
-      "link": "https://www.cnblogs.com/wubing7755/p/18844915",
-      "route": "/blog/post-009"
+      "title": "\u4F7F\u7528\u4E2D\u95F4\u4EF6\u65E5\u5FD7\u67E5\u770BBlazor WebAssembly\u9759\u6001\u8D44\u6E90\u52A0\u8F7D\u987A\u5E8F",
+      "intro": "Uses ASP.NET Core logging middleware to trace static-resource requests in hosted Blazor WebAssembly and reveal how HTML, JavaScript, and WASM files are loaded.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18879791.html",
+      "route": "/blog/18879791"
     },
     {
-      "id": "post-010",
+      "id": "18844915",
       "type": "blog",
-      "title": "SignalR Basics",
-      "intro": "SignalR is ASP.NET Core\u0027s real-time communication framework. Transport priority: WebSocket, SSE, then long polling.",
-      "link": "https://www.cnblogs.com/wubing7755/p/18776721",
-      "route": "/blog/post-010"
+      "title": "Emscripten 4.x \u5B89\u88C5\u6559\u7A0B",
+      "intro": "Introduces the Emscripten toolchain and provides a complete Windows setup guide for emsdk, environment variables, and WebAssembly compiler verification.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18844915.html",
+      "route": "/blog/18844915"
     },
     {
-      "id": "post-011",
+      "id": "18776721",
       "type": "blog",
-      "title": "Combining Electron with TypeScript",
-      "intro": "Build a simple desktop app with Electron and TypeScript: project structure and basics.",
-      "link": "https://www.cnblogs.com/wubing7755/p/18753113",
-      "route": "/blog/post-011"
+      "title": "SignalR\u7528\u6CD5\u7B80\u8FF0",
+      "intro": "Introduces ASP.NET Core SignalR transport fallback and bidirectional Hub calls, with server and client examples for implementing real-time communication.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18776721.html",
+      "route": "/blog/18776721"
     },
     {
-      "id": "post-012",
+      "id": "18753113",
       "type": "blog",
-      "title": "Electron Framework Basics",
-      "intro": "Getting started with Electron based on official docs plus local practice: package.json entry, devDependencies, and more.",
-      "link": "https://www.cnblogs.com/wubing7755/p/18752187",
-      "route": "/blog/post-012"
+      "title": "Electron\u4E0ETypeScript\u7684\u7ED3\u5408",
+      "intro": "Shows how to build a desktop app with Electron and TypeScript, covering the main process, preload and renderer structure, compiler configuration, and startup flow.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18753113.html",
+      "route": "/blog/18753113"
     },
     {
-      "id": "post-013",
+      "id": "18752187",
       "type": "blog",
-      "title": "TypeScript Syntax Basics",
-      "intro": "TypeScript is a typed superset of JavaScript: progressive typing, compile-time checks, and types as documentation.",
-      "link": "https://www.cnblogs.com/wubing7755/p/18748789",
-      "route": "/blog/post-013"
+      "title": "Electron\u6846\u67B6\u7528\u6CD5\u7B80\u8FF0",
+      "intro": "Walks through building a starter Electron app, including project initialization, dependency installation, package.json scripts, BrowserWindow loading, and debugging.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18752187.html",
+      "route": "/blog/18752187"
     },
     {
-      "id": "post-014",
+      "id": "18748789",
       "type": "blog",
-      "title": "Limitations of Generic Class Inheritance in C#",
-      "intro": "Generic class declarations cannot directly or indirectly derive from System.Attribute.",
-      "link": "https://www.cnblogs.com/wubing7755/p/18721760",
-      "route": "/blog/post-014"
+      "title": "TypeScript\u8BED\u6CD5\u7B80\u8FF0",
+      "intro": "Introduces TypeScript through annotations, inference, and static checking, then surveys primitive, composite, and special types to build a foundation in its type system.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18748789.html",
+      "route": "/blog/18748789"
     },
     {
-      "id": "post-015",
+      "id": "18722197",
       "type": "blog",
-      "title": "Using Serilog in Console Apps: Basics",
-      "intro": "A quick demo of using the Serilog logging library in a C# console application.",
-      "link": "https://www.cnblogs.com/wubing7755/p/18720113",
-      "route": "/blog/post-015"
+      "title": ".NET \u5F02\u6B65\u7F16\u7A0BTAP\u6A21\u5F0F\u7B80\u8FF0",
+      "intro": "Reviews the core concepts, naming rules, return-type conventions, and implementations of the .NET Task-based Asynchronous Pattern, with comparisons to EAP and APM.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18722197.html",
+      "route": "/blog/18722197"
     },
     {
-      "id": "post-016",
+      "id": "18721760",
       "type": "blog",
-      "title": "Connecting to a Local DeepSeek R1 1.5b Model from C#",
-      "intro": "Use Microsoft.Extensions.AI.Ollama in a C# console app to connect to a locally deployed DeepSeek R1 1.5b model via Ollama.",
-      "link": "https://www.cnblogs.com/wubing7755/p/18702681",
-      "route": "/blog/post-016"
+      "title": "C#\u6CDB\u578B\u7C7B\u7EE7\u627F\u7279\u6027\u7684\u9650\u5236",
+      "intro": "Explains why C# generic types cannot directly or indirectly derive from System.Attribute, with compiler-error examples and the design background behind the restriction.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18721760.html",
+      "route": "/blog/18721760"
     },
     {
-      "id": "post-017",
+      "id": "18720113",
       "type": "blog",
-      "title": "C# Preprocessor Directives",
-      "intro": "Preprocessor directives are special syntax processed before compilation. C# supports conditional compilation but not macros.",
-      "link": "https://www.cnblogs.com/wubing7755/p/18701763",
-      "route": "/blog/post-017"
+      "title": "\u5728\u63A7\u5236\u53F0\u5E94\u7528\u4E2D\u4F7F\u7528Serilog\u65E5\u5FD7\u5E93\uFF1A\u57FA\u672C\u7528\u6CD5",
+      "intro": "Demonstrates the installation and basic use of Serilog and its console sink in a .NET console application, including LoggerConfiguration setup and log output.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18720113.html",
+      "route": "/blog/18720113"
     },
     {
-      "id": "post-018",
+      "id": "18704726",
       "type": "blog",
-      "title": "C# Exceptions and Exception Handling",
-      "intro": "Exceptions interrupt normal flow at runtime; handling uses try/catch/finally and related keywords.",
-      "link": "https://www.cnblogs.com/wubing7755/p/18701443",
-      "route": "/blog/post-018"
+      "title": "\u9A7E\u9A76\u8231\u663E\u793A\u7CFB\u7EDF\u4EBA\u673A\u63A5\u53E3\u89C4\u8303 ARINC 661 \u7B80\u8FF0",
+      "intro": "Introduces the ARINC 661 architecture for cockpit displays, focusing on the responsibilities and interactions of the CDS, user applications, definition files, widgets, and runtime protocol.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18704726.html",
+      "route": "/blog/18704726"
     },
     {
-      "id": "post-019",
+      "id": "18702681",
       "type": "blog",
-      "title": "Blazor HttpClient vs the Fetch API",
-      "intro": "In Blazor WebAssembly, HttpClient is implemented on top of the browser\u0027s Fetch API \u2014 demonstrated with code and debugging steps.",
-      "link": "https://www.cnblogs.com/wubing7755/p/18700852",
-      "route": "/blog/post-019"
+      "title": "\u5728 C# \u63A7\u5236\u53F0\u5E94\u7528\u4E2D\u8FDE\u63A5\u672C\u5730\u90E8\u7F72\u7684 DeepSeek R1 1.5b \u5927\u6A21\u578B",
+      "intro": "Shows how to deploy DeepSeek R1 1.5b locally with Ollama and build streaming chat in a .NET console application using Microsoft.Extensions.AI.Ollama.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18702681.html",
+      "route": "/blog/18702681"
     },
     {
-      "id": "post-020",
+      "id": "18701763",
       "type": "blog",
-      "title": "Regular Expressions Basics",
-      "intro": "Regex is a text pattern-matching tool; in C# use System.Text.RegularExpressions.Regex to search, replace and control text.",
-      "link": "https://www.cnblogs.com/wubing7755/p/18699526",
-      "route": "/blog/post-020"
+      "title": "C# \u9884\u5904\u7406\u5668\u6307\u4EE4",
+      "intro": "Summarizes C# preprocessor directives and how they differ from C and C\u002B\u002B, covering conditional compilation, code organization, diagnostics, and compiler control.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18701763.html",
+      "route": "/blog/18701763"
+    },
+    {
+      "id": "18701443",
+      "type": "blog",
+      "title": "C# \u5F02\u5E38\u548C\u5F02\u5E38\u5904\u7406\u7684\u7528\u6CD5",
+      "intro": "Covers the sources and handling flow of C# exceptions, using custom exceptions and file-processing examples to demonstrate try, catch, finally, and throw.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18701443.html",
+      "route": "/blog/18701443"
+    },
+    {
+      "id": "18700852",
+      "type": "blog",
+      "title": "Blazor\u4E2DHttpClient\u4E0EFetch API\u7684\u5173\u7CFB",
+      "intro": "Explains how Blazor HttpClient relates to the browser Fetch API and compares calling the same endpoint through the .NET abstraction and the native Web API.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18700852.html",
+      "route": "/blog/18700852"
+    },
+    {
+      "id": "18699526",
+      "type": "blog",
+      "title": "\u6B63\u5219\u8868\u8FBE\u5F0F\u7684\u57FA\u672C\u7528\u6CD5",
+      "intro": "A practical guide to regular-expression fundamentals, including character classes, boundaries, escape sequences, quantifiers, groups, and common matching patterns.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18699526.html",
+      "route": "/blog/18699526"
+    },
+    {
+      "id": "18698908",
+      "type": "blog",
+      "title": "JavaScript\u6A21\u5757\u5316\u5BFC\u5165\u548C\u5BFC\u51FA",
+      "intro": "A practical guide to JavaScript ES Modules, covering module scripts, named and default exports, namespace and side-effect imports, import maps, and non-JavaScript resources.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18698908.html",
+      "route": "/blog/18698908"
+    },
+    {
+      "id": "18689856",
+      "type": "blog",
+      "title": "\u5173\u4E8EBlazor RenderTreeBuilder\u7684\u7406\u89E3",
+      "intro": "Explains RenderTreeBuilder by contrasting the DOM with Blazor render trees, including sequence numbers, node-building APIs, and its role in differential rendering.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18689856.html",
+      "route": "/blog/18689856"
+    },
+    {
+      "id": "18689759",
+      "type": "blog",
+      "title": "Verify.Xunit\u5305\u4F7F\u7528\u65B9\u6CD5",
+      "intro": "Demonstrates how to set up and run snapshot tests with Verify.Xunit, including the approval workflow and the roles of received and verified files.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18689759.html",
+      "route": "/blog/18689759"
+    },
+    {
+      "id": "18689389",
+      "type": "blog",
+      "title": "\u4F7F\u7528RenderTreeBuilder\u6765\u6784\u5EFABlaor\u5185\u7F6E\u7EC4\u4EF6EditForm\u7684\u6E32\u67D3\u6811",
+      "intro": "Manually builds a component tree with RenderTreeBuilder to render the built-in EditForm component.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18689389.html",
+      "route": "/blog/18689389"
+    },
+    {
+      "id": "18654847",
+      "type": "blog",
+      "title": "Blazor\u9879\u76EE\u6982\u8FF0",
+      "intro": "Provides an overview of Blazor application models and compares Blazor Web App, Blazor Server, and standalone WebAssembly hosting, execution, and use cases.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18654847.html",
+      "route": "/blog/18654847"
+    },
+    {
+      "id": "18646957",
+      "type": "blog",
+      "title": "Git failed to connect to github 443 windows",
+      "intro": "Diagnoses GitHub port 443 connection failures on Windows caused by proxy settings, with steps to inspect, configure, or remove HTTP and HTTPS proxies.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18646957.html",
+      "route": "/blog/18646957"
+    },
+    {
+      "id": "18640104",
+      "type": "blog",
+      "title": "\u5728Blazor\u4E2D\u4F7F\u7528SkiaSharp\u7684\u65B9\u6CD5",
+      "intro": "Shows how to install and use SkiaSharp for 2D drawing in Blazor, focusing on the roles of SKSurface, SKCanvas, SKPaint, and SKCanvasView.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18640104.html",
+      "route": "/blog/18640104"
+    },
+    {
+      "id": "18609219",
+      "type": "blog",
+      "title": "OpenXML\u4E0EWord\u6982\u8FF0",
+      "intro": "Introduces the evolution of Word formats, the Open Packaging and WordprocessingML structures behind DOCX, and the basics of automating Word documents with DocumentFormat.OpenXml.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18609219.html",
+      "route": "/blog/18609219"
+    },
+    {
+      "id": "18602249",
+      "type": "blog",
+      "title": "C#\u59D4\u6258\u548C\u4E8B\u4EF6",
+      "intro": "Introduces C# delegates and events, covering multicast invocation, Action and Func delegates, and event publishing and subscription with EventHandler.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18602249.html",
+      "route": "/blog/18602249"
+    },
+    {
+      "id": "18586144",
+      "type": "blog",
+      "title": "Blazor \u7EC4\u4EF6\u901A\u4FE1",
+      "intro": "Reviews common Blazor component communication patterns, including component parameters, cascading values, EventCallback notifications, and shared-state containers.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18586144.html",
+      "route": "/blog/18586144"
+    },
+    {
+      "id": "18587746",
+      "type": "blog",
+      "title": "ASP.NET Core MVC\u9879\u76EE\u57FA\u7840",
+      "intro": "Explains the structure and startup flow of an ASP.NET Core MVC project, with practical examples covering configuration, SQLite, EF Core, models, and controllers.",
+      "link": "https://www.cnblogs.com/wubing7755/p/18587746.html",
+      "route": "/blog/18587746"
     },
     {
       "id": "project-001",
@@ -178,36 +282,12 @@
       "route": "/projects/project-001"
     },
     {
-      "id": "project-002",
+      "id": "dbcview",
       "type": "project",
-      "title": "Atlas",
-      "intro": "Blazor dockable workspace component library: tool panels, editor tabs, split views, drag-and-drop, and layout persistence.",
+      "title": "DbcView",
+      "intro": "CAN database (DBC) file browser and editor built on the Atlas.Blazor dockable workspace",
       "link": "",
-      "route": "/projects/project-002"
-    },
-    {
-      "id": "project-003",
-      "type": "project",
-      "title": "Astrea",
-      "intro": "a collection of reusable components for Blazor applications",
-      "link": "",
-      "route": "/projects/project-003"
-    },
-    {
-      "id": "project-004",
-      "type": "project",
-      "title": "AWDiagram",
-      "intro": "A Diagram using AWComponent",
-      "link": "",
-      "route": "/projects/project-004"
-    },
-    {
-      "id": "project-005",
-      "type": "project",
-      "title": "c-project-standard",
-      "intro": "Reusable C11 project template and engineering standard",
-      "link": "",
-      "route": "/projects/project-005"
+      "route": "/projects/dbcview"
     },
     {
       "id": "project-006",
@@ -218,36 +298,12 @@
       "route": "/projects/project-006"
     },
     {
-      "id": "project-007",
-      "type": "project",
-      "title": "GLDiagram",
-      "intro": "an OpenGL drawing canvas with Nuklear immediate-mode GUI",
-      "link": "",
-      "route": "/projects/project-007"
-    },
-    {
-      "id": "project-008",
-      "type": "project",
-      "title": "PromptLib",
-      "intro": "",
-      "link": "",
-      "route": "/projects/project-008"
-    },
-    {
       "id": "project-009",
       "type": "project",
       "title": "GLDraw",
-      "intro": "an OpenGL 3.3 project built with GLFW and Nuklear GUI",
+      "intro": "A canvas-centered OpenGL drawing editor written in C11",
       "link": "",
       "route": "/projects/project-009"
-    },
-    {
-      "id": "project-010",
-      "type": "project",
-      "title": "TextEditor",
-      "intro": "a command-line text editor built in C11.",
-      "link": "",
-      "route": "/projects/project-010"
     },
     {
       "id": "project-011",
