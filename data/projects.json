@@ -25,7 +25,7 @@
     },
     "demoImage": "media/projects/penelopa.png",
     "demoVideo": "",
-    "demoUrl": "https://www.wubing7755.com/Penelopa/",
+    "demoUrl": "https://www.wubing7755.com/demo/penelopa/",
     "caseStudy": {
       "overview": {
         "zh": "Penelopa \u662F\u4E00\u4E2A\u57FA\u4E8E Atlas.Blazor \u505C\u9760\u5F0F\u5DE5\u4F5C\u533A\u7684 Blazor WASM \u56FE\u5143\u5BF9\u9F50\u7F16\u8F91\u5668\u3002\u5B83\u4EE5 SkiaSharp \u753B\u5E03\u627F\u8F7D\u5706\u3001\u77E9\u5F62\u3001\u4E09\u89D2\u5F62\u4E09\u79CD\u56FE\u5143\uFF0C\u63D0\u4F9B\u516D\u65B9\u5411\u5BF9\u9F50\u3001\u989C\u8272\u952E\u547D\u4E2D\u6D4B\u8BD5\u4E0E\u5C5E\u6027\u7F16\u8F91\uFF0C\u662F Atlas.Blazor \u7684\u72EC\u7ACB\u6D88\u8D39\u793A\u4F8B\u3002",
@@ -283,7 +283,7 @@
     },
     "demoImage": "media/projects/dbcview.png",
     "demoVideo": "",
-    "demoUrl": "https://HestiaLab.github.io/DbcView/",
+    "demoUrl": "https://www.wubing7755.com/demo/dbcview/",
     "caseStudy": {
       "overview": {
         "zh": "DbcView \u662F\u4E00\u4E2A\u7528\u4E8E\u6D4F\u89C8\u4E0E\u7F16\u8F91 CAN \u6570\u636E\u5E93\uFF08DBC\uFF09\u6587\u4EF6\u7684\u72EC\u7ACB Blazor WebAssembly \u5E94\u7528\u2014\u2014DBC \u662F\u5B9A\u4E49\u63A7\u5236\u5668\u5C40\u57DF\u7F51\u7EDC\uFF08CAN\uFF09\u603B\u7EBF\u4E0A\u6D88\u606F\u4E0E\u4FE1\u53F7\u7684\u6807\u51C6\u683C\u5F0F\u3002\u5B83\u5B8C\u5168\u5728\u6D4F\u89C8\u5668\u4E2D\u8FD0\u884C\u3001\u65E0\u670D\u52A1\u5668\u4F9D\u8D56\uFF0C\u63D0\u4F9B IDE \u98CE\u683C\u5DE5\u4F5C\u533A\uFF08\u6587\u4EF6\u6811\u3001\u7ED3\u6784\u5316\u7F16\u8F91\u5668\u3001\u5B9E\u65F6\u5C5E\u6027\u68C0\u67E5\u5668\uFF09\uFF0C\u540C\u65F6\u4E5F\u662F Atlas \u505C\u9760\u5F0F\u5E03\u5C40\u7EC4\u4EF6\u5E93\u7684\u6D88\u8D39\u793A\u4F8B\uFF0C\u4F7F\u7528\u53D1\u5E03\u7684 Atlas.Blazor NuGet \u5305\u642D\u5EFA\u591A\u9762\u677F\u5DE5\u4F5C\u533A\u5916\u58F3\u3002",
@@ -751,7 +751,7 @@
       "en": "Separates the document model, editing commands, tools, UI, and rendering, with durable undo and redo through a command system."
     },
     "demoImage": "https://raw.githubusercontent.com/wubing7755/GLDraw/main/assets/preview.png",
-    "demoVideo": "",
+    "demoVideo": "media/projects/gl-draw.mp4",
     "demoUrl": "",
     "caseStudy": {
       "overview": {
