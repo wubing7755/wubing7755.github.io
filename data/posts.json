@@ -22,7 +22,8 @@
     "tags": [
       "TypeScript"
     ],
-    "viewCount": 28
+    "viewCount": 28,
+    "readingMinutes": 52
   },
   {
     "id": "22011780",
@@ -48,7 +49,8 @@
       "C#",
       "\u8BBE\u8BA1\u6A21\u5F0F"
     ],
-    "viewCount": 26
+    "viewCount": 26,
+    "readingMinutes": 102
   },
   {
     "id": "21162894",
@@ -73,7 +75,8 @@
     "tags": [
       "AI"
     ],
-    "viewCount": 51
+    "viewCount": 51,
+    "readingMinutes": 4
   },
   {
     "id": "19808766",
@@ -99,7 +102,8 @@
       "C",
       "\u7B97\u6CD5"
     ],
-    "viewCount": 60
+    "viewCount": 60,
+    "readingMinutes": 27
   },
   {
     "id": "19778204",
@@ -124,7 +128,8 @@
     "tags": [
       "PLC"
     ],
-    "viewCount": 9632
+    "viewCount": 9632,
+    "readingMinutes": 4
   },
   {
     "id": "19713445",
@@ -149,7 +154,8 @@
     "tags": [
       "\u67B6\u6784"
     ],
-    "viewCount": 51
+    "viewCount": 51,
+    "readingMinutes": 7
   },
   {
     "id": "19530101",
@@ -174,7 +180,8 @@
     "tags": [
       "\u6846\u67B6"
     ],
-    "viewCount": 0
+    "viewCount": 0,
+    "readingMinutes": 2
   },
   {
     "id": "18926072",
@@ -199,7 +206,8 @@
     "tags": [
       "OpenGL"
     ],
-    "viewCount": 1494
+    "viewCount": 1494,
+    "readingMinutes": 8
   },
   {
     "id": "18879791",
@@ -224,7 +232,8 @@
     "tags": [
       "Blazor"
     ],
-    "viewCount": 81
+    "viewCount": 81,
+    "readingMinutes": 5
   },
   {
     "id": "18844915",
@@ -249,7 +258,8 @@
     "tags": [
       "Emscripten"
     ],
-    "viewCount": 908
+    "viewCount": 908,
+    "readingMinutes": 3
   },
   {
     "id": "18776721",
@@ -274,7 +284,8 @@
     "tags": [
       "SignalR"
     ],
-    "viewCount": 473
+    "viewCount": 473,
+    "readingMinutes": 5
   },
   {
     "id": "18753113",
@@ -300,7 +311,8 @@
       "JavaScript",
       "TypeScript"
     ],
-    "viewCount": 469
+    "viewCount": 469,
+    "readingMinutes": 7
   },
   {
     "id": "18752187",
@@ -325,7 +337,8 @@
     "tags": [
       "JavaScript"
     ],
-    "viewCount": 231
+    "viewCount": 231,
+    "readingMinutes": 5
   },
   {
     "id": "18748789",
@@ -350,7 +363,8 @@
     "tags": [
       "TypeScript"
     ],
-    "viewCount": 107
+    "viewCount": 107,
+    "readingMinutes": 13
   },
   {
     "id": "18722197",
@@ -375,7 +389,8 @@
     "tags": [
       "C#"
     ],
-    "viewCount": 0
+    "viewCount": 0,
+    "readingMinutes": 33
   },
   {
     "id": "18721760",
@@ -400,7 +415,8 @@
     "tags": [
       "C#"
     ],
-    "viewCount": 46
+    "viewCount": 46,
+    "readingMinutes": 2
   },
   {
     "id": "18720113",
@@ -425,7 +441,8 @@
     "tags": [
       "Logger"
     ],
-    "viewCount": 143
+    "viewCount": 143,
+    "readingMinutes": 2
   },
   {
     "id": "18704726",
@@ -450,7 +467,8 @@
     "tags": [
       "ARINC"
     ],
-    "viewCount": 0
+    "viewCount": 0,
+    "readingMinutes": 7
   },
   {
     "id": "18702681",
@@ -476,7 +494,8 @@
       "C#",
       "AI"
     ],
-    "viewCount": 1471
+    "viewCount": 1471,
+    "readingMinutes": 4
   },
   {
     "id": "18701763",
@@ -501,7 +520,8 @@
     "tags": [
       "C#"
     ],
-    "viewCount": 233
+    "viewCount": 233,
+    "readingMinutes": 9
   },
   {
     "id": "18701443",
@@ -526,7 +546,8 @@
     "tags": [
       "C#"
     ],
-    "viewCount": 208
+    "viewCount": 208,
+    "readingMinutes": 10
   },
   {
     "id": "18700852",
@@ -551,7 +572,8 @@
     "tags": [
       "Blazor"
     ],
-    "viewCount": 154
+    "viewCount": 154,
+    "readingMinutes": 3
   },
   {
     "id": "18699526",
@@ -576,7 +598,8 @@
     "tags": [
       "\u6B63\u5219\u8868\u8FBE\u5F0F"
     ],
-    "viewCount": 83
+    "viewCount": 83,
+    "readingMinutes": 7
   },
   {
     "id": "18698908",
@@ -601,7 +624,8 @@
     "tags": [
       "JavaScript"
     ],
-    "viewCount": 538
+    "viewCount": 538,
+    "readingMinutes": 9
   },
   {
     "id": "18689856",
@@ -626,7 +650,8 @@
     "tags": [
       "Blazor"
     ],
-    "viewCount": 0
+    "viewCount": 0,
+    "readingMinutes": 2
   },
   {
     "id": "18689759",
@@ -652,7 +677,8 @@
       "C#",
       "Test"
     ],
-    "viewCount": 77
+    "viewCount": 77,
+    "readingMinutes": 4
   },
   {
     "id": "18689389",
@@ -678,7 +704,8 @@
       "ASP.NET",
       "Blazor"
     ],
-    "viewCount": 72
+    "viewCount": 72,
+    "readingMinutes": 4
   },
   {
     "id": "18654847",
@@ -703,7 +730,8 @@
     "tags": [
       "Blazor"
     ],
-    "viewCount": 0
+    "viewCount": 0,
+    "readingMinutes": 2
   },
   {
     "id": "18646957",
@@ -728,7 +756,8 @@
     "tags": [
       "Git"
     ],
-    "viewCount": 0
+    "viewCount": 0,
+    "readingMinutes": 3
   },
   {
     "id": "18640104",
@@ -755,7 +784,8 @@
       "Blazor",
       "SkiaSharp"
     ],
-    "viewCount": 583
+    "viewCount": 583,
+    "readingMinutes": 5
   },
   {
     "id": "18609219",
@@ -780,7 +810,8 @@
     "tags": [
       "XML"
     ],
-    "viewCount": 2247
+    "viewCount": 2247,
+    "readingMinutes": 15
   },
   {
     "id": "18602249",
@@ -805,7 +836,8 @@
     "tags": [
       "C#"
     ],
-    "viewCount": 128
+    "viewCount": 128,
+    "readingMinutes": 6
   },
   {
     "id": "18586144",
@@ -830,7 +862,8 @@
     "tags": [
       "Blazor"
     ],
-    "viewCount": 338
+    "viewCount": 338,
+    "readingMinutes": 14
   },
   {
     "id": "18587746",
@@ -855,6 +888,7 @@
     "tags": [
       "ASP.NET"
     ],
-    "viewCount": 413
+    "viewCount": 413,
+    "readingMinutes": 13
   }
 ]
