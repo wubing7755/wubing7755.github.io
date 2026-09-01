@@ -509,30 +509,87 @@
     color: var(--color-text-muted);
 }
 
-/* 正文目录（TOC）：由 markdown-renderer.js buildToc 从正文 h2/h3/h4 生成，无标题时保持 hidden */
+/* 正文目录（TOC）：桌面两列布局左列 sticky 侧栏、可折叠；由 markdown-renderer.js buildToc
+   从正文 h2/h3/h4 生成，无标题时保持 hidden。折叠态仅显示「目录」标题条，避免与文章内置目录重复。 */
+.article-detail-layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: var(--space-4);
+    align-items: start;
+}
+
+/* 无正文（未导入的博客条目）时单列：目录不存在，正文占满 */
+.article-detail-layout.article-detail-single {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.article-detail-main {
+    min-width: 0;
+}
+
 .article-toc {
-    margin: 0 0 var(--space-3);
-    padding: var(--space-2) var(--space-3);
-    border: 1px solid var(--color-border);
+    position: sticky;
+    top: 80px;
+    max-height: calc(100vh - 104px);
+    overflow-y: auto;
     background: var(--color-bg-elevated, var(--color-bg));
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-pixel-sm);
 }
 
 .article-toc[hidden] {
     display: none;
 }
 
-.article-toc-title {
-    display: block;
-    margin-bottom: var(--space-2);
+.article-toc-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-2);
     font-family: var(--font-display);
     font-size: 0.85rem;
+    color: var(--color-text);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    text-align: left;
+}
+
+.article-toc-toggle:hover {
+    color: var(--color-primary);
+}
+
+.article-toc-title {
+    flex: 1 1 auto;
+    font-weight: bold;
     color: var(--color-text-muted);
+}
+
+/* 折叠箭头：像素三角，折叠态指向右、展开态旋转指向下 */
+.article-toc-arrow {
+    flex: 0 0 auto;
+    width: 0;
+    height: 0;
+    border-left: 6px solid currentColor;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    transition: transform 0.15s ease;
+}
+
+.article-toc:not(.article-toc-collapsed) .article-toc-arrow {
+    transform: rotate(90deg);
 }
 
 .article-toc-list {
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 0 var(--space-2) var(--space-2);
+}
+
+.article-toc-collapsed .article-toc-list {
+    display: none;
 }
 
 .article-toc-item a {

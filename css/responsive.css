@@ -36,6 +36,18 @@
     .compact-project-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    /* 文章详情两列降级为单列：目录回到正文上方（sticky 侧栏仅桌面宽屏生效） */
+    .article-detail-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .article-toc {
+        position: static;
+        max-height: none;
+        overflow-y: visible;
+        margin-bottom: var(--space-3);
+    }
 }
 
 /* 移动端触控目标 ≥44px（SD-29） */
@@ -46,6 +58,10 @@
 
     .pixel-button {
         padding: 12px var(--space-3);
+    }
+
+    .article-toc-toggle {
+        padding: 12px var(--space-2);
     }
 
     .lang-switch {
