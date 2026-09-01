@@ -13,6 +13,7 @@
     --color-accent-dark: #8a6d00;
     --color-warning: #c0392b;
     --color-bg: #f0f4f9;
+    --color-bg-elevated: #e2e8f0;
     --color-surface: #ffffff;
     --color-border: #2d3a4a;
     --color-text: #1c2733;
@@ -40,6 +41,7 @@ html[data-theme="dark"] {
     --color-accent-dark: #d4af37;
     --color-warning: #ff766a;
     --color-bg: #0d1524;
+    --color-bg-elevated: #1e293b;
     --color-surface: #16203a;
     --color-border: #91a3b8;
     --color-text: #edf4fb;
@@ -1903,10 +1905,9 @@ html[data-theme="dark"] #blazor-error-ui {
 
 .thought-content code {
     font-family: var(--font-mono, monospace);
-    font-size: 0.9em;
+    font-size: 0.85em;
     background: var(--color-bg-elevated, var(--color-bg));
-    border: 1px solid var(--color-border);
-    padding: 0 4px;
+    padding: 1px 5px;
 }
 
 .thought-content pre code {
