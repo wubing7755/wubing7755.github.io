@@ -11,8 +11,12 @@
       return;
     }
 
-    var id = decodeURIComponent(anchor.getAttribute('href').slice(1));
+    var id = anchor.getAttribute('href').slice(1);
     var target = document.getElementById(id);
+    if (!target) {
+      // 兜底：id 若为 URL 编码形态（如博客园导入的未编码锚点），尝试解码后匹配。
+      target = document.getElementById(decodeURIComponent(id));
+    }
     if (!target) {
       return; // 目标不存在：不接管
     }

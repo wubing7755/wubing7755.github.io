@@ -1668,6 +1668,58 @@ html[data-theme="dark"] #blazor-error-ui {
     color: var(--color-text-muted);
 }
 
+/* 正文目录（TOC）：由 markdown-renderer.js buildToc 从正文 h2/h3/h4 生成，无标题时保持 hidden */
+.article-toc {
+    margin: 0 0 var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-elevated, var(--color-bg));
+}
+
+.article-toc[hidden] {
+    display: none;
+}
+
+.article-toc-title {
+    display: block;
+    margin-bottom: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.article-toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.article-toc-item a {
+    display: block;
+    padding: 3px var(--space-2);
+    color: var(--color-text);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    line-height: 1.5;
+}
+
+.article-toc-item a:hover {
+    color: var(--color-primary);
+}
+
+.article-toc-item a.article-toc-active {
+    color: var(--color-accent);
+    border-left-color: var(--color-accent);
+}
+
+.article-toc-level-1 {
+    padding-left: 1.2em;
+}
+
+.article-toc-level-2 {
+    padding-left: 2.4em;
+}
+
 .article-card-read {
     align-self: flex-start;
     color: var(--color-primary);
@@ -1862,6 +1914,59 @@ html[data-theme="dark"] #blazor-error-ui {
     border: none;
     padding: 0;
     background: none;
+}
+
+/* 代码块容器：复制按钮 + 行号（结构由 markdown-renderer.js 生成） */
+.code-block {
+    position: relative;
+    margin: 0 0 var(--space-3);
+}
+
+.code-block pre {
+    margin: 0;
+    counter-reset: code-line;
+}
+
+.code-block .code-copy {
+    position: absolute;
+    top: var(--space-1);
+    right: var(--space-1);
+    padding: 2px 8px;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    background: var(--color-bg-elevated, var(--color-bg));
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 1;
+}
+
+.code-block:hover .code-copy,
+.code-block:focus-within .code-copy {
+    opacity: 1;
+}
+
+.code-block .code-copy:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.code-block .code-line {
+    display: block;
+    counter-increment: code-line;
+}
+
+.code-block .code-line::before {
+    content: counter(code-line);
+    display: inline-block;
+    min-width: 2em;
+    margin-right: 1em;
+    padding-right: 0.5em;
+    text-align: right;
+    color: var(--color-text-muted);
+    user-select: none;
 }
 
 .thought-content table {
