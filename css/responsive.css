@@ -36,14 +36,14 @@
     .compact-project-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+}
 
-    /* 文章详情两列降级为单列：目录回到正文上方（sticky 侧栏仅桌面宽屏生效） */
-    .article-detail-layout {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
+/* 目录悬浮降级：视口不够放左侧留白目录时，回正文上方折叠条（正文 1080px 居中，
+   左侧留白 = (100vw-1080px)/2，容纳 180px 目录 + 24px 间距需 ≥1488px，取 1500px 断点） */
+@media (max-width: 1500px) {
     .article-toc {
         position: static;
+        width: auto;
         max-height: none;
         overflow-y: visible;
         margin-bottom: var(--space-3);

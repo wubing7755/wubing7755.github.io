@@ -1670,18 +1670,11 @@ html[data-theme="dark"] #blazor-error-ui {
     color: var(--color-text-muted);
 }
 
-/* 正文目录（TOC）：桌面两列布局左列 sticky 侧栏、可折叠；由 markdown-renderer.js buildToc
-   从正文 h2/h3/h4 生成，无标题时保持 hidden。折叠态仅显示「目录」标题条，避免与文章内置目录重复。 */
+/* 正文目录（TOC）：宽屏 fixed 悬浮在正文左侧留白、可折叠；由 markdown-renderer.js buildToc
+   从正文 h2/h3/h4 生成，无标题时保持 hidden。折叠态仅显示「目录」标题条，避免与文章内置目录重复。
+   正文保持 1080px 单列原宽（.layout-main 不缩窄），目录放正文外留白、不挤占正文。 */
 .article-detail-layout {
-    display: grid;
-    grid-template-columns: 240px minmax(0, 1fr);
-    gap: var(--space-4);
-    align-items: start;
-}
-
-/* 无正文（未导入的博客条目）时单列：目录不存在，正文占满 */
-.article-detail-layout.article-detail-single {
-    grid-template-columns: minmax(0, 1fr);
+    display: block;
 }
 
 .article-detail-main {
@@ -1689,8 +1682,11 @@ html[data-theme="dark"] #blazor-error-ui {
 }
 
 .article-toc {
-    position: sticky;
+    position: fixed;
     top: 80px;
+    /* 目录右边缘贴正文左边缘外侧 24px：正文 1080px 居中，左边缘 = (100vw - 1080px)/2 */
+    right: calc((100vw + 1080px) / 2 + 24px);
+    width: 180px;
     max-height: calc(100vh - 104px);
     overflow-y: auto;
     background: var(--color-bg-elevated, var(--color-bg));
@@ -1706,11 +1702,11 @@ html[data-theme="dark"] #blazor-error-ui {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--space-2);
+    gap: var(--space-1);
     width: 100%;
-    padding: var(--space-2);
+    padding: var(--space-1) var(--space-2);
     font-family: var(--font-display);
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: var(--color-text);
     background: transparent;
     border: 0;
@@ -1733,9 +1729,9 @@ html[data-theme="dark"] #blazor-error-ui {
     flex: 0 0 auto;
     width: 0;
     height: 0;
-    border-left: 6px solid currentColor;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
+    border-left: 5px solid currentColor;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
     transition: transform 0.15s ease;
 }
 
@@ -1755,10 +1751,11 @@ html[data-theme="dark"] #blazor-error-ui {
 
 .article-toc-item a {
     display: block;
-    padding: 3px var(--space-2);
+    padding: 2px var(--space-2);
     color: var(--color-text);
     text-decoration: none;
     border-left: 2px solid transparent;
+    font-size: 0.8rem;
     line-height: 1.5;
 }
 
@@ -1772,11 +1769,11 @@ html[data-theme="dark"] #blazor-error-ui {
 }
 
 .article-toc-level-1 {
-    padding-left: 1.2em;
+    padding-left: 0.9em;
 }
 
 .article-toc-level-2 {
-    padding-left: 2.4em;
+    padding-left: 1.8em;
 }
 
 .article-card-read {
@@ -6040,14 +6037,14 @@ html[data-theme="dark"] .nav-link:hover {
     .compact-project-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+}
 
-    /* 文章详情两列降级为单列：目录回到正文上方（sticky 侧栏仅桌面宽屏生效） */
-    .article-detail-layout {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
+/* 目录悬浮降级：视口不够放左侧留白目录时，回正文上方折叠条（正文 1080px 居中，
+   左侧留白 = (100vw-1080px)/2，容纳 180px 目录 + 24px 间距需 ≥1488px，取 1500px 断点） */
+@media (max-width: 1500px) {
     .article-toc {
         position: static;
+        width: auto;
         max-height: none;
         overflow-y: visible;
         margin-bottom: var(--space-3);
