@@ -1948,6 +1948,18 @@ html[data-theme="dark"] #blazor-error-ui {
     text-underline-offset: 2px;
 }
 
+/* 正文中的 PDF 附件链接：加类型前缀标记，读者一眼区分「文件」与「页面」 */
+.thought-content a[href$=".pdf" i]::before {
+    content: "PDF";
+    margin-right: 0.35em;
+    padding: 0 0.28em;
+    border: 1px solid currentColor;
+    font-family: var(--font-display);
+    font-size: 0.68em;
+    letter-spacing: 0.08em;
+    vertical-align: 0.16em;
+}
+
 .thought-content pre {
     background: var(--color-bg-elevated, var(--color-bg));
     border: 1px solid var(--color-border);
@@ -3996,6 +4008,35 @@ html[data-theme="dark"] #blazor-error-ui {
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+/* PDF 附件缩略图：占位显示类型标记，避免用 <img> 加载 PDF 产生破图 */
+.admin-media-thumb.is-document {
+    display: grid;
+    place-items: center;
+    background: var(--color-bg-elevated, var(--color-bg));
+    color: var(--color-accent, var(--color-primary));
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+}
+
+.admin-media-detail-preview.is-document {
+    gap: var(--space-2);
+    padding: var(--space-3);
+    text-align: center;
+}
+
+.admin-media-detail-preview.is-document span {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    letter-spacing: 0.16em;
+    color: var(--color-accent, var(--color-primary));
+}
+
+.admin-media-detail-preview.is-document strong {
+    font-size: 0.9rem;
+    overflow-wrap: anywhere;
 }
 
 .admin-media-card-meta {
