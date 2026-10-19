@@ -810,6 +810,18 @@
     background: none;
 }
 
+/* 数学公式（KaTeX，HTML 结构由 markdown-renderer.js 生成）：块级公式在窄屏横向滚动，
+   避免长公式撑破正文容器；垂直间距与段落一致 */
+.thought-content .katex-block {
+    margin: 0 0 var(--space-3);
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.thought-content .katex-block .katex-display {
+    margin: 0.4em 0;
+}
+
 /* 代码块容器：复制按钮 + 行号（结构由 markdown-renderer.js 生成） */
 .code-block {
     position: relative;

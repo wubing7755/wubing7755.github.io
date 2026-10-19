@@ -108,6 +108,9 @@
     }
     </script>
     <link href="css/app.css" rel="stylesheet" />
+    <!-- KaTeX 公式样式与字体（构建期由 katex 包拷贝）：只有内容页会出现公式，
+         但与 app.css 同批加载，避免公式首屏闪烁为原始 $$ 文本 -->
+    <link href="css/katex.css" rel="stylesheet" />
     <!-- 无 .razor.css 时 scoped bundle 不生成；如未来新增组件级 scoped css，恢复 PersonalPortfolio.styles.css 引用 -->
     <style>
         /* ===== WASM 加载页：像素机械头变身动画（纯 CSS，零第三方库，NFR-008） ===== */
