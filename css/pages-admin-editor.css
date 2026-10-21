@@ -1,0 +1,822 @@
+/* 独立正文编辑页：左右分栏，两栏滚动同步由 admin-editor.js 按比例映射。 */
+.admin-editor-split {
+    display: flex;
+    gap: var(--space-3);
+    align-items: stretch;
+    height: calc(100vh - 300px);
+    min-height: 320px;
+}
+
+.admin-editor-left,
+.admin-editor-right {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 0;
+}
+
+.admin-editor-left .admin-markdown-shell,
+.admin-editor-right .admin-preview {
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: 0;
+    box-sizing: border-box;
+}
+
+.admin-markdown-shell {
+    display: grid;
+    grid-template-columns: minmax(2.75rem, auto) minmax(0, 1fr);
+    overflow: hidden;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+}
+
+.admin-markdown-line-numbers {
+    height: 100%;
+    margin: 0;
+    padding: var(--space-1) var(--space-2);
+    overflow: hidden;
+    box-sizing: border-box;
+    background: var(--color-bg);
+    border-right: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-family: "Consolas", "Microsoft YaHei", monospace;
+    line-height: 1.5;
+    text-align: right;
+    user-select: none;
+}
+
+.admin-markdown-line-numbers span {
+    display: inline-block;
+    min-width: 100%;
+}
+
+.admin-markdown-line-numbers .is-active {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.admin-editor-left textarea {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    overflow: auto;
+    box-sizing: border-box;
+    border: 0;
+    resize: none;
+    white-space: pre;
+    overflow-wrap: normal;
+    background-color: var(--color-surface);
+    background-image: linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent var(--admin-active-line-y, 0),
+        rgba(26, 95, 180, 0.1) var(--admin-active-line-y, 0),
+        rgba(26, 95, 180, 0.1) calc(var(--admin-active-line-y, 0) + var(--admin-active-line-height, 1.5em)),
+        transparent calc(var(--admin-active-line-y, 0) + var(--admin-active-line-height, 1.5em))
+    );
+    background-repeat: no-repeat;
+}
+
+.admin-markdown-shell:focus-within {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 1px;
+}
+
+.admin-markdown-shell.is-drag-over {
+    outline: 3px dashed var(--color-primary);
+    outline-offset: -5px;
+}
+
+.admin-markdown-shell.is-uploading {
+    cursor: progress;
+}
+
+.admin-editor-right .admin-preview {
+    margin: 0;
+    overflow-y: auto;
+    border: 1px solid var(--color-border);
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-surface);
+}
+
+@media (max-width: 768px) {
+    /* 与 responsive.css 的项目媒体契约保持一致；该断点也是后台正文编辑器的移动端切换点。 */
+    .project-summary-image {
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+    .admin-post-content-card,
+    .admin-content-editor-header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .admin-content-editor-page {
+        left: auto;
+        width: 100%;
+        transform: none;
+    }
+
+    .admin-content-editor-actions {
+        justify-content: space-between;
+    }
+
+    .admin-editor-tabs {
+        display: flex;
+        gap: var(--space-2);
+        margin-bottom: var(--space-2);
+    }
+
+    .admin-editor-split {
+        display: block;
+        height: calc(100vh - 420px);
+        height: calc(100dvh - 420px);
+        min-height: 300px;
+    }
+
+    .admin-markdown-stats {
+        width: 100%;
+        margin-left: 0;
+        padding-top: var(--space-1);
+    }
+
+    .admin-editor-left,
+    .admin-editor-right {
+        height: 100%;
+        width: 100%;
+    }
+
+    .admin-editor-show-edit .admin-editor-right,
+    .admin-editor-show-preview .admin-editor-left {
+        display: none;
+    }
+}
+
+.admin-form-actions {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.admin-section-tabs {
+    display: flex;
+    gap: 2px;
+    margin-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.admin-section-tabs button {
+    padding: var(--space-2) var(--space-3);
+    background: transparent;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    color: var(--color-text-muted);
+    font: inherit;
+    cursor: pointer;
+}
+
+.admin-section-tabs button.is-active {
+    border-bottom-color: var(--color-primary);
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.admin-profile-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+    gap: var(--space-3);
+    align-items: start;
+}
+
+.admin-profile-form,
+.admin-detail-pane,
+.admin-master-pane,
+.admin-media-detail {
+    padding: var(--space-3);
+}
+
+.admin-form-section-heading,
+.admin-subsection-heading,
+.admin-detail-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.admin-form-section-heading h2,
+.admin-form-section-heading p,
+.admin-subsection-heading h3,
+.admin-subsection-heading p,
+.admin-detail-heading h2,
+.admin-detail-heading p {
+    margin: 0;
+}
+
+.admin-form-section-heading p,
+.admin-subsection-heading p,
+.admin-detail-heading p {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+}
+
+.admin-form-grid,
+.admin-bilingual-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+}
+
+.admin-field-wide {
+    grid-column: 1 / -1;
+}
+
+/* 表单折叠分组（原生 details/summary，零 JS） */
+.admin-form-group {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+}
+
+.admin-form-group + .admin-form-group {
+    margin-top: var(--space-3);
+}
+
+.admin-form-group > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text);
+    list-style: none;
+    user-select: none;
+}
+
+.admin-form-group > summary::-webkit-details-marker {
+    display: none;
+}
+
+.admin-form-group > summary::after {
+    content: "+";
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.admin-form-group[open] > summary::after {
+    content: "−";
+}
+
+.admin-form-group > .admin-form-grid {
+    padding: var(--space-3);
+}
+
+.admin-bilingual-stack,
+.admin-social-list,
+.admin-skill-items-editor {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.admin-insight-editor {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    border: 1px solid color-mix(in srgb, var(--color-border) 35%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 4%, var(--color-surface));
+}
+
+.admin-insight-item {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr) auto;
+    gap: var(--space-2);
+    align-items: start;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-border) 20%, transparent);
+}
+
+.admin-insight-index {
+    padding-top: 1.75rem;
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+}
+
+.admin-insight-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+}
+
+.admin-insight-item > .admin-danger-link {
+    margin-top: 1.55rem;
+}
+
+.admin-social-row {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(100px, 0.5fr) minmax(180px, 1fr) auto;
+    gap: var(--space-2);
+    align-items: center;
+}
+
+.admin-social-row input,
+.admin-skill-fields input {
+    min-width: 0;
+    padding: var(--space-1) var(--space-2);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    font: inherit;
+}
+
+.admin-item-index,
+.admin-preview-label {
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+}
+
+.admin-profile-preview {
+    position: sticky;
+    top: calc(72px + var(--space-3));
+    padding: var(--space-4);
+    text-align: center;
+}
+
+.admin-profile-avatar {
+    display: grid;
+    place-items: center;
+    width: 88px;
+    height: 88px;
+    margin: var(--space-3) auto;
+    background: var(--color-primary);
+    box-shadow: 6px 6px 0 var(--color-accent);
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+}
+
+.admin-profile-preview h2 {
+    margin: var(--space-2) 0;
+    font-family: var(--font-display);
+}
+
+.admin-profile-preview-role {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.admin-profile-preview dl,
+.admin-media-properties {
+    margin: var(--space-3) 0;
+    text-align: left;
+}
+
+.admin-profile-preview dl div,
+.admin-media-properties div {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1fr);
+    gap: var(--space-2);
+    padding: var(--space-2) 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.admin-profile-preview dt,
+.admin-media-properties dt {
+    color: var(--color-text-muted);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+}
+
+.admin-profile-preview dd,
+.admin-media-properties dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.admin-profile-preview-socials,
+.admin-tag-row,
+.admin-skill-chip-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+}
+
+.admin-profile-preview-socials span,
+.admin-tag-row span,
+.admin-skill-chip-cloud span {
+    padding: 2px var(--space-2);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    font-size: 0.75rem;
+}
+
+.admin-master-detail {
+    display: grid;
+    grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+    gap: var(--space-3);
+    align-items: start;
+}
+
+.admin-pane-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+}
+
+.admin-search-box {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+}
+
+.admin-search-box span {
+    padding-left: var(--space-2);
+    color: var(--color-text-muted);
+}
+
+.admin-search-box input {
+    min-width: 0;
+    width: 100%;
+    padding: var(--space-2);
+    background: transparent;
+    border: 0;
+    color: var(--color-text);
+    font: inherit;
+}
+
+/* 搜索框聚焦：整个控件（含左侧图标）高亮，input 自身 outline 让位给 label，避免双重框 */
+.admin-search-box:focus-within {
+    border-color: var(--color-primary);
+    outline: 3px solid var(--color-accent-dark);
+    outline-offset: 2px;
+}
+
+.admin-search-box input:focus-visible {
+    outline: none;
+}
+
+.admin-entity-list,
+.admin-skill-group-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.admin-entity-card,
+.admin-skill-group-card {
+    min-width: 0;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+}
+
+.admin-entity-card.is-selected,
+.admin-skill-group-card.is-selected,
+.admin-media-card.is-selected {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 1px;
+}
+
+.admin-entity-select,
+.admin-skill-group-select {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: var(--space-2);
+    align-items: center;
+    width: 100%;
+    padding: var(--space-2);
+    background: transparent;
+    border: 0;
+    color: var(--color-text);
+    text-align: left;
+    cursor: pointer;
+}
+
+.admin-entity-select strong,
+.admin-entity-select small,
+.admin-skill-group-select strong,
+.admin-skill-group-select small {
+    display: block;
+}
+
+.admin-entity-select small,
+.admin-skill-group-select small {
+    margin-top: 2px;
+    color: var(--color-text-muted);
+}
+
+.admin-entity-icon {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--color-primary);
+    color: #fff;
+    font-family: var(--font-display);
+}
+
+.admin-status-badge {
+    padding: 2px var(--space-1);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 0.7rem;
+}
+
+.admin-entity-card footer,
+.admin-skill-group-card footer {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+    padding: var(--space-1) var(--space-2);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 0.72rem;
+}
+
+.admin-danger-link {
+    margin-left: auto;
+    padding: 2px var(--space-1);
+    background: transparent;
+    border: 0;
+    color: var(--color-warning);
+    cursor: pointer;
+}
+
+.admin-detail-pane {
+    min-width: 0;
+}
+
+.admin-detail-placeholder {
+    display: grid;
+    place-items: center;
+    min-height: 360px;
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+.admin-detail-placeholder h2,
+.admin-detail-placeholder p {
+    margin: 0;
+}
+
+.admin-detail-heading,
+.admin-detail-pane > .admin-form-grid {
+    margin-bottom: var(--space-3);
+}
+
+.admin-project-preview {
+    display: grid;
+    grid-template-columns: minmax(120px, 220px) minmax(0, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+    padding: var(--space-3);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+}
+
+.admin-project-preview img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.admin-project-preview h3 {
+    margin: var(--space-1) 0;
+}
+
+.admin-sticky-actions {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    gap: var(--space-2);
+    margin: var(--space-3) calc(-1 * var(--space-3)) calc(-1 * var(--space-3));
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+}
+
+.admin-skills-workspace {
+    grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+}
+
+.admin-skill-group-card {
+    padding: var(--space-2);
+}
+
+.admin-skill-group-card footer {
+    margin: var(--space-2) calc(-1 * var(--space-2)) calc(-1 * var(--space-2));
+}
+
+.admin-skill-chip-cloud {
+    padding: var(--space-1) 0;
+}
+
+.admin-skill-edit-card {
+    padding: var(--space-2);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+}
+
+.admin-skill-edit-card header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+}
+
+.admin-skill-edit-card header > div {
+    display: flex;
+    gap: 2px;
+    margin-left: auto;
+}
+
+.admin-skill-edit-card header button {
+    padding: 2px var(--space-1);
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    cursor: pointer;
+}
+
+.admin-skill-meter {
+    height: 6px;
+    margin-top: var(--space-2);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+}
+
+.admin-skill-meter span {
+    display: block;
+    height: 100%;
+    background: var(--color-primary);
+}
+
+.admin-media-dropzone {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin-bottom: var(--space-3);
+    padding: var(--space-4);
+    border-style: dashed;
+    text-align: center;
+    cursor: pointer;
+}
+
+.admin-media-dropzone:hover {
+    border-color: var(--color-primary);
+    background: var(--color-bg);
+}
+
+.admin-media-dropzone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.admin-media-dropzone.is-busy {
+    opacity: 0.65;
+    cursor: progress;
+}
+
+.admin-media-drop-icon {
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: 2rem;
+}
+
+.admin-media-dropzone small {
+    color: var(--color-text-muted);
+}
+
+.admin-media-workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+    gap: var(--space-3);
+    align-items: start;
+}
+
+.admin-media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: var(--space-2);
+}
+
+.admin-media-card {
+    min-width: 0;
+    padding: 0;
+    overflow: hidden;
+    background: var(--color-surface);
+    color: var(--color-text);
+    text-align: left;
+    cursor: pointer;
+}
+
+.admin-media-thumb {
+    display: block;
+    aspect-ratio: 4 / 3;
+    background: repeating-conic-gradient(var(--color-bg) 0 25%, var(--color-surface) 0 50%) 50% / 16px 16px;
+}
+
+.admin-media-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* PDF 附件缩略图：占位显示类型标记，避免用 <img> 加载 PDF 产生破图 */
+.admin-media-thumb.is-document {
+    display: grid;
+    place-items: center;
+    background: var(--color-bg-elevated, var(--color-bg));
+    color: var(--color-accent, var(--color-primary));
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+}
+
+.admin-media-detail-preview.is-document {
+    gap: var(--space-2);
+    padding: var(--space-3);
+    text-align: center;
+}
+
+.admin-media-detail-preview.is-document span {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    letter-spacing: 0.16em;
+    color: var(--color-accent, var(--color-primary));
+}
+
+.admin-media-detail-preview.is-document strong {
+    font-size: 0.9rem;
+    overflow-wrap: anywhere;
+}
+
+.admin-media-card-meta {
+    display: block;
+    padding: var(--space-2);
+}
+
+.admin-media-card-meta strong,
+.admin-media-card-meta small {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.admin-media-card-meta small {
+    margin-top: 2px;
+    color: var(--color-text-muted);
+}
+
+.admin-media-detail {
+    position: sticky;
+    top: calc(72px + var(--space-3));
+}
+
+.admin-media-detail-preview {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 3;
+    margin-bottom: var(--space-3);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+}
+
+.admin-media-detail-preview img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.admin-media-detail h2 {
+    overflow-wrap: anywhere;
+}
+
+.admin-media-detail-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+}

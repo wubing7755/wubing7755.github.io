@@ -1158,7 +1158,7 @@ html[data-theme="dark"] #blazor-error-ui {
     .home-proof-strip > :first-child { border-top: 0; }
 }
 
-/* source: pages.css */
+/* source: pages-public.css */
 /* 通用页面 */
 .page {
     width: 100%;
@@ -1575,6 +1575,7 @@ html[data-theme="dark"] #blazor-error-ui {
     margin-top: auto;
 }
 
+/* source: pages-content.css */
 /* 博客/感想列表（SD-15/16/21） */
 .article-grid {
     display: grid;
@@ -2373,6 +2374,7 @@ html[data-theme="dark"] #blazor-error-ui {
     background: repeating-linear-gradient(90deg, var(--color-primary) 0 12px, var(--color-accent) 12px 24px);
 }
 
+/* source: pages-auth-comments.css */
 /* 认证表单（Phase 4）：登录/注册页，窄列居中，输入框像素描边 */
 .auth-page {
     max-width: 420px;
@@ -2612,6 +2614,7 @@ html[data-theme="dark"] #blazor-error-ui {
     min-height: 4em;
 }
 
+/* source: pages-admin.css */
 /* ===== 后台管理（/admin，Phase 5） ===== */
 .admin-workspace {
     position: relative;
@@ -3264,6 +3267,7 @@ html[data-theme="dark"] #blazor-error-ui {
     text-align: center;
 }
 
+/* source: pages-admin-editor.css */
 /* 独立正文编辑页：左右分栏，两栏滚动同步由 admin-editor.js 按比例映射。 */
 .admin-editor-split {
     display: flex;
@@ -4087,6 +4091,7 @@ html[data-theme="dark"] #blazor-error-ui {
     margin-top: var(--space-3);
 }
 
+/* source: pages-admin-data.css */
 /* 后台数据总览 */
 .admin-dashboard-loading {
     min-height: 300px;
@@ -4910,6 +4915,7 @@ html[data-theme="dark"] #blazor-error-ui {
     }
 }
 
+/* source: pages-settings.css */
 /* 设置页（/settings）：分组卡片 + 字段行 + 提示 */
 .settings-page {
     max-width: 760px;
@@ -5130,6 +5136,7 @@ html[data-theme="dark"] #blazor-error-ui {
     border-color: var(--color-primary);
 }
 
+/* source: pages-effects.css */
 /* 机甲警报（MechAlert）：屏幕中央、长方形机甲像素面板，四周红色故障闪烁。
    可复用于强警告场景；风格与 SD-25 机甲像素风一致。 */
 .mech-alert-backdrop {

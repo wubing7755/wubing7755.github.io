@@ -1,0 +1,651 @@
+/* ===== 后台管理（/admin，Phase 5） ===== */
+.admin-workspace {
+    position: relative;
+    left: 50%;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: var(--space-3);
+    width: min(1500px, calc(100vw - (2 * var(--space-4))));
+    transform: translateX(-50%);
+    align-items: start;
+}
+
+.admin-workspace-nav {
+    position: sticky;
+    top: calc(var(--space-3) + 72px);
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 100px);
+    padding: var(--space-2);
+    overflow-y: auto;
+}
+
+.admin-workspace-brand {
+    padding: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.admin-workspace-nav nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--space-2) 0;
+}
+
+.admin-workspace-link {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: var(--space-1);
+    padding: var(--space-2);
+    color: var(--color-text-muted);
+    font-size: 0.86rem;
+    text-decoration: none;
+}
+
+.admin-workspace-link span {
+    color: var(--color-border);
+    font-family: var(--font-display);
+}
+
+.admin-workspace-link:hover,
+.admin-workspace-link.is-active {
+    background: var(--color-primary);
+    color: #fff;
+}
+
+.admin-workspace-link.is-active span {
+    color: var(--color-accent);
+}
+
+.admin-workspace-site-link {
+    margin-top: auto;
+    padding: var(--space-2);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+.admin-workspace-content {
+    min-width: 0;
+}
+
+.admin-workspace-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.admin-workspace-header h1,
+.admin-workspace-header p {
+    margin: 0;
+}
+
+.admin-workspace-header h1 {
+    margin: var(--space-1) 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+}
+
+.admin-workspace-header > div > p:last-child {
+    max-width: 60rem;
+    color: var(--color-text-muted);
+}
+
+.admin-workspace-eyebrow {
+    color: var(--color-primary) !important;
+    font-family: var(--font-display);
+    font-size: 0.76rem;
+}
+
+.admin-workspace-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.admin-page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.admin-gate {
+    padding: var(--space-4);
+}
+
+/* 故障注入测试台（SD-33 错误测试页，Admin 后台） */
+.errortest-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    margin-bottom: var(--space-3);
+    background: var(--color-surface);
+    border-color: var(--color-accent-dark);
+}
+
+.errortest-notice-mark {
+    color: var(--color-accent);
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.errortest-notice p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+.errortest-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--space-3);
+}
+
+.errortest-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-3);
+}
+
+.errortest-card:hover {
+    border-color: var(--color-primary);
+}
+
+.errortest-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.errortest-index {
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+}
+
+.errortest-card h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1rem;
+}
+
+.errortest-card p {
+    margin: 0;
+    flex: 1;
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+.errortest-card .pixel-button {
+    align-self: flex-start;
+    margin-top: var(--space-2);
+}
+
+/* 卡片状态图标：机甲像素方块（危险=警示红 / 安全=主色蓝） */
+.errortest-icon {
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--color-surface);
+    border: var(--pixel-size) solid var(--color-border);
+    box-shadow: var(--shadow-pixel-sm);
+}
+
+.errortest-icon-danger {
+    background: var(--color-warning);
+}
+
+.errortest-icon-safe {
+    background: var(--color-primary);
+}
+
+.admin-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--space-3);
+}
+
+.admin-card {
+    display: block;
+    padding: var(--space-3);
+    text-decoration: none;
+}
+
+.admin-card h3 {
+    margin: 0 0 var(--space-2);
+    font-family: var(--font-display);
+}
+
+.admin-card p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.admin-sync {
+    padding: var(--space-3);
+}
+
+.admin-sync h3 {
+    margin: 0 0 var(--space-2);
+    font-family: var(--font-display);
+}
+
+.admin-sync p {
+    margin: 0 0 var(--space-2);
+}
+
+.admin-sync-actions {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+}
+
+.admin-sync-dryrun {
+    color: var(--color-text-muted);
+}
+
+.admin-status {
+    color: var(--color-primary);
+}
+
+.admin-error {
+    color: var(--color-warning);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+}
+
+/* 整行状态消息 banner：左色条区分语义（成功=主色 / 错误=警示 / 信息=边框），替代散落的裸文字状态 */
+.admin-banner {
+    padding: var(--space-2) var(--space-3);
+    margin: 0;
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-border);
+    background: var(--color-surface);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--color-text);
+}
+
+.admin-banner--success {
+    border-left-color: var(--color-primary);
+}
+
+.admin-banner--error {
+    border-left-color: var(--color-warning);
+}
+
+.admin-banner--info {
+    border-left-color: var(--color-border);
+}
+
+.admin-toolbar {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.admin-filter {
+    padding: var(--space-1) var(--space-2);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    font: inherit;
+}
+
+.admin-new {
+    margin-left: auto;
+    text-decoration: none;
+}
+
+.admin-table-wrap {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.admin-table th,
+.admin-table td {
+    text-align: left;
+    padding: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+}
+
+.admin-table th {
+    font-family: var(--font-display);
+    font-weight: normal;
+    color: var(--color-text-muted);
+}
+
+.admin-row-actions {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.admin-pager {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.admin-pager-summary {
+    margin-right: var(--space-2);
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+}
+
+.admin-pager-page {
+    min-width: 2.5rem;
+    padding: var(--space-1) var(--space-2);
+}
+
+.admin-pager-page.is-current {
+    background: var(--color-primary-dark);
+    color: #fff;
+}
+
+.admin-pager-ellipsis {
+    color: var(--color-text-muted);
+}
+
+.admin-empty {
+    padding: var(--space-4);
+    text-align: center;
+    color: var(--color-text-muted);
+}
+
+.admin-form {
+    padding: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.admin-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.admin-field span {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-text);
+}
+
+.admin-field input,
+.admin-field select,
+.admin-field textarea {
+    padding: var(--space-1) var(--space-2);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    font: inherit;
+}
+
+/* 焦点态：主色边框标识当前字段；键盘焦点可见性由 base.css 全局 :focus-visible 提供 */
+.admin-field input:focus,
+.admin-field select:focus,
+.admin-field textarea:focus {
+    border-color: var(--color-primary);
+}
+
+.admin-markdown {
+    font-family: "Consolas", "Microsoft YaHei", monospace;
+    line-height: 1.5;
+}
+
+.admin-post-content-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-3);
+}
+
+.admin-post-content-summary h2,
+.admin-post-content-summary p {
+    margin: 0;
+}
+
+.admin-post-content-summary h2 {
+    margin-bottom: var(--space-1);
+    font-size: 1rem;
+}
+
+.admin-post-content-summary p,
+.admin-content-back,
+.admin-save-state {
+    color: var(--color-text-muted);
+}
+
+.admin-content-editor-page {
+    position: relative;
+    left: 50%;
+    width: min(1500px, calc(100vw - (2 * var(--space-4))));
+    transform: translateX(-50%);
+}
+
+.admin-content-editor-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+}
+
+.admin-content-editor-header h1 {
+    margin: var(--space-1) 0 0;
+    font-size: clamp(1.25rem, 2vw, 1.8rem);
+}
+
+.admin-content-editor-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.admin-save-state {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+}
+
+.admin-editor-tabs {
+    display: none;
+}
+
+.admin-editor-tabs .pixel-button:not(.pixel-button-primary) {
+    background: var(--color-surface);
+    color: var(--color-text);
+    box-shadow: none;
+}
+
+.pixel-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+@media (max-width: 900px) {
+    .admin-workspace {
+        left: auto;
+        display: block;
+        width: 100%;
+        transform: none;
+    }
+
+    .admin-workspace-nav {
+        position: static;
+        display: block;
+        max-height: none;
+        margin-bottom: var(--space-3);
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    .admin-workspace-brand,
+    .admin-workspace-site-link {
+        display: none;
+    }
+
+    .admin-workspace-nav nav {
+        flex-direction: row;
+        width: max-content;
+        padding: 0;
+    }
+
+    .admin-workspace-link {
+        display: block;
+        white-space: nowrap;
+    }
+
+    .admin-workspace-link span {
+        margin-right: var(--space-1);
+    }
+
+    .admin-workspace-header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .admin-workspace-actions {
+        justify-content: flex-start;
+    }
+}
+
+.admin-markdown-toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    margin-bottom: var(--space-2);
+    padding: var(--space-1);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+}
+
+.admin-markdown-toolbar button {
+    min-width: 2.25rem;
+    min-height: 2rem;
+    padding: 0 var(--space-2);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    font: inherit;
+    cursor: pointer;
+}
+
+.admin-markdown-toolbar button:hover,
+.admin-markdown-toolbar button:focus-visible {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.admin-markdown-stats {
+    margin-left: auto;
+    padding: 0 var(--space-2);
+    color: var(--color-text-muted);
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+}
+
+.admin-markdown-upload-state {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+}
+
+.admin-editor-search {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    margin-bottom: var(--space-2);
+    padding: var(--space-2);
+    background: var(--color-surface);
+    border: 1px solid var(--color-primary);
+}
+
+.admin-editor-search[hidden] {
+    display: none;
+}
+
+.admin-editor-search label {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.admin-editor-search label span {
+    color: var(--color-text-muted);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+}
+
+.admin-editor-search input {
+    min-width: 12rem;
+    padding: var(--space-1) var(--space-2);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    font: inherit;
+}
+
+.admin-editor-search button {
+    min-height: 2rem;
+    padding: 0 var(--space-2);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    cursor: pointer;
+}
+
+.admin-editor-replace-field,
+.admin-editor-replace-action {
+    display: none !important;
+}
+
+.admin-editor-search.is-replace-mode .admin-editor-replace-field {
+    display: flex !important;
+}
+
+.admin-editor-search.is-replace-mode .admin-editor-replace-action {
+    display: inline-block !important;
+}
+
+.admin-editor-search-status {
+    min-width: 3.5rem;
+    color: var(--color-text-muted);
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    text-align: center;
+}

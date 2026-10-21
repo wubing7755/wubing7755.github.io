@@ -1,0 +1,238 @@
+/* 认证表单（Phase 4）：登录/注册页，窄列居中，输入框像素描边 */
+.auth-page {
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    background: var(--color-surface);
+    border: var(--pixel-size) solid var(--color-border);
+    box-shadow: var(--shadow-pixel-sm);
+    padding: var(--space-4);
+}
+
+.auth-label {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: var(--space-1);
+}
+
+.auth-input {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text);
+    background: var(--color-bg);
+    border: 2px solid var(--color-border);
+    padding: var(--space-2);
+    width: 100%;
+}
+
+.auth-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(26, 95, 180, 0.25);
+}
+
+.auth-error {
+    color: var(--color-warning);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    margin: var(--space-1) 0 0;
+}
+
+.auth-switch {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin: var(--space-2) 0 0;
+}
+
+/* 图形验证码（注册）：图片 + 输入框 + 换一张，图片点击可刷新 */
+.auth-captcha-row {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+}
+
+.auth-captcha-row .auth-input {
+    width: auto;
+    flex: 1;
+}
+
+.auth-captcha-img {
+    height: 40px;
+    border: 2px solid var(--color-border);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.auth-captcha-img:hover {
+    border-color: var(--color-primary);
+}
+
+.auth-captcha-refresh {
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-1);
+}
+
+.auth-captcha-refresh:hover {
+    color: var(--color-accent);
+}
+
+/* 评论区（Phase 4）：文章详情底部，条目为弱化面板 */
+.comment-section {
+    margin-top: var(--space-4);
+    border-top: 3px solid var(--color-border);
+    padding-top: var(--space-3);
+}
+
+.comment-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    margin: 0 0 var(--space-2);
+}
+
+.comment-list {
+    list-style: none;
+    margin: 0 0 var(--space-3);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.comment-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-pixel-sm);
+    padding: var(--space-2) var(--space-3);
+}
+
+.comment-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin-bottom: var(--space-1);
+}
+
+.comment-author {
+    font-family: var(--font-display);
+    font-weight: bold;
+}
+
+.comment-content {
+    margin: 0 0 var(--space-2);
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.comment-input {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-text);
+    background: var(--color-bg);
+    border: 2px solid var(--color-border);
+    padding: var(--space-2);
+    width: 100%;
+    min-height: 6em;
+    resize: vertical;
+}
+
+.comment-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.comment-error {
+    color: var(--color-warning);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* 提交反馈（先审后发场景）：与错误提示区分，使用信息色而非警示色 */
+.comment-notice {
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* ===== 评论点赞 ===== */
+.comment-like {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    background: none;
+    border: none;
+    padding: 0;
+    margin-right: var(--space-2);
+    cursor: pointer;
+}
+
+.comment-like:hover:not(:disabled) {
+    color: var(--color-primary);
+}
+
+.comment-like:disabled {
+    cursor: default;
+    opacity: 0.7;
+}
+
+.comment-like-active {
+    color: var(--color-accent);
+}
+
+.comment-like-count {
+    font-weight: bold;
+}
+
+.comment-like-readonly {
+    cursor: default;
+}
+
+/* ===== 评论回复（单层） ===== */
+.comment-reply-toggle {
+    margin-top: var(--space-1);
+}
+
+.comment-reply-list {
+    list-style: none;
+    margin: var(--space-2) 0 0;
+    padding: 0 0 0 var(--space-3);
+    border-left: 2px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.comment-reply-item {
+    padding: var(--space-1) 0;
+}
+
+.comment-reply-form {
+    margin-top: var(--space-2);
+}
+
+.comment-reply-form .comment-input {
+    min-height: 4em;
+}
