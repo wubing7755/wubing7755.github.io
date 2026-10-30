@@ -6195,7 +6195,7 @@ html[data-theme="dark"] .nav-link:hover {
     }
 }
 
-/* 320px 顶栏保持单行：收窄横向内边距，品牌名称禁止自身换行。 */
+/* ≤420px 使用短品牌名；≤380px 顶栏允许换行，避免工具区把页面撑出横向滚动。 */
 @media (max-width: 420px) {
     .layout-topbar {
         padding-inline: var(--space-2);
@@ -6215,6 +6215,17 @@ html[data-theme="dark"] .nav-link:hover {
 
     .site-brand-short {
         display: inline;
+    }
+}
+
+@media (max-width: 380px) {
+    .layout-topbar {
+        flex-wrap: wrap;
+        row-gap: var(--space-1);
+    }
+
+    .header-tools {
+        margin-left: auto;
     }
 }
 
