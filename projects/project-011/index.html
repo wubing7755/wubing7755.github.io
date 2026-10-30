@@ -390,7 +390,8 @@
          锚点拦截处理 #链接（否则 Blazor 会把 #锚点 当路由路径导航到首页） -->
     <script src="js/anchor-navigation.js"></script>
     <script src="js/context-menu.js"></script>
-    <script src="js/admin-editor.js"></script>
+    <!-- Admin 编辑器脚本较大且仅后台正文页使用：这里只加载轻量 loader，进入编辑页后按需拉取 admin-editor.js -->
+    <script src="js/admin-editor-loader.js"></script>
     <script src="_framework/blazor.webassembly.js"></script>
 </body>
 
